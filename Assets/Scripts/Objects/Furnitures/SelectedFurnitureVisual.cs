@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectedCounterVisual : MonoBehaviour
+public class SelectedFurnitureVisual : MonoBehaviour
 {
-
-    [SerializeField] private Furniture furniture;
-    [SerializeField] private GameObject visual;
+    [SerializeField] private BaseFurniture furniture;
+    [SerializeField] private GameObject[] visualArray;
 
     private void Awake()
     {
-        furniture = gameObject.GetComponent<Furniture>();
+        furniture = gameObject.GetComponent<BaseFurniture>();
     }
 
     private void Start()
@@ -32,11 +31,18 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Show()
     {
-        visual.SetActive(true);
+        foreach (GameObject visual in visualArray)
+        {
+            visual.SetActive(true);
+        }
     }
 
     private void Hide()
     {
-        visual.SetActive(false);
+        foreach (GameObject visual in visualArray)
+        {
+            visual.SetActive(false);
+        }    
     }
+    
 }

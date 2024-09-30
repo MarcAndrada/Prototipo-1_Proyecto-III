@@ -1,5 +1,5 @@
 {
-    "name": "NewPlayerActions",
+    "name": "PlayerActions",
     "maps": [
         {
             "name": "Gameplay",
@@ -13,24 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Grab",
-                    "type": "Button",
-                    "id": "cbe09bf3-a7bf-41fb-8ca3-828ec3ce4ef0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UseItem",
-                    "type": "Button",
-                    "id": "b081368e-445c-4a58-9318-b1b1753d7dbc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -120,30 +102,19 @@
                 },
                 {
                     "name": "",
-                    "id": "e2f63ab1-94ae-4916-a91e-1875a303ea3c",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Grab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "84797bc4-36b6-4008-a773-b7fb0007e653",
+                    "id": "4ae783fc-24c8-4e3f-a78d-9f3d0a49e2b0",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Grab",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "6a5821bc-7de9-488d-99ac-324f7d127a8e",
-                    "path": "<Keyboard>/f",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -154,7 +125,7 @@
                 {
                     "name": "",
                     "id": "face6122-9638-442a-a371-be7658bdd04c",
-                    "path": "",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -164,12 +135,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c15740ef-35b5-4ad4-b341-88503fd89243",
-                    "path": "<Keyboard>/q",
+                    "id": "d1db712e-0ed1-4633-bd84-40a4406acc7e",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseItem",
+                    "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

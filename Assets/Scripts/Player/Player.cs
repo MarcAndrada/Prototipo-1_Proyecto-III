@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IInteractableObjectParent
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public Furniture selectedFurniture;
+        public BaseFurniture selectedFurniture;
     }
     
     [Header("Movement")]
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private LayerMask interactableLayer;
     
     [Header("Utilities")]
+    [SerializeField] private float throwForce = 20f;
     [SerializeField] private Transform interactiveObjectHoldPoint;
 
     private GameInput gameInput;
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour, IInteractableObjectParent
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private Furniture selectedFurniture;
+    private BaseFurniture selectedFurniture;
     private InteractableObject obj;
 
     private void Awake()
@@ -36,15 +37,12 @@ public class Player : MonoBehaviour, IInteractableObjectParent
 
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
-
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
     }
-
     private void Start()
     {
         gameInput.OnInteractAction += GameInputOnInteractAction;
+        gameInput.OnDropAction += GameInputOnDropAction;
     }
-
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
         if (selectedFurniture != null)
@@ -52,7 +50,13 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             selectedFurniture.Interact(this);
         }
     }
-
+    private void GameInputOnDropAction(object sender, System.EventArgs e)
+    {
+        if (HasInteractableObject())
+        {
+            DropObject();
+        }
+    }
     private void FixedUpdate()
     {
         HandleMovement();
@@ -66,27 +70,28 @@ public class Player : MonoBehaviour, IInteractableObjectParent
 
         if (moveDir != Vector3.zero)
         {
-            lastInteractDir = moveDir;
+            lastInteractDir = transform.forward;
         }
         
-        float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, interactableLayer))
+        float interactDistance = 2f; 
+        Vector3 rayCastPos = transform.position - new Vector3(0f, 0.5f, 0f);
+        if (Physics.Raycast(rayCastPos, lastInteractDir, out RaycastHit raycastHit, interactDistance, interactableLayer))
         {
-            if (raycastHit.transform.TryGetComponent(out Furniture furniture))
+            if (raycastHit.transform.TryGetComponent(out BaseFurniture furniture))
             {
                 if (furniture != selectedFurniture)
                 {
-                    SetSelectedCounter(furniture);
+                    SetSelectedFurniture(furniture);
                 }
             }
             else
             {
-                SetSelectedCounter(null);
+                SetSelectedFurniture(null);
             }
         }
         else
         {
-            SetSelectedCounter(null);
+            SetSelectedFurniture(null);
         }
     }
     private void HandleMovement()
@@ -104,7 +109,7 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
             }
-
+            
             Vector3 forwardDir = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
             transform.forward = forwardDir;
         }
@@ -122,17 +127,34 @@ public class Player : MonoBehaviour, IInteractableObjectParent
         
         rb.angularVelocity = Vector3.zero;
     }
+    private void DropObject()
+    {
+        if (HasInteractableObject())
+        {
+            obj.transform.SetParent(null);
+        
+            Rigidbody objectRigidbody = obj.GetComponent<Rigidbody>();
+            if (objectRigidbody != null)
+            {
+                objectRigidbody.isKinematic = false;
+                Vector3 throwDirection = transform.forward;
+                objectRigidbody.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
+            }
+            
+            ClearInteractableObject();
+        }
+    }
     public bool IsWalking()
     {
         return isWalking;
     }
-    private void SetSelectedCounter(Furniture selectedFurniture)
+    private void SetSelectedFurniture(BaseFurniture selectedBaseFurniture)
     {
-        this.selectedFurniture = selectedFurniture;
+        this.selectedFurniture = selectedBaseFurniture;
         
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs()
         {
-            selectedFurniture = selectedFurniture
+            selectedFurniture = selectedBaseFurniture
         });
     }
 
@@ -159,5 +181,15 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     public bool HasInteractableObject()
     {
         return obj != null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Application.isPlaying && gameInput != null)
+        {
+            Gizmos.color = Color.green;
+        
+            Gizmos.DrawRay(transform.position - new Vector3(0f, 0.5f, 0f), lastInteractDir * 2f);
+        }
     }
 }
