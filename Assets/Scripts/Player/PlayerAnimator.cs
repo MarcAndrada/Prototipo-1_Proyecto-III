@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    private const string IS_WALKING = "isWalking";
+    
     private Animator animator;
     private Player player;
     private void Awake()
@@ -13,6 +15,6 @@ public class PlayerAnimator : MonoBehaviour
     }
     private void Update()
     {
-        //animator.SetBool("IsWalking", player.IsWalking());
+        animator.SetBool(IS_WALKING, player.IsWalking());
     }
 }
