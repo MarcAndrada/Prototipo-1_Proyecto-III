@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IInteractableObjectParent
 {
     // Change singleton to multiplayer friendly
     public static Player Instance { get; private set; }
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public Counter selectedCounter;
+        public Furniture selectedFurniture;
     }
     
     [Header("Movement")]
@@ -19,13 +19,17 @@ public class Player : MonoBehaviour
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
+    [Header("Utilities")]
+    [SerializeField] private Transform interactiveObjectHoldPoint;
+
     private GameInput gameInput;
     private Rigidbody rb;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private Counter selectedCounter;
-    
+    private Furniture selectedFurniture;
+    private InteractableObject obj;
+
     private void Awake()
     {
         Instance = this;
@@ -43,9 +47,9 @@ public class Player : MonoBehaviour
 
     private void GameInputOnInteractAction(object sender, System.EventArgs e)
     {
-        if (selectedCounter != null)
+        if (selectedFurniture != null)
         {
-            selectedCounter.Interact();
+            selectedFurniture.Interact(this);
         }
     }
 
@@ -68,11 +72,11 @@ public class Player : MonoBehaviour
         float interactDistance = 2f;
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, interactableLayer))
         {
-            if (raycastHit.transform.TryGetComponent(out Counter counter))
+            if (raycastHit.transform.TryGetComponent(out Furniture furniture))
             {
-                if (counter != selectedCounter)
+                if (furniture != selectedFurniture)
                 {
-                    SetSelectedCounter(counter);
+                    SetSelectedCounter(furniture);
                 }
             }
             else
@@ -122,13 +126,38 @@ public class Player : MonoBehaviour
     {
         return isWalking;
     }
-    private void SetSelectedCounter(Counter selectedCounter)
+    private void SetSelectedCounter(Furniture selectedFurniture)
     {
-        this.selectedCounter = selectedCounter;
+        this.selectedFurniture = selectedFurniture;
         
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs()
         {
-            selectedCounter = selectedCounter
+            selectedFurniture = selectedFurniture
         });
+    }
+
+    public Transform GetInteractableObjectFollowTransform()
+    {
+        return interactiveObjectHoldPoint;
+    }
+
+    public void SetInteractableObject(InteractableObject interactableObject)
+    {
+        obj = interactableObject;
+    }
+
+    public InteractableObject GetInteractableObject()
+    {
+        return obj;
+    }
+
+    public void ClearInteractableObject()
+    {
+        obj = null;
+    }
+
+    public bool HasInteractableObject()
+    {
+        return obj != null;
     }
 }

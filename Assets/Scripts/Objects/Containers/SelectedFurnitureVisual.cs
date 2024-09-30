@@ -6,12 +6,12 @@ using UnityEngine;
 public class SelectedCounterVisual : MonoBehaviour
 {
 
-    [SerializeField] private Counter counter;
+    [SerializeField] private Furniture furniture;
     [SerializeField] private GameObject visual;
 
     private void Awake()
     {
-        counter = gameObject.GetComponent<Counter>();
+        furniture = gameObject.GetComponent<Furniture>();
     }
 
     private void Start()
@@ -20,7 +20,7 @@ public class SelectedCounterVisual : MonoBehaviour
     }
     private void PlayerOnSelectedChestChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        if (e.selectedCounter == counter)
+        if (e.selectedFurniture == furniture)
         {
             Show();
         }
