@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     private Animator animator;
-
-    [SerializeField] private Player player;
+    private Player player;
     private void Awake()
     {
+        player = GetComponent<Player>();
         animator = GetComponent<Animator>();
     }
     private void Update()
     {
-        animator.SetBool("IsWalking", player.IsWalking());
+        //animator.SetBool("IsWalking", player.IsWalking());
     }
 }

@@ -6,60 +6,69 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private GameInput gameInput;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float acceleration = 50f;
+    [SerializeField] private float rotateSpeed = 15f;
+
+    private GameInput gameInput;
+    private Rigidbody rb;
 
     private bool isWalking;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-    private void Update()
+        gameInput = GetComponent<GameInput>();
+        rb = GetComponent<Rigidbody>();
+
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionY;
+    }
+    private void FixedUpdate()
     {
         HandleMovement();
     }
     private void HandleMovement()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        float moveDistance = moveSpeed * Time.deltaTime;
-
-        float playerRadius = 0.7f;
-        float playerHeight = 2f;
-
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
-
-        if (!canMove)
-        {
-            Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
-
-            if (canMove)
-            {
-                moveDir = moveDirX;
-            }
-            else
-            {
-                Vector3 moveDirZ = new Vector3(0f, 0f, moveDir.z).normalized;
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
-
-                if (canMove)
-                {
-                    moveDir = moveDirZ;
-                }
-            }
-        }
-
-        if (canMove)
-        {
-            transform.position += moveDir * moveDistance;
-        }
-
+        
         isWalking = moveDir != Vector3.zero;
+        
+        if (isWalking)
+        {
+            rb.AddForce(moveDir * acceleration, ForceMode.Acceleration);
 
-        float rotateSpeed = 10f;
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
+            if (rb.velocity.magnitude > moveSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+            }
+
+            Vector3 forwardDir = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
+            transform.forward = forwardDir;
+        }
+        else
+        {
+            float decelerationRate = 10f;
+            Vector3 decelerationForce = rb.velocity.normalized * -decelerationRate; 
+            rb.AddForce(decelerationForce, ForceMode.Acceleration);
+    
+            if (rb.velocity.magnitude < 0.1f)
+            {
+                rb.velocity = Vector3.zero;
+            }
+        }
+        
+        rb.angularVelocity = Vector3.zero;
     }
-
+    
     public bool IsWalking()
     {
         return isWalking;
