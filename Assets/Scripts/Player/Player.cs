@@ -4,7 +4,6 @@ using UnityEngine;
 public class Player : MonoBehaviour, IInteractableObjectParent
 {
     // Change singleton to multiplayer friendly
-    public static Player Instance { get; private set; }
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs {
@@ -28,12 +27,14 @@ public class Player : MonoBehaviour, IInteractableObjectParent
 
     private bool isWalking;
     private Vector3 lastInteractDir;
+
     private BaseFurniture selectedFurniture;
+    private InteractableObject selectedObject;
+
     private InteractableObject obj;
 
     private void Awake()
     {
-        Instance = this;
 
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
@@ -49,6 +50,12 @@ public class Player : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.Interact(this);
         }
+        if (selectedObject != null)
+        {
+            selectedObject.GetComponent<Rigidbody>().isKinematic = true;
+            selectedObject.SetInteractableObjectParent(this);
+        }
+
     }
     private void GameInputOnDropAction(object sender, System.EventArgs e)
     {
@@ -60,9 +67,11 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     private void FixedUpdate()
     {
         HandleMovement();
+    }
+    private void Update()
+    {
         HandleInteractions();
     }
-
     private void HandleInteractions()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
@@ -81,17 +90,50 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             {
                 if (furniture != selectedFurniture)
                 {
-                    SetSelectedFurniture(furniture);
+                    selectedFurniture = furniture;
+                    selectedFurniture.GetSelectedFurnitureVisual().Show();
+                    //SetSelectedFurniture(furniture);
                 }
             }
             else
             {
-                SetSelectedFurniture(null);
+                if (selectedFurniture != null)
+                {
+                    selectedFurniture.GetSelectedFurnitureVisual().Hide();
+                    selectedFurniture = null;
+                }
+                //SetSelectedFurniture(null);
+            }
+            if (raycastHit.transform.TryGetComponent(out InteractableObject interactable) && !HasInteractableObject())
+            {
+                if (selectedObject != interactable)
+                {
+                    selectedObject = interactable;
+                    selectedObject.GetSelectedObjectVisual().Show();
+                }
+            }
+            else
+            {
+                if (selectedObject != null)
+                {
+                    selectedObject.GetSelectedObjectVisual().Hide();
+                    selectedObject = null;
+                }
             }
         }
         else
         {
-            SetSelectedFurniture(null);
+            if (selectedObject != null)
+            {
+                selectedObject.GetSelectedObjectVisual().Hide();
+                selectedObject = null;
+            }
+            if (selectedFurniture != null)
+            {
+                selectedFurniture.GetSelectedFurnitureVisual().Hide();
+                selectedFurniture = null;
+            }
+            //SetSelectedFurniture(null);
         }
     }
     private void HandleMovement()
@@ -157,15 +199,9 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             selectedFurniture = selectedBaseFurniture
         });
     }
-
     public Transform GetInteractableObjectFollowTransform()
     {
         return interactiveObjectHoldPoint;
-    }
-
-    public void SetInteractableObject(InteractableObject interactableObject)
-    {
-        obj = interactableObject;
     }
 
     public InteractableObject GetInteractableObject()
@@ -183,6 +219,10 @@ public class Player : MonoBehaviour, IInteractableObjectParent
         return obj != null;
     }
 
+    public void SetInteractableObject(InteractableObject interactableObject)
+    {
+        obj = interactableObject;
+    }
     private void OnDrawGizmos()
     {
         if (Application.isPlaying && gameInput != null)
@@ -192,4 +232,5 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             Gizmos.DrawRay(transform.position - new Vector3(0f, 0.5f, 0f), lastInteractDir * 2f);
         }
     }
+
 }

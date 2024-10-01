@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class SelectedFurnitureVisual : MonoBehaviour
 {
-    [SerializeField] private BaseFurniture furniture;
+    //[SerializeField] private BaseFurniture furniture;
     [SerializeField] private GameObject[] visualArray;
-
+    /*
     private void Awake()
     {
         furniture = gameObject.GetComponent<BaseFurniture>();
@@ -28,8 +28,8 @@ public class SelectedFurnitureVisual : MonoBehaviour
             Hide();
         }
     }
-
-    private void Show()
+    */
+    public void Show()
     {
         foreach (GameObject visual in visualArray)
         {
@@ -37,7 +37,7 @@ public class SelectedFurnitureVisual : MonoBehaviour
         }
     }
 
-    private void Hide()
+    public void Hide()
     {
         foreach (GameObject visual in visualArray)
         {

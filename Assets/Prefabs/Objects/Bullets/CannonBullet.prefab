@@ -92,9 +92,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8438890224936570327}
-  - component: {fileID: 2141407628181957191}
   - component: {fileID: 6457326335255130250}
   - component: {fileID: 8477949079485796762}
+  - component: {fileID: 2141407628181957191}
+  - component: {fileID: 8689725742925052255}
   m_Layer: 6
   m_Name: CannonBullet
   m_TagString: Untagged
@@ -119,20 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2141407628181957191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917904115409053995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9797f470ea8c3e46be3504afe656900, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableObjectScriptable: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668,
-    type: 2}
 --- !u!135 &6457326335255130250
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -181,6 +168,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2141407628181957191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917904115409053995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9797f470ea8c3e46be3504afe656900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObjectScriptable: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668,
+    type: 2}
+  selectedObjectVisual: {fileID: 8689725742925052255}
+--- !u!114 &8689725742925052255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917904115409053995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d621083c9c2d46a4e8c5b954e749f418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obj: {fileID: 2141407628181957191}
+  visualArray:
+  - {fileID: 7509638710253663371}
 --- !u!1 &7509638710253663371
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5047384893317523155
 Transform:
   m_ObjectHideFlags: 0

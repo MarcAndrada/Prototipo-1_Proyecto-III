@@ -3,6 +3,7 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     [SerializeField] private InteractableObjectScriptable interactableObjectScriptable;
+    [SerializeField] private SelectedObjectVisual selectedObjectVisual;
 
     private IInteractableObjectParent interactableObjectParent;
     
@@ -33,5 +34,9 @@ public class InteractableObject : MonoBehaviour
     public IInteractableObjectParent GetInteractableObjectParent()
     {
         return interactableObjectParent;
+    }
+    public SelectedObjectVisual GetSelectedObjectVisual()
+    {
+        return selectedObjectVisual;
     }
 }
