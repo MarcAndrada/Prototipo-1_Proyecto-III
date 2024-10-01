@@ -5,30 +5,8 @@ using UnityEngine;
 
 public class SelectedFurnitureVisual : MonoBehaviour
 {
-    //[SerializeField] private BaseFurniture furniture;
     [SerializeField] private GameObject[] visualArray;
-    /*
-    private void Awake()
-    {
-        furniture = gameObject.GetComponent<BaseFurniture>();
-    }
 
-    private void Start()
-    {
-        Player.Instance.OnSelectedCounterChanged += PlayerOnSelectedChestChanged;
-    }
-    private void PlayerOnSelectedChestChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
-    {
-        if (e.selectedFurniture == furniture)
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }
-    }
-    */
     public void Show()
     {
         foreach (GameObject visual in visualArray)

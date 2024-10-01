@@ -3,13 +3,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IInteractableObjectParent
 {
-    // Change singleton to multiplayer friendly
-
-    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
-    public class OnSelectedCounterChangedEventArgs : EventArgs {
-        public BaseFurniture selectedFurniture;
-    }
-    
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float acceleration = 50f;
@@ -88,52 +81,25 @@ public class Player : MonoBehaviour, IInteractableObjectParent
         {
             if (raycastHit.transform.TryGetComponent(out BaseFurniture furniture))
             {
-                if (furniture != selectedFurniture)
-                {
-                    selectedFurniture = furniture;
-                    selectedFurniture.GetSelectedFurnitureVisual().Show();
-                    //SetSelectedFurniture(furniture);
-                }
+                ShowFurniture(furniture);
             }
             else
             {
-                if (selectedFurniture != null)
-                {
-                    selectedFurniture.GetSelectedFurnitureVisual().Hide();
-                    selectedFurniture = null;
-                }
-                //SetSelectedFurniture(null);
+                HideFurniture();
             }
             if (raycastHit.transform.TryGetComponent(out InteractableObject interactable) && !HasInteractableObject())
             {
-                if (selectedObject != interactable)
-                {
-                    selectedObject = interactable;
-                    selectedObject.GetSelectedObjectVisual().Show();
-                }
+                ShowObject(interactable);
             }
             else
             {
-                if (selectedObject != null)
-                {
-                    selectedObject.GetSelectedObjectVisual().Hide();
-                    selectedObject = null;
-                }
+                HideObject();
             }
         }
         else
         {
-            if (selectedObject != null)
-            {
-                selectedObject.GetSelectedObjectVisual().Hide();
-                selectedObject = null;
-            }
-            if (selectedFurniture != null)
-            {
-                selectedFurniture.GetSelectedFurnitureVisual().Hide();
-                selectedFurniture = null;
-            }
-            //SetSelectedFurniture(null);
+            HideObject();
+            HideFurniture();
         }
     }
     private void HandleMovement()
@@ -190,35 +156,56 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     {
         return isWalking;
     }
-    private void SetSelectedFurniture(BaseFurniture selectedBaseFurniture)
+    #region Show Hide Objects
+    private void ShowFurniture(BaseFurniture furniture)
     {
-        this.selectedFurniture = selectedBaseFurniture;
-        
-        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs()
+        if (furniture != selectedFurniture)
         {
-            selectedFurniture = selectedBaseFurniture
-        });
+            selectedFurniture = furniture;
+            selectedFurniture.GetSelectedFurnitureVisual().Show();
+        }
     }
+    private void HideFurniture()
+    {
+        if (selectedFurniture != null)
+        {
+            selectedFurniture.GetSelectedFurnitureVisual().Hide();
+            selectedFurniture = null;
+        }
+    }
+    private void ShowObject(InteractableObject interactable)
+    {
+        if (selectedObject != interactable)
+        {
+            selectedObject = interactable;
+            selectedObject.GetSelectedObjectVisual().Show();
+        }
+    }
+    private void HideObject()
+    {
+        if (selectedObject != null)
+        {
+            selectedObject.GetSelectedObjectVisual().Hide();
+            selectedObject = null;
+        }
+    }
+    #endregion
     public Transform GetInteractableObjectFollowTransform()
     {
         return interactiveObjectHoldPoint;
     }
-
     public InteractableObject GetInteractableObject()
     {
         return obj;
     }
-
     public void ClearInteractableObject()
     {
         obj = null;
     }
-
     public bool HasInteractableObject()
     {
         return obj != null;
     }
-
     public void SetInteractableObject(InteractableObject interactableObject)
     {
         obj = interactableObject;
