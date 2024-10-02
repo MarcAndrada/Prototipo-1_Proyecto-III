@@ -25,6 +25,7 @@ public class InteractableObject : MonoBehaviour
         {
             Debug.LogError("Already has an object");
         }
+        
         interactableObjectParent.SetInteractableObject(this);
         
         transform.parent = interactableObjectParent.GetInteractableObjectFollowTransform();

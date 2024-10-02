@@ -5,10 +5,10 @@ public class PlayerAnimator : MonoBehaviour
     private const string IS_WALKING = "isWalking";
     
     private Animator animator;
-    private Player player;
+    private PlayerController player;
     private void Awake()
     {
-        player = GetComponent<Player>();
+        player = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
     }
     private void Update()

@@ -1471,6 +1471,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4122645928773607333, guid: 70a4c530fbc6d60469ce4be64303acef,
+        type: 3}
+      propertyPath: interactDistance
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7509230690237181382, guid: 70a4c530fbc6d60469ce4be64303acef,
         type: 3}
       propertyPath: m_DefaultActionMap

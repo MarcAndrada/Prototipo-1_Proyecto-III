@@ -6,7 +6,7 @@ public class CannonBulletContainer : BaseFurniture
 {    
     [SerializeField] private InteractableObjectScriptable interactableObjectSO;
 
-    public override void Interact(Player player)
+    public override void Interact(PlayerController player)
     {
         if (!player.HasInteractableObject())
         {

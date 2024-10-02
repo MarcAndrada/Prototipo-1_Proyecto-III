@@ -15,7 +15,7 @@ public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     
 
     private InteractableObject obj;
-    public virtual void Interact(Player player)
+    public virtual void Interact(PlayerController player)
     {
         
     }

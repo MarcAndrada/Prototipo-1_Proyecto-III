@@ -11,10 +11,10 @@ public class Cannon : BaseFurniture
     {
         hasBullet = false;
     }
-    public override void Interact(Player player)
+    public override void Interact(PlayerController player)
     {
 
-        // Comprobar si el jugador tiene una bala y insertarla dentro del cañon
+        // Comprobar si el jugador tiene una bala y insertarla dentro del caï¿½on
         if (player.HasInteractableObject())
         {
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == acceptedObject)
