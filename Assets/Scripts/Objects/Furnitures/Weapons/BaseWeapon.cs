@@ -2,14 +2,18 @@
 
 public class BaseWeapon : BaseFurniture
 {    
-    
+    [Header("Positions")]
     [SerializeField] private Transform bulletSpawner;
+    [SerializeField] private Transform pilotPosition;
+    
+    [Header("Projectiles")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private InteractableObjectScriptable acceptedObject;
     [SerializeField] private float shootForce = 20f;
-
+    
     private Transform originalParent;
     private bool hasBullet;
+    private bool hasPilot;
     private void Awake()
     {
         hasBullet = false;
@@ -19,7 +23,23 @@ public class BaseWeapon : BaseFurniture
     {
         
     }
+    public void EnterPilot(Transform pilot)
+    {
+        if (!hasPilot)
+        {
+            hasPilot = true;
+            pilot.position = pilotPosition.position;
+            pilot.rotation = Quaternion.LookRotation(pilotPosition.forward);
+        }
+    }
 
+    public void ExitPilot()
+    {
+        if (hasPilot)
+        {
+            hasPilot = false;
+        }
+    }
     public void SetHasBullet(bool bullet)
     {
         hasBullet = bullet;
@@ -30,27 +50,27 @@ public class BaseWeapon : BaseFurniture
         originalParent = parent;
     }
     
-    public Transform GetBulletSpawner()
+    protected Transform GetBulletSpawner()
     {
         return bulletSpawner;
     }
-    public GameObject GetProjectilePrefab()
+    protected GameObject GetProjectilePrefab()
     {
         return projectilePrefab;
     }
-    public InteractableObjectScriptable GetAcceptedObject()
+    protected InteractableObjectScriptable GetAcceptedObject()
     {
         return acceptedObject;
     }
-    public float GetShootForce()
+    protected float GetShootForce()
     {
         return shootForce;
     }
-    public Transform GetOriginalParent()
+    protected Transform GetOriginalParent()
     {
         return originalParent;
     }
-    public bool GetHasBullet()
+    protected bool GetHasBullet()
     {
         return hasBullet;
     }

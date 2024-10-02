@@ -18,14 +18,14 @@ public class Cannon : BaseWeapon
         {
             if (!player.GetIsAimingCannon())
             {
-                Debug.Log("Attach Player");
+                EnterPilot(player.transform);
                 SetOriginalParent(this.transform.parent);
                 this.transform.SetParent(player.GetInteractableObjectFollowTransform());
                 player.SetIsAimingCannon(true);
             }
             else if (player.GetIsAimingCannon())
             {
-                Debug.Log("Detach Player");
+                ExitPilot();
                 this.transform.SetParent(GetOriginalParent());
                 player.SetIsAimingCannon(false);
             }

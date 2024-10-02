@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 {
+    [Header("Base Furniture")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private SelectedFurnitureVisual selectedFurnitureVisual;
 
