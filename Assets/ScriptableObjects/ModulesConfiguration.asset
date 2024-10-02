@@ -12,7 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e8cfeb04720d94dac78274fe45d813, type: 3}
   m_Name: ModulesConfiguration
   m_EditorClassIdentifier: 
-  <width>k__BackingField: 3
-  <height>k__BackingField: 5
-  modulesPositions:
-    _serializedList: []
+  <Width>k__BackingField: 3
+  <Height>k__BackingField: 5
+  <ModuleOffset>k__BackingField: 7
+  ModulesPositions:
+    _serializedList:
+    - Key: {x: 1, y: 0}
+      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+        type: 3}
+    - Key: {x: 0, y: 1}
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
+        type: 3}
+    - Key: {x: 1, y: 2}
+      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+        type: 3}
+    - Key: {x: 0, y: 2}
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
+        type: 3}
+    - Key: {x: 1, y: 3}
+      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+        type: 3}
