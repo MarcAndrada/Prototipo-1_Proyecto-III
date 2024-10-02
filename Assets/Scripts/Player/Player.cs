@@ -7,7 +7,10 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float rotateSpeed = 15f;
-    
+
+    [Header("Cannon Movement")]
+    [SerializeField] private float rotationSpeed = 2;
+
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     private GameInput gameInput;
     private Rigidbody rb;
 
+    private bool isAimingCannon;
     private bool isWalking;
     private Vector3 lastInteractDir;
 
@@ -59,7 +63,10 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     }
     private void FixedUpdate()
     {
-        HandleMovement();
+        if (isAimingCannon)
+            HandleCannonMovement();
+        else
+            HandleMovement();
     }
     private void Update()
     {
@@ -135,6 +142,9 @@ public class Player : MonoBehaviour, IInteractableObjectParent
         
         rb.angularVelocity = Vector3.zero;
     }
+    private void HandleCannonMovement()
+    {
+    }
     private void DropObject()
     {
         if (HasInteractableObject())
@@ -156,7 +166,6 @@ public class Player : MonoBehaviour, IInteractableObjectParent
     {
         return isWalking;
     }
-    #region Show Hide Objects
     private void ShowFurniture(BaseFurniture furniture)
     {
         if (furniture != selectedFurniture)
@@ -189,7 +198,6 @@ public class Player : MonoBehaviour, IInteractableObjectParent
             selectedObject = null;
         }
     }
-    #endregion
     public Transform GetInteractableObjectFollowTransform()
     {
         return interactiveObjectHoldPoint;
