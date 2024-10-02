@@ -4,13 +4,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IInteractableObjectParent
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float rotateSpeed = 15f;
 
     [Header("Cannon Movement")]
-    //[SerializeField] private float rotationSpeed = 2;
-
+    [SerializeField] private float cannonMovementSpeed = 2f;
+    [SerializeField] private float cannonRotationSpeed = 25f;
+    
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
@@ -39,7 +40,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void Start()
     {
+        gameInput.OnInteractAction -= GameInputOnInteractAction; 
         gameInput.OnInteractAction += GameInputOnInteractAction;
+        gameInput.OnDropAction -= GameInputOnDropAction;
         gameInput.OnDropAction += GameInputOnDropAction;
     }
     private void Update()
@@ -65,7 +68,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             selectedObject.GetComponent<Rigidbody>().isKinematic = true;
             selectedObject.SetInteractableObjectParent(this);
         }
-
     }
     private void GameInputOnDropAction(object sender, EventArgs e)
     {
@@ -73,12 +75,16 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             DropObject();
         }
+        else
+        {
+            ShootWeapon();
+        }
     }
     #region Interactions
     private void HandleInteractions()
     {
         if (HasInteractableObject())
-              heldObject.GetComponent<Collider>().enabled = false;
+            heldObject.GetComponent<Collider>().enabled = false;
 
         DetectInteractableObject();
     }
@@ -116,16 +122,24 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             heldObject.transform.SetParent(null);
             
             heldObject.GetComponent<Collider>().enabled = true;
-            
+
             if (heldObject.TryGetComponent(out Rigidbody objectRigidbody))
             {
                 objectRigidbody.isKinematic = false;
                 Vector3 throwDirection = transform.forward;
                 objectRigidbody.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
             }
-            //heldObject.GetComponent<Collider>().enabled = true;
-            
+
             ClearInteractableObject();
+        }
+    }
+
+    private void ShootWeapon()
+    {
+        if (isAimingCannon)
+        {
+            selectedFurniture.TryGetComponent(out Cannon selectedCannon);
+            selectedCannon.Shoot();
         }
     }
     #endregion
@@ -178,7 +192,24 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void HandleCannonMovement()
     {
-        // Write player movement while dragging cannon
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+
+        float forwardInput = inputVector.y;
+        float rotationInput = inputVector.x;
+        
+        Vector3 moveDirection = transform.forward * forwardInput;
+        rb.AddForce(moveDirection * acceleration, ForceMode.Acceleration);
+
+        if (rotationInput != 0)
+        {
+            float rotationAmount = rotationInput * cannonRotationSpeed * Time.deltaTime;
+            transform.Rotate(0, rotationAmount, 0); // Rotate around the Y axis
+        }
+    
+        if (rb.velocity.magnitude > cannonMovementSpeed)
+        {
+            rb.velocity = rb.velocity.normalized * cannonMovementSpeed;
+        }
     }
     #endregion
     
@@ -246,9 +277,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     #endregion
     
-    public bool IsWalking()
+    public bool GetIsWalking()
     {
         return isWalking;
+    }
+
+    public bool GetIsAimingCannon()
+    {
+        return isAimingCannon;
+    }
+    public void SetIsAimingCannon(bool aiming)
+    {
+        isAimingCannon = aiming;
     }
 
     private void OnDrawGizmos()

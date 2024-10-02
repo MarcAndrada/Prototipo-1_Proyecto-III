@@ -236,12 +236,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22e0dfbc90352a43b29c6b46d20ef12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 4
   acceleration: 50
   rotateSpeed: 20
+  cannonMovementSpeed: 2
+  cannonRotationSpeed: 25
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  interactDistance: 0.7
+  sphereRadius: 0.7
   throwForce: 20
   interactiveObjectHoldPoint: {fileID: 8634159134989998872}
 --- !u!114 &4542375100772126205

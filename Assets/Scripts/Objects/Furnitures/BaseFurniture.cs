@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 {
-    private enum TypeOfFurniture
-    {
-        CANNON,
-        STATIC
-    }
-
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private SelectedFurnitureVisual selectedFurnitureVisual;
-    
 
     private InteractableObject obj;
     public virtual void Interact(PlayerController player)

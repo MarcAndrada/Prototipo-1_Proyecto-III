@@ -12,11 +12,17 @@ public class GameInput : MonoBehaviour
 
     public void InteractPerformed(InputAction.CallbackContext context)
     {
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
+        if (context.performed)
+        {
+            OnInteractAction?.Invoke(this, EventArgs.Empty);
+        }
     }
     public void TrowPerformed(InputAction.CallbackContext context)
     {
-        OnDropAction?.Invoke(this, EventArgs.Empty);
+        if (context.performed)
+        {
+            OnDropAction?.Invoke(this, EventArgs.Empty);
+        }
     }
     public void ReadMovement(InputAction.CallbackContext context)
     {
