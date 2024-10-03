@@ -19,7 +19,7 @@ public class ModulesManager : MonoBehaviour
     {
         LoadModules();
         LoadModulesObjects();
-        LoadWalls();
+        //LoadWalls();
     }
 
     private void LoadModules()
