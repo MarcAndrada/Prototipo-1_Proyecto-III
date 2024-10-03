@@ -103,9 +103,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
                 {
                     ShowFurniture(furniture);
                 }
+                else
+                {
+                    HideFurniture();
+                }
                 if (objCollide.TryGetComponent(out InteractableObject interactable) && !HasInteractableObject())
                 {
                     ShowObject(interactable);
+                }
+                else
+                {
+                    HideObject();
                 }
             }
         }

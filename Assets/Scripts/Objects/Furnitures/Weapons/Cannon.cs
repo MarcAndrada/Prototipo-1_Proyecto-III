@@ -11,6 +11,8 @@ public class Cannon : BaseWeapon
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
                 player.GetInteractableObject().SetInteractableObjectParent(this);
+                // Animacion de la bala
+                Destroy(GetInteractableObject().gameObject);
                 SetHasBullet(true);
             }
         }
