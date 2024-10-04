@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.Interact(this);
         }
-        if (HasInteractableObject())
+        else if (HasInteractableObject())
         {
             heldObject.Interact(this);
         }
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             if (heldObject.TryGetComponent(out Rigidbody objectRigidbody))
             {
                 objectRigidbody.isKinematic = false;
-                Vector3 throwDirection = transform.forward;
+                Vector3 throwDirection = transform.forward + Vector3.up * 0.2f;
                 objectRigidbody.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
             }
 
