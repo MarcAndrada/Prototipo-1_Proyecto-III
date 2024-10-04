@@ -19,7 +19,7 @@ public class BaseWeapon : BaseFurniture
         hasBullet = false;
     }
 
-    public virtual void Shoot()
+    public virtual void Activate()
     {
         
     }

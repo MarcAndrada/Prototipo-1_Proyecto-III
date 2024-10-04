@@ -18,22 +18,22 @@ public class Cannon : BaseWeapon
         }
         else
         {
-            if (!player.GetIsAimingCannon())
+            if (!player.GetIsPilot())
             {
                 EnterPilot(player.transform);
                 SetOriginalParent(this.transform.parent);
                 this.transform.SetParent(player.GetInteractableObjectFollowTransform());
-                player.SetIsAimingCannon(true);
+                player.SetIsPilot(true);
             }
-            else if (player.GetIsAimingCannon())
+            else if (player.GetIsPilot())
             {
                 ExitPilot();
                 this.transform.SetParent(GetOriginalParent());
-                player.SetIsAimingCannon(false);
+                player.SetIsPilot(false);
             }
         }
     }
-    public override void Shoot()
+    public override void Activate()
     {
         if (GetHasBullet())
         {

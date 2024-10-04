@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private GameInput gameInput;
     private Rigidbody rb;
 
-    private bool isAimingCannon;
+    private bool isPilot;
     private bool isWalking;
 
     private BaseFurniture selectedFurniture;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void FixedUpdate()
     {
-        if (isAimingCannon)
+        if (isPilot)
             HandleCannonMovement();
         else
             HandleMovement();
@@ -75,8 +75,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             DropObject();
         }
-        else
+        if (isPilot)
         {
+            ActivateShield();
             ShootWeapon();
         }
     }
@@ -144,10 +145,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
 
     private void ShootWeapon()
     {
-        if (isAimingCannon)
+        if (isPilot)
         {
             selectedFurniture.TryGetComponent(out Cannon selectedCannon);
-            selectedCannon.Shoot();
+            selectedCannon.Activate();
+        }
+    }
+    private void ActivateShield()
+    {
+        if (isPilot)
+        {
+            selectedFurniture.TryGetComponent(out ShieldGenerator selectedShieldGenerator);
+            selectedShieldGenerator.Activate();
         }
     }
     #endregion
@@ -290,13 +299,13 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         return isWalking;
     }
 
-    public bool GetIsAimingCannon()
+    public bool GetIsPilot()
     {
-        return isAimingCannon;
+        return isPilot;
     }
-    public void SetIsAimingCannon(bool aiming)
+    public void SetIsPilot(bool pilot)
     {
-        isAimingCannon = aiming;
+        isPilot = pilot;
     }
 
     private void OnDrawGizmos()
