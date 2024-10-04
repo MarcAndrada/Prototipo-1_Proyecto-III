@@ -13,12 +13,30 @@ public class ModulesManager : MonoBehaviour
     private GameObject moduleWall;
     private List<List<Module>> modules;
 
+    [Space, SerializeField, Range(0.0f, 1f)]
+    private float secondaryModulesHitDamage;
     // Start is called before the first frame update
     void Start()
     {
         LoadModules();
         LoadModulesObjects();
         //LoadWalls();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            ModuleAttacked(new Vector2Int(3, 10), 50f);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ModuleAttacked(new Vector2Int(1, 1), 50f);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ModuleAttacked(new Vector2Int(0, 0), 50f);
+        }
     }
 
     private void LoadModules()
@@ -44,7 +62,8 @@ public class ModulesManager : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2Int, GameObject> modulePos in configuration.ModulesPositions) 
         {
-            GameObject moduleObject = Instantiate(modulePos.Value, modules[modulePos.Key.y][modulePos.Key.x].transform.position, Quaternion.identity);  
+            GameObject moduleObject = Instantiate(modulePos.Value, modules[modulePos.Key.y][modulePos.Key.x].transform.position, Quaternion.identity);
+            modules[modulePos.Key.y][modulePos.Key.x].starterObjectInModule = moduleObject;
         }
     }
     private void LoadWalls()
@@ -105,6 +124,39 @@ public class ModulesManager : MonoBehaviour
 
         wall.transform.position = endPosition;
         wall.transform.forward = _lookDirection;
+    }
+
+    public void ModuleAttacked(Vector2Int _modulePos, float _damage)
+    {
+        if ((_modulePos.y < 0 || _modulePos.y >= modules.Count) || 
+            (_modulePos.x < 0 || _modulePos.x >= modules[0].Count))
+            return;
+
+        //Recibir el daño maximo en la casilla golpeada
+        modules[_modulePos.y][_modulePos.x].GetDamage(_damage);
+        Debug.Log("Se hittea el del centro que es la posicion: " + _modulePos);
+
+        //Doble for
+        // 'i' sera para la coordenada 'y'
+        // 'j' sera para la coordenada 'x'
+        for (int i = -1; i <= 1 ; i++)
+        {
+            //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
+
+            if (_modulePos.y + i < 0 || _modulePos.y + i >= modules.Count)
+                continue;
+
+            for (int j = -1; j <= 1; j++)
+            {
+                //Comprobar si la X esta dentro de la nave
+                if (_modulePos.x + j < 0 || _modulePos.x + j >= modules[0].Count)
+                    continue;
+
+                Debug.Log("Se hittea un lado con la posicion la posicion: " + new Vector2Int(_modulePos.x + j, _modulePos.y + i));
+                modules[_modulePos.y + i][_modulePos.x + j].GetDamage(_damage * secondaryModulesHitDamage);
+
+            }
+        }
     }
 
 }
