@@ -11,13 +11,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     [Header("Cannon Movement")]
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
-    
+    /*
+    [Header("Push/Drag Settings")]
+    [SerializeField] private float pushForce = 5f;
+    [SerializeField] private float dragForce = 3f;
+    [SerializeField] private float pushDragSpeed = 2f;
+    */
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
     [Header("Interact collisions")]
-    [SerializeField] private float interactDistance = 1.4f;        
-    [SerializeField] private float sphereRadius = 0.7f;        
+    [SerializeField] private float interactDistance = 0.7f;
+    [SerializeField] private float sphereRadius = 0.7f;
     
     [Header("Miscellaneous")]
     [SerializeField] private float throwForce = 20f;
@@ -63,6 +68,10 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.Interact(this);
         }
+        if (HasInteractableObject())
+        {
+            heldObject.Interact(this);
+        }
         if (selectedObject != null)
         {
             selectedObject.GetComponent<Rigidbody>().isKinematic = true;
@@ -77,7 +86,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         }
         if (isPilot)
         {
-            ActivateShield();
             ShootWeapon();
         }
     }
@@ -86,10 +94,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         if (HasInteractableObject())
             heldObject.GetComponent<Collider>().enabled = false;
-
+        
         DetectInteractableObject();
     }
-
     private void DetectInteractableObject()
     {
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;
@@ -149,14 +156,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.TryGetComponent(out Cannon selectedCannon);
             selectedCannon.Activate();
-        }
-    }
-    private void ActivateShield()
-    {
-        if (isPilot)
-        {
-            selectedFurniture.TryGetComponent(out ShieldGenerator selectedShieldGenerator);
-            selectedShieldGenerator.Activate();
         }
     }
     #endregion
@@ -312,7 +311,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {        
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;
 
-        Gizmos.color = Color.yellow; // Color para la esfera de detección
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(sphereCenter, sphereRadius);
 
         Collider[] hitColliders = Physics.OverlapSphere(sphereCenter, sphereRadius, interactableLayer);

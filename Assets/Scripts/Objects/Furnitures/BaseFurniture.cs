@@ -4,7 +4,7 @@ public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 {
     [Header("Base Furniture")]
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private SelectedFurnitureVisual selectedFurnitureVisual;
+    [SerializeField] private SelectedVisual selectedFurnitureVisual;
 
     private InteractableObject obj;
     public virtual void Interact(PlayerController player)
@@ -35,7 +35,7 @@ public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
         return obj != null;
     }
 
-    public SelectedFurnitureVisual GetSelectedFurnitureVisual()
+    public SelectedVisual GetSelectedFurnitureVisual()
     {
         return selectedFurnitureVisual;
     }
