@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
+    [Header("Interactable Object")]
     [SerializeField] private InteractableObjectScriptable interactableObjectScriptable;
-    [SerializeField] private SelectedObjectVisual selectedObjectVisual;
+    [SerializeField] private SelectedVisual selectedObjectVisual;
 
     private IInteractableObjectParent interactableObjectParent;
     
@@ -12,6 +13,11 @@ public class InteractableObject : MonoBehaviour
         return interactableObjectScriptable;
     }
 
+    public virtual void Interact(PlayerController player)
+    {
+        
+    }
+    
     public void SetInteractableObjectParent(IInteractableObjectParent interactableObjectParent)
     {
         if (this.interactableObjectParent != null)
@@ -25,6 +31,7 @@ public class InteractableObject : MonoBehaviour
         {
             Debug.LogError("Already has an object");
         }
+        
         interactableObjectParent.SetInteractableObject(this);
         
         transform.parent = interactableObjectParent.GetInteractableObjectFollowTransform();
@@ -35,7 +42,7 @@ public class InteractableObject : MonoBehaviour
     {
         return interactableObjectParent;
     }
-    public SelectedObjectVisual GetSelectedObjectVisual()
+    public SelectedVisual GetSelectedObjectVisual()
     {
         return selectedObjectVisual;
     }

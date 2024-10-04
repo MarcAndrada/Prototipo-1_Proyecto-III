@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Furniture : BaseFurniture
 {
-    public override void Interact(Player player)
+    public override void Interact(PlayerController player)
     {
         if (!HasInteractableObject())
         {
