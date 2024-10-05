@@ -37,11 +37,12 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
-
+    private PlayerHintController hintController;
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
+        hintController = GetComponent<PlayerHintController>();
     }
     private void Start()
     {
@@ -247,6 +248,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.GetSelectedFurnitureVisual().Hide();
             selectedFurniture = null;
+            hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
         }
     }
     private void ShowObject(InteractableObject interactable)
@@ -258,6 +260,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             
             selectedObject = interactable;
             selectedObject.GetSelectedObjectVisual().Show();
+            hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }
     }
     private void HideObject()
@@ -266,6 +269,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedObject.GetSelectedObjectVisual().Hide();
             selectedObject = null;
+            hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
         }
     }
     #endregion

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,11 +14,28 @@ public class ModulesManager : MonoBehaviour
     private GameObject moduleWall;
     private List<List<Module>> modules;
 
-    [Space, SerializeField, Range(0.0f, 1f)]
+    public struct AttackProperties
+    {
+        public AttackProperties(Vector2Int _modulePos, float _damage)
+        {
+            modulePos = _modulePos;
+            damage = _damage;
+        }
+        public Vector2Int modulePos;
+        public float damage;
+    }
+    private List<AttackProperties> attackList;    
+
+    [Space, SerializeField]
+    private float timeToHitModules;
+    [SerializeField, Range(0.0f, 1f)]
     private float secondaryModulesHitDamage;
+    
     // Start is called before the first frame update
     void Start()
     {
+        attackList = new List<AttackProperties>();
+
         LoadModules();
         LoadModulesObjects();
         //LoadWalls();
@@ -27,15 +45,15 @@ public class ModulesManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            ModuleAttacked(new Vector2Int(3, 10), 50f);
+            ModuleAttacked(new AttackProperties(new Vector2Int(3, 10), 50f));
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            ModuleAttacked(new Vector2Int(1, 1), 50f);
+            ModuleAttacked(new AttackProperties(new Vector2Int(1, 1), 50f));
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            ModuleAttacked(new Vector2Int(0, 0), 50f);
+            ModuleAttacked(new AttackProperties(new Vector2Int(0, 0), 50f));
         }
     }
 
@@ -126,37 +144,64 @@ public class ModulesManager : MonoBehaviour
         wall.transform.forward = _lookDirection;
     }
 
-    public void ModuleAttacked(Vector2Int _modulePos, float _damage)
+    public void ModuleAttacked(AttackProperties _properties)
     {
-        if ((_modulePos.y < 0 || _modulePos.y >= modules.Count) || 
-            (_modulePos.x < 0 || _modulePos.x >= modules[0].Count))
+        if ((_properties.modulePos.y < 0 || _properties.modulePos.y >= modules.Count) || (_properties.modulePos.x < 0 || _properties.modulePos.x >= modules[0].Count))
             return;
-
-        //Recibir el daño maximo en la casilla golpeada
-        modules[_modulePos.y][_modulePos.x].GetDamage(_damage);
-        Debug.Log("Se hittea el del centro que es la posicion: " + _modulePos);
 
         //Doble for
         // 'i' sera para la coordenada 'y'
         // 'j' sera para la coordenada 'x'
-        for (int i = -1; i <= 1 ; i++)
+        for (int i = -1; i <= 1; i++)
         {
             //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
 
-            if (_modulePos.y + i < 0 || _modulePos.y + i >= modules.Count)
+            if (_properties.modulePos.y + i < 0 || _properties.modulePos.y + i >= modules.Count)
                 continue;
 
             for (int j = -1; j <= 1; j++)
             {
                 //Comprobar si la X esta dentro de la nave
-                if (_modulePos.x + j < 0 || _modulePos.x + j >= modules[0].Count)
+                if (_properties.modulePos.x + j < 0 || _properties.modulePos.x + j >= modules[0].Count)
                     continue;
 
-                Debug.Log("Se hittea un lado con la posicion la posicion: " + new Vector2Int(_modulePos.x + j, _modulePos.y + i));
-                modules[_modulePos.y + i][_modulePos.x + j].GetDamage(_damage * secondaryModulesHitDamage);
-
+                modules[_properties.modulePos.y + i][_properties.modulePos.x + j].ToggleDamageZone(true);
             }
         }
+
+        attackList.Add(_properties);
+        Invoke("DamageModule", timeToHitModules);
+
     }
 
+    private void DamageModule()
+    {
+        //Recibir el daño maximo en la casilla golpeada
+        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].GetDamage(attackList[0].damage);
+        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].ToggleDamageZone(false);
+
+        //Doble for
+        // 'i' sera para la coordenada 'y'
+        // 'j' sera para la coordenada 'x'
+        for (int i = -1; i <= 1; i++)
+        {
+            //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
+
+            if (attackList[0].modulePos.y + i < 0 || attackList[0].modulePos.y + i >= modules.Count)
+                continue;
+
+            for (int j = -1; j <= 1; j++)
+            {
+                //Comprobar si la X esta dentro de la nave
+                if (attackList[0].modulePos.x + j < 0 || attackList[0].modulePos.x + j >= modules[0].Count)
+                    continue;
+
+                modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].GetDamage(attackList[0].damage * secondaryModulesHitDamage);
+                modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].ToggleDamageZone(false);
+            }
+        }
+
+
+        attackList.RemoveAt(0);
+    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cannon : BaseWeapon
@@ -10,9 +8,10 @@ public class Cannon : BaseWeapon
         {
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                player.GetInteractableObject().SetInteractableObjectParent(this);
                 // Animacion de la bala
-                Destroy(GetInteractableObject().gameObject);
+                Destroy(player.GetInteractableObject().gameObject);
+                player.ClearInteractableObject();
+
                 SetHasBullet(true);
             }
         }

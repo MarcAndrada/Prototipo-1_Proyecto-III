@@ -88,6 +88,7 @@ MonoBehaviour:
   outlineArray:
   - {fileID: 8533190867560410870}
   - {fileID: 6470576641046010006}
+  visualArray: []
 --- !u!1 &2237336216504179262
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0.86026716, a: 1}
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
@@ -351,7 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0.86026716, a: 1}
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []

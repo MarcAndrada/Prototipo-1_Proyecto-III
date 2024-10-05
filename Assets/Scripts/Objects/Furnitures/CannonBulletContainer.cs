@@ -14,4 +14,8 @@ public class CannonBulletContainer : BaseFurniture
             objTransform.GetComponent<InteractableObject>().SetInteractableObjectParent(player);
         }
     }
+    public override void NeededInputHint()
+    {
+        PlayerManager.instance.hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+    }
 }

@@ -19,6 +19,11 @@ public class BaseWeapon : BaseFurniture
         hasBullet = false;
     }
 
+    public override void Interact(PlayerController player)
+    {
+
+    }
+
     public virtual void Activate()
     {
         
@@ -73,5 +78,10 @@ public class BaseWeapon : BaseFurniture
     protected bool GetHasBullet()
     {
         return hasBullet;
+    }
+
+    public override void NeededInputHint()
+    {
+        throw new System.NotImplementedException();
     }
 }
