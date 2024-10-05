@@ -330,6 +330,7 @@ MonoBehaviour:
     type: 3}
   moduleWall: {fileID: 5834921259620747859, guid: 108c3f45443672f4cb60c9b523953e98,
     type: 3}
+  secondaryModulesHitDamage: 0.5
 --- !u!1 &581026661
 GameObject:
   m_ObjectHideFlags: 0
