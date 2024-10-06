@@ -36,6 +36,8 @@ public class InteractableObject : MonoBehaviour
         
         transform.parent = interactableObjectParent.GetInteractableObjectFollowTransform();
         transform.localPosition = Vector3.zero;
+        
+        transform.forward = interactableObjectParent.GetInteractableObjectFollowTransform().forward;
     }
 
     public IInteractableObjectParent GetInteractableObjectParent()
