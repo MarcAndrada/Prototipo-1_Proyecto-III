@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerHintController : MonoBehaviour
 {
-    public enum DeviceType { KEYBOARD = 0, GAMEPAD = 1, MOUSE = 2}
+    public enum DeviceType { KEYBOARD = 0, GAMEPAD = 1}
     public enum ActionType { NONE, GRAB, USE }
 
 
@@ -15,8 +15,8 @@ public class PlayerHintController : MonoBehaviour
     [field: SerializeField]
     public DeviceType deviceType {  get; private set; }
 
-    [Space, SerializedDictionary("Action", "Device Sprites"), Tooltip("Esto relaciona la posicion del modulo con el objeto que habra en la casilla")]
-    public SerializedDictionary<ActionType, List<Sprite>> ActionSprites;
+    [Space, SerializeField, SerializedDictionary("Action", "Device Sprites")]
+    private SerializedDictionary<ActionType, List<Sprite>> ActionSprites;
     [Space, SerializeField]
     private Canvas canvas;
     [SerializeField]
@@ -37,13 +37,8 @@ public class PlayerHintController : MonoBehaviour
             deviceType = DeviceType.GAMEPAD;
         else if (device is Keyboard)
             deviceType = DeviceType.KEYBOARD;
-        else if (device is Mouse)
-            deviceType = DeviceType.MOUSE;
         else
             Debug.Log($"Input no reconocido, el dispositivo es: {device.displayName}");
-
-
-        UpdateActionType(ActionType.GRAB);
     }
 
     private void Update()

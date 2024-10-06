@@ -20,8 +20,22 @@ public class Furniture : BaseFurniture
         }
     }
 
-    public override void NeededInputHint()
+    public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
 
+        if (!HasInteractableObject())
+        {
+            if (_player.HasInteractableObject())
+            {
+               _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+            }
+        }
+        else
+        {
+            if (!_player.HasInteractableObject())
+            {
+                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+            }
+        }
     }
 }

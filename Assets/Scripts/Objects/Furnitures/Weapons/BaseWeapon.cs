@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BaseWeapon : BaseFurniture
+public abstract class BaseWeapon : BaseFurniture
 {    
     [Header("Positions")]
     [SerializeField] private Transform bulletSpawner;
@@ -19,15 +19,8 @@ public class BaseWeapon : BaseFurniture
         hasBullet = false;
     }
 
-    public override void Interact(PlayerController player)
-    {
+    public abstract void Activate(PlayerController player);
 
-    }
-
-    public virtual void Activate()
-    {
-        
-    }
     public void EnterPilot(Transform pilot)
     {
         if (!hasPilot)
@@ -78,10 +71,5 @@ public class BaseWeapon : BaseFurniture
     protected bool GetHasBullet()
     {
         return hasBullet;
-    }
-
-    public override void NeededInputHint()
-    {
-        throw new System.NotImplementedException();
     }
 }

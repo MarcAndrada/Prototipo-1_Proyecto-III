@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
-    private PlayerHintController hintController;
+    public PlayerHintController hintController {  get; private set; }
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (isPilot)
         {
             selectedFurniture.TryGetComponent(out Cannon selectedCannon);
-            selectedCannon.Activate();
+            selectedCannon.Activate(this);
         }
     }
     #endregion
@@ -240,6 +240,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             
             selectedFurniture = furniture;
             selectedFurniture.GetSelectedFurnitureVisual().Show();
+            selectedFurniture.ShowNeededInputHint(this, hintController);
         }
     }
     private void HideFurniture()

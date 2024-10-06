@@ -8,7 +8,7 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 
     private InteractableObject obj;
     public abstract void Interact(PlayerController player);
-    public abstract void NeededInputHint();
+    public abstract void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController);
     public Transform GetInteractableObjectFollowTransform()
     {
         return spawnPoint;

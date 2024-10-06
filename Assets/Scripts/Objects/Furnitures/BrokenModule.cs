@@ -21,8 +21,11 @@ public class BrokenModule : BaseFurniture
         }
     }
 
-    public override void NeededInputHint()
+    public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
-        throw new System.NotImplementedException();
+        if (_player.GetInteractableObject() && acceptedObject == _player.GetInteractableObject().GetInteractableObjectScriptable())
+        {
+            _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+        }
     }
 }
