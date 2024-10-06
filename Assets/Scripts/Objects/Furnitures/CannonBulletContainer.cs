@@ -5,7 +5,7 @@ using UnityEngine;
 public class CannonBulletContainer : BaseFurniture
 {    
     [SerializeField] private InteractableObjectScriptable interactableObjectSO;
-
+    
     public override void Interact(PlayerController player)
     {
         if (!player.HasInteractableObject())

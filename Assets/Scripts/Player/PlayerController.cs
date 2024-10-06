@@ -239,7 +239,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             HideFurniture();
             
             selectedFurniture = furniture;
+            
             selectedFurniture.GetSelectedFurnitureVisual().Show();
+            
             selectedFurniture.ShowNeededInputHint(this, hintController);
         }
     }

@@ -72,4 +72,9 @@ public abstract class BaseWeapon : BaseFurniture
     {
         return hasBullet;
     }
+
+    protected bool GetHasPilot()
+    {
+        return hasPilot;
+    }
 }
