@@ -18,7 +18,11 @@ public class Sail : BaseFurniture
             // Move the raft 
         }
     }
-    
+
+    public override void Release(PlayerController player)
+    {
+        
+    }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
 

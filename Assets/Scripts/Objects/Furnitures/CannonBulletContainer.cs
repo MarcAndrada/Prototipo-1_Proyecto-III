@@ -14,6 +14,10 @@ public class CannonBulletContainer : BaseFurniture
             objTransform.GetComponent<InteractableObject>().SetInteractableObjectParent(player);
         }
     }
+    public override void Release(PlayerController player)
+    {
+        
+    }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
         
