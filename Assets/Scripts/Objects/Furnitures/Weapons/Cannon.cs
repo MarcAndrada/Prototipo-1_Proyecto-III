@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Cannon : BaseWeapon
 {
-    private bool isSomeoneInside = false;
     
     public override void Interact(PlayerController player)
     {
