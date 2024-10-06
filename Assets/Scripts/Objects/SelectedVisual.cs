@@ -7,9 +7,11 @@ public class SelectedVisual : MonoBehaviour
 {
     [Header("For Objects With Outline")]
     [SerializeField] private Outline[] outlineArray;
-    
-    [Header("For Objects With Selected Visual")]
+
+    [Header("For Objects With Selected Visual")] 
     [SerializeField] private GameObject[] visualArray;
+
+    private bool canSeeVisuals = true;
     private void Awake()
     {
         Hide();
@@ -17,13 +19,16 @@ public class SelectedVisual : MonoBehaviour
 
     public void Show()
     {
-        foreach (Outline outline in outlineArray)
+        if (canSeeVisuals)
         {
-            outline.enabled = true;
-        }
-        foreach (GameObject visual in visualArray)
-        {
-            visual.SetActive(true);
+            foreach (Outline outline in outlineArray)
+            {
+                outline.enabled = true;
+            }
+            foreach (GameObject visual in visualArray)
+            {
+                visual.SetActive(true);
+            }
         }
     }
 
@@ -37,5 +42,10 @@ public class SelectedVisual : MonoBehaviour
         {
             visual.SetActive(false);
         }
+    }
+
+    public void SetCanSeeVisuals(bool visuals)
+    {
+        canSeeVisuals = visuals;
     }
 }

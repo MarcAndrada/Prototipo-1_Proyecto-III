@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Cannon : BaseWeapon
 {
+    private bool isSomeoneInside = false;
+    
     public override void Interact(PlayerController player)
     {
         if (player.HasInteractableObject())
@@ -17,19 +19,29 @@ public class Cannon : BaseWeapon
         }
         else
         {
-            if (!player.GetIsPilot())
+            if (!player.GetIsPilot() && !GetHasPilot())
             {
                 EnterPilot(player.transform);
                 SetOriginalParent(this.transform.parent);
+                
                 this.transform.SetParent(player.GetInteractableObjectFollowTransform());
                 player.SetIsPilot(true);
+
+                GetSelectedFurnitureVisual().SetCanSeeVisuals(false);
+                GetSelectedFurnitureVisual().Hide();
+
                 ShowNeededInputHint(player, player.hintController);
+                Debug.Log("Player Entered The Cannon");
             }
             else if (player.GetIsPilot())
             {
                 ExitPilot();
                 this.transform.SetParent(GetOriginalParent());
                 player.SetIsPilot(false);
+                
+                GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
+                
+                Debug.Log("Player Exited The Cannon");
             }
         }
     }
@@ -56,7 +68,7 @@ public class Cannon : BaseWeapon
         {
             if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                // Poner la bala dentro del cañon
+                // Poner la bala dentro del caï¿½on
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
             }
         }
@@ -64,12 +76,12 @@ public class Cannon : BaseWeapon
         {
             if (!_player.GetIsPilot())
             {
-                //Mostrar que puede pilotar el cañon
+                //Mostrar que puede pilotar el caï¿½on
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
             }
             else if (GetHasBullet())
             {
-                //Si no esta pilotando y tiene una bala en el cañon mostrar que puede usarlo
+                //Si no esta pilotando y tiene una bala en el caï¿½on mostrar que puede usarlo
                 _hintController.UpdateActionType(PlayerHintController.ActionType.USE);
             }
             else
