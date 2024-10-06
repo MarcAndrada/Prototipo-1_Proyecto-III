@@ -37,11 +37,12 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
-
+    public PlayerHintController hintController {  get; private set; }
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
+        hintController = GetComponent<PlayerHintController>();
     }
     private void Start()
     {
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (isPilot)
         {
             selectedFurniture.TryGetComponent(out Cannon selectedCannon);
-            selectedCannon.Activate();
+            selectedCannon.Activate(this);
         }
     }
     #endregion
@@ -239,6 +240,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             
             selectedFurniture = furniture;
             selectedFurniture.GetSelectedFurnitureVisual().Show();
+            selectedFurniture.ShowNeededInputHint(this, hintController);
         }
     }
     private void HideFurniture()
@@ -247,6 +249,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedFurniture.GetSelectedFurnitureVisual().Hide();
             selectedFurniture = null;
+            hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
         }
     }
     private void ShowObject(InteractableObject interactable)
@@ -258,6 +261,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             
             selectedObject = interactable;
             selectedObject.GetSelectedObjectVisual().Show();
+            hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }
     }
     private void HideObject()
@@ -266,6 +270,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             selectedObject.GetSelectedObjectVisual().Hide();
             selectedObject = null;
+            hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
         }
     }
     #endregion

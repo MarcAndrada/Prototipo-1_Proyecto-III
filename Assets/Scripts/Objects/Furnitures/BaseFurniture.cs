@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class BaseFurniture : MonoBehaviour, IInteractableObjectParent
+public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 {
     [Header("Base Furniture")]
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private SelectedVisual selectedFurnitureVisual;
 
     private InteractableObject obj;
-    public virtual void Interact(PlayerController player)
-    {
-        
-    }
+    public abstract void Interact(PlayerController player);
+    public abstract void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController);
     public Transform GetInteractableObjectFollowTransform()
     {
         return spawnPoint;

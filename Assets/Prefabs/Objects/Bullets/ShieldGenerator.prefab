@@ -35,7 +35,7 @@ Transform:
   - {fileID: 4385075771354976773}
   - {fileID: 1301590741647686522}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5579557546182708755
 BoxCollider:
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 3
-  outlineColor: {r: 0, g: 0.91027164, b: 1, a: 1}
+  outlineMode: 1
+  outlineColor: {r: 0, g: 0.91027164, b: 1, a: 0.27450982}
   outlineWidth: 5
   precomputeOutline: 1
   bakeKeys:
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0.90361214, a: 1}
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 0.5882353}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 0, b: 0.90361214, a: 1}
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 0.5882353}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []

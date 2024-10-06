@@ -81,7 +81,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e2e3fb0b125ea4c87d69e49aa9bb04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineArray: []
-  visualArray:
-  - {fileID: 2086267466548170134}
+  outlineArray:
+  - {fileID: 7204017350030719}
+  visualArray: []
 --- !u!114 &6801613055089102147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,12 +219,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1167136974310731975}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2086267466548170134 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4b2c64b81c4d7a4ba3bae949282cca9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1167136974310731975}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6768016464523700525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,8 +295,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d4b2c64b81c4d7a4ba3bae949282cca9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7204017350030719}
   m_SourcePrefab: {fileID: 100100000, guid: d4b2c64b81c4d7a4ba3bae949282cca9, type: 3}
+--- !u!1 &5849536877801182332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4b2c64b81c4d7a4ba3bae949282cca9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6768016464523700525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7204017350030719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5849536877801182332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 0.5882353}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &6514010875065749190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4b2c64b81c4d7a4ba3bae949282cca9,

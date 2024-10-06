@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class BaseWeapon : BaseFurniture
+public abstract class BaseWeapon : BaseFurniture
 {    
     [Header("Positions")]
     [SerializeField] private Transform bulletSpawner;
@@ -19,10 +19,8 @@ public class BaseWeapon : BaseFurniture
         hasBullet = false;
     }
 
-    public virtual void Activate()
-    {
-        
-    }
+    public abstract void Activate(PlayerController player);
+
     public void EnterPilot(Transform pilot)
     {
         if (!hasPilot)

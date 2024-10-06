@@ -85,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineArray:
   - {fileID: 5831220913142407255}
+  visualArray: []
 --- !u!1 &2197606452462080076
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.9553981, g: 0, b: 1, a: 1}
+  outlineColor: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 0.5882353}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []

@@ -8,7 +8,6 @@ public class Shield : InteractableObject
     [SerializeField] private float cooldown = 20f;
 
     private Collider shieldCollision;
-    private float timer;
     private bool isOnCooldown = false;
 
     private void Awake()
@@ -30,32 +29,20 @@ public class Shield : InteractableObject
         player.ClearInteractableObject();
     }
 
-    private void Update()
-    {
-        if (isOnCooldown)
-        {
-            timer -= Time.deltaTime; 
-            if (timer <= 0)
-            {
-                shieldObject.SetActive(true);
-                isOnCooldown = false;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bullet"))
         {
             Destroy(other.GameObject());
             shieldObject.SetActive(false);
-            StartCooldown();
+            isOnCooldown = true;
+            Invoke("ShieldCD", cooldown);
         }
     }
     
-    private void StartCooldown()
+    private void ShieldCD()
     {
-        isOnCooldown = true;
-        timer = cooldown;
+        shieldObject.SetActive(true);
+        isOnCooldown = false;
     }
 }
