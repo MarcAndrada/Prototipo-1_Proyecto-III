@@ -11,18 +11,20 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     [Header("Cannon Movement")]
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
+    
     /*
     [Header("Push/Drag Settings")]
     [SerializeField] private float pushForce = 5f;
     [SerializeField] private float dragForce = 3f;
     [SerializeField] private float pushDragSpeed = 2f;
     */
+    
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
     [Header("Interact collisions")]
     [SerializeField] private float interactDistance = 0.7f;
-    [SerializeField] private float sphereRadius = 0.7f;
+    [SerializeField] private float sphereRadius = 0.9f;
     
     [Header("Miscellaneous")]
     [SerializeField] private float throwForce = 20f;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private GameInput gameInput;
     private Rigidbody rb;
 
+    private bool canMove;
     private bool isPilot;
     private bool isWalking;
 
@@ -43,13 +46,22 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
         hintController = GetComponent<PlayerHintController>();
+
+        canMove = true;
     }
-    private void Start()
+
+    private void OnEnable()
+    {
+        // Llama al los events del Game Input
+        gameInput.OnInteractAction += GameInputOnInteractAction;
+        gameInput.OnInteractReleaseAction += GameInputOnReleaseAction;
+        gameInput.OnDropAction += GameInputOnDropAction;
+    }
+    private void OnDisable()
     {
         gameInput.OnInteractAction -= GameInputOnInteractAction; 
-        gameInput.OnInteractAction += GameInputOnInteractAction;
+        gameInput.OnInteractReleaseAction -= GameInputOnReleaseAction;
         gameInput.OnDropAction -= GameInputOnDropAction;
-        gameInput.OnDropAction += GameInputOnDropAction;
     }
     private void Update()
     {
@@ -57,14 +69,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void FixedUpdate()
     {
-        if (isPilot)
-            HandleCannonMovement();
-        else
-            HandleMovement();
+        if (canMove)
+        {
+            if (isPilot) // Si esta pilotando usar el movimiento del cañon
+                HandleCannonMovement();
+            else
+                HandleMovement();
+        }
     }
 
     private void GameInputOnInteractAction(object sender, EventArgs e)
     {
+        // Funciones para cuando uses el boton de interactuar
         if (selectedFurniture != null)
         {
             selectedFurniture.Interact(this);
@@ -79,8 +95,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             selectedObject.SetInteractableObjectParent(this);
         }
     }
+    private void GameInputOnReleaseAction(object sender, EventArgs e)
+    {
+        // Funciones para cuando sueltes el boton de interactuar pero para soltar el objeto
+        if (selectedFurniture != null)
+        {
+            selectedFurniture.Release(this);
+        }
+    }
     private void GameInputOnDropAction(object sender, EventArgs e)
     {
+        // Funciones para cuando uses el boton de trow
         if (HasInteractableObject())
         {
             DropObject();
@@ -93,6 +118,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     #region Interactions
     private void HandleInteractions()
     {
+        // Mirar si tiene un objeto para desactivar su colision
         if (HasInteractableObject())
             heldObject.GetComponent<Collider>().enabled = false;
         
@@ -100,19 +126,22 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void DetectInteractableObject()
     {
+        // Crear una esfera para detectar objetos en frente del personaje
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;
 
         Collider[] hitColliders = Physics.OverlapSphere(sphereCenter, sphereRadius, interactableLayer);
         
+        // Mirar la cantidad de objetos que ha colisionado la esfera
         if (hitColliders.Length > 0)
         {
+            // Si el collider detecta un objeto le activa o desactivar el outline
             foreach (Collider objCollide in hitColliders)
             {
                 if (objCollide.TryGetComponent(out BaseFurniture furniture))
                 {
                     ShowFurniture(furniture);
                 }
-                else
+                else 
                 {
                     HideFurniture();
                 }
@@ -134,6 +163,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void DropObject()
     {
+        // Tirar el objeto hacia al frente
         if (HasInteractableObject())
         {
             heldObject.transform.SetParent(null);
@@ -144,15 +174,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             {
                 objectRigidbody.isKinematic = false;
                 Vector3 throwDirection = transform.forward + Vector3.up * 0.2f;
-                objectRigidbody.AddForce(throwDirection.normalized * throwForce, ForceMode.Impulse);
+                objectRigidbody.AddForce(throwDirection.normalized * throwForce, ForceMode.VelocityChange);
             }
-
+            
+            // Limpiamos el objeto que tiene el player
             ClearInteractableObject();
         }
     }
 
     private void ShootWeapon()
     {
+        // Si el jugador esta montado, que pueda disparar
         if (isPilot)
         {
             selectedFurniture.TryGetComponent(out Cannon selectedCannon);
@@ -167,15 +199,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
         
+        // Variable para saber si se esta moviendo
         isWalking = moveDir != Vector3.zero;
         
         if (isWalking)
         {
+            // Mover y rotar el jugador
             MovePlayer(moveDir);
             RotatePlayer(moveDir);
         }
         else
         {
+            // Desacelerar el jugador
             DeceleratePlayer();
         }
         
@@ -189,7 +224,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             rb.velocity = rb.velocity.normalized * moveSpeed;
         }
-
     }
     private void RotatePlayer(Vector3 moveDir)
     {
@@ -238,10 +272,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             // Previene bugs visuales de que se mantenga el anterior mueble iluminado
             HideFurniture();
             
+            // Cambia el objeto seleccionado al actual.
             selectedFurniture = furniture;
-            
             selectedFurniture.GetSelectedFurnitureVisual().Show();
-            
             selectedFurniture.ShowNeededInputHint(this, hintController);
         }
     }
@@ -261,6 +294,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             // Previene bugs visuales de que se mantenga el anterior objeto iluminado
             HideObject();
             
+            // Cambia el objeto seleccionado al actual.
             selectedObject = interactable;
             selectedObject.GetSelectedObjectVisual().Show();
             hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
@@ -314,6 +348,10 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         isPilot = pilot;
     }
 
+    public void SetCanMove(bool move)
+    {
+        canMove = move;
+    }
     private void OnDrawGizmos()
     {        
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;

@@ -7,6 +7,7 @@ public class GameInput : MonoBehaviour
 {
     public event EventHandler OnInteractAction;
     public event EventHandler OnDropAction;
+    public event EventHandler OnInteractReleaseAction;
 
     private Vector2 playerMovement;
 
@@ -15,6 +16,11 @@ public class GameInput : MonoBehaviour
         if (context.performed)
         {
             OnInteractAction?.Invoke(this, EventArgs.Empty);
+        }
+
+        if (context.canceled)
+        {
+            OnInteractReleaseAction?.Invoke(this, EventArgs.Empty);
         }
     }
     public void TrowPerformed(InputAction.CallbackContext context)

@@ -44,6 +44,10 @@ public class Cannon : BaseWeapon
             }
         }
     }
+    public override void Release(PlayerController player)
+    {
+        
+    }
     public override void Activate(PlayerController player)
     {
         if (GetHasBullet())

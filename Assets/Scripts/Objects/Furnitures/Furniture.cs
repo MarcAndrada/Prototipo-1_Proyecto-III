@@ -19,7 +19,10 @@ public class Furniture : BaseFurniture
             }
         }
     }
-
+    public override void Release(PlayerController player)
+    {
+        
+    }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
 
