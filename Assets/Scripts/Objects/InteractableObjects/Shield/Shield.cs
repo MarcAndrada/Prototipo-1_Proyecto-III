@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shield : InteractableObject
@@ -8,19 +9,27 @@ public class Shield : InteractableObject
     [SerializeField] private float cooldown = 20f;
 
     private Collider shieldCollision;
-    private bool isShieldActive = false;
-    
+    private bool canShieldActivate = false;
+
     private void Awake()
     {
         shieldCollision = shieldObject.GetComponent<Collider>();
         shieldCollision.isTrigger = true;
-        shieldObject.SetActive(isShieldActive);
+        canShieldActivate = true;
+        shieldObject.SetActive(false);
+    }
+
+    public override void OnPickUp()
+    {
+        if (canShieldActivate)
+        {
+            shieldObject.SetActive(true);
+        }
     }
 
     public override void Interact(PlayerController player)
     {
         // Dejamos el objeto en el suelo
-        /*
         transform.SetParent(null);
         transform.GetComponent<Collider>().enabled = true;
         
@@ -29,10 +38,8 @@ public class Shield : InteractableObject
             objectRigidbody.isKinematic = false;
         }
         
+        shieldObject.SetActive(false);
         player.ClearInteractableObject();
-        */
-        isShieldActive = !isShieldActive;
-        shieldObject.SetActive(isShieldActive);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,12 +48,13 @@ public class Shield : InteractableObject
         {
             Destroy(other.GameObject());
             shieldObject.SetActive(false);
+            canShieldActivate = false;
             Invoke("ShieldCD", cooldown);
         }
     }
     
     private void ShieldCD()
     {
-        shieldObject.SetActive(true);
+        canShieldActivate = true;
     }
 }

@@ -17,6 +17,11 @@ public class InteractableObject : MonoBehaviour
     {
         
     }
+
+    public virtual void OnPickUp()
+    {
+        
+    }
     
     public void SetInteractableObjectParent(IInteractableObjectParent interactableObjectParent)
     {

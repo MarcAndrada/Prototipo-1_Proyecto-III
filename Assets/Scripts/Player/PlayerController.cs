@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (selectedObject != null)
         {
             selectedObject.GetComponent<Rigidbody>().isKinematic = true;
+            selectedObject.OnPickUp();
             selectedObject.SetInteractableObjectParent(this);
         }
     }
