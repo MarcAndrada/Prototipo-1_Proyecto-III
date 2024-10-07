@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 
-public class Bullet : InteractableObject
+public class Bullet : MonoBehaviour
 {
-    public override void Interact(PlayerController player)
+    public float speed = 10f;  // Adjust this value to control the bullet's speed
+    private Vector3 direction;
+
+    void Update()
     {
-        transform.SetParent(null);
-        transform.GetComponent<Collider>().enabled = true;
-        
-        if (TryGetComponent(out Rigidbody objectRigidbody))
-        {
-            objectRigidbody.isKinematic = false;
-        }
-        
-        player.ClearInteractableObject();
+        // Move the bullet forward at a constant speed
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // Destroy the bullet on collision
+        Destroy(gameObject);
     }
 }

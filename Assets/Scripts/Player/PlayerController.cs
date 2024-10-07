@@ -188,8 +188,8 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         // Si el jugador esta montado, que pueda disparar
         if (isPilot)
         {
-            selectedFurniture.TryGetComponent(out Cannon selectedCannon);
-            selectedCannon.Activate(this);
+            if(selectedFurniture.TryGetComponent(out BaseWeapon selectedCannon))
+                selectedCannon.Activate(this);
         }
     }
     #endregion

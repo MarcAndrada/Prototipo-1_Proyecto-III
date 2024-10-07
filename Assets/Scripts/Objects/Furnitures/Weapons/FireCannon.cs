@@ -1,15 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : BaseWeapon
+public class FireCannon : BaseWeapon
 {
-    
     public override void Interact(PlayerController player)
     {
         if (player.HasInteractableObject())
         {
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                // Animacion de la bala
+                // TODO - Animacion de recargar la bala
+                
                 Destroy(player.GetInteractableObject().gameObject);
                 player.ClearInteractableObject();
 

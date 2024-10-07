@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f48d5f2254fe049957173b9ce04909, type: 3}
-  m_Name: ShieldGenerator
+  m_Name: FireCannonBullet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  objectName: ShieldGenerator
+  prefab: {fileID: 8438890224936570327, guid: a019f72fcfd10894d8af589b3c826145, type: 3}
+  objectName: FireCannonBullet
