@@ -149,25 +149,28 @@ public class ModulesManager : MonoBehaviour
         if ((_properties.modulePos.y < 0 || _properties.modulePos.y >= modules.Count) || (_properties.modulePos.x < 0 || _properties.modulePos.x >= modules[0].Count))
             return;
 
-        //Doble for
-        // 'i' sera para la coordenada 'y'
-        // 'j' sera para la coordenada 'x'
-        for (int i = -1; i <= 1; i++)
-        {
-            //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
 
-            if (_properties.modulePos.y + i < 0 || _properties.modulePos.y + i >= modules.Count)
-                continue;
+        modules[_properties.modulePos.y][_properties.modulePos.x].AddDamageZone();
+        // ESTO PARA ATACAR A LOS MODULOS DE ALREDEDOR
+        ////Doble for
+        //// 'i' sera para la coordenada 'y'
+        //// 'j' sera para la coordenada 'x'
+        //for (int i = -1; i <= 1; i++)
+        //{
+        //    //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
 
-            for (int j = -1; j <= 1; j++)
-            {
-                //Comprobar si la X esta dentro de la nave
-                if (_properties.modulePos.x + j < 0 || _properties.modulePos.x + j >= modules[0].Count)
-                    continue;
+        //    if (_properties.modulePos.y + i < 0 || _properties.modulePos.y + i >= modules.Count)
+        //        continue;
 
-                modules[_properties.modulePos.y + i][_properties.modulePos.x + j].ToggleDamageZone(true);
-            }
-        }
+        //    for (int j = -1; j <= 1; j++)
+        //    {
+        //        //Comprobar si la X esta dentro de la nave
+        //        if (_properties.modulePos.x + j < 0 || _properties.modulePos.x + j >= modules[0].Count)
+        //            continue;
+
+        //        modules[_properties.modulePos.y + i][_properties.modulePos.x + j].AddSecondaryDamageZone();
+        //    }
+        //}
 
         attackList.Add(_properties);
         Invoke("DamageModule", timeToHitModules);
@@ -178,28 +181,29 @@ public class ModulesManager : MonoBehaviour
     {
         //Recibir el daño maximo en la casilla golpeada
         modules[attackList[0].modulePos.y][attackList[0].modulePos.x].GetDamage(attackList[0].damage);
-        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].ToggleDamageZone(false);
+        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].RemoveMainDamageZone();
 
+        //ESO PARA ATACAR A LOS MODULOS DE ALREDEDOR
         //Doble for
         // 'i' sera para la coordenada 'y'
         // 'j' sera para la coordenada 'x'
-        for (int i = -1; i <= 1; i++)
-        {
-            //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
+        //for (int i = -1; i <= 1; i++)
+        //{
+        //    //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
 
-            if (attackList[0].modulePos.y + i < 0 || attackList[0].modulePos.y + i >= modules.Count)
-                continue;
+        //    if (attackList[0].modulePos.y + i < 0 || attackList[0].modulePos.y + i >= modules.Count)
+        //        continue;
 
-            for (int j = -1; j <= 1; j++)
-            {
-                //Comprobar si la X esta dentro de la nave
-                if (attackList[0].modulePos.x + j < 0 || attackList[0].modulePos.x + j >= modules[0].Count)
-                    continue;
+        //    for (int j = -1; j <= 1; j++)
+        //    {
+        //        //Comprobar si la X esta dentro de la nave
+        //        if (attackList[0].modulePos.x + j < 0 || attackList[0].modulePos.x + j >= modules[0].Count)
+        //            continue;
 
-                modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].GetDamage(attackList[0].damage * secondaryModulesHitDamage);
-                modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].ToggleDamageZone(false);
-            }
-        }
+        //        modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].GetDamage(attackList[0].damage * secondaryModulesHitDamage);
+        //        modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].RemoveSecondaryDamageZone();
+        //    }
+        //}
 
 
         attackList.RemoveAt(0);

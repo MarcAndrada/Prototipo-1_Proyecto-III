@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class Module : MonoBehaviour
 {
@@ -20,7 +19,9 @@ public class Module : MonoBehaviour
     private GameObject brokeModule;
 
     [Space, SerializeField]
-    private GameObject damagedHitZone;
+    private GameObject damageHitZone;
+
+    private int damageZoneCount;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +54,20 @@ public class Module : MonoBehaviour
         brokeModule.SetActive(false);
     }
 
-    public void ToggleDamageZone(bool _enabled)
+    public void AddDamageZone()
     {
-        damagedHitZone.SetActive(_enabled);
+        damageZoneCount++;
+        damageHitZone.SetActive(true);
     }
+    public void RemoveMainDamageZone()
+    {
+        damageZoneCount--;
+
+        if (damageZoneCount <= 0)
+            damageHitZone.SetActive(false);
+
+    }
+
+
 
 }
