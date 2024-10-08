@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3815328344123911165}
   m_Layer: 6
   m_Name: FloorCollider
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -288,6 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
   selectedFurnitureVisual: {fileID: 3815328344123911165}
+  baseModel: {fileID: 4843305583638456891}
+  brokenModel: {fileID: 8645751473567475680}
   acceptedObject: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28, type: 2}
   repairDuration: 5
 --- !u!114 &3815328344123911165
@@ -425,7 +427,7 @@ GameObject:
   - component: {fileID: 7690058857678235332}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,7 +533,7 @@ GameObject:
   - component: {fileID: 4727451568205635063}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,7 +755,7 @@ GameObject:
   - component: {fileID: 477328591362445251}
   m_Layer: 0
   m_Name: NormalFloor
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1141,7 +1143,7 @@ GameObject:
   - component: {fileID: 6264329520851573028}
   m_Layer: 0
   m_Name: Module
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1174,10 +1176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95d58c3009a61d4485d68d539de805c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
   starterObjectInModule: {fileID: 0}
-  workingModule: {fileID: 4843305583638456891}
-  brokeModule: {fileID: 8645751473567475680}
+  <brokenModule>k__BackingField: {fileID: 8432129455264544230}
   damageHitZone: {fileID: 6902561000199599696}
 --- !u!1 &8645751473567475680
 GameObject:
@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 8260338086674995600}
   m_Layer: 0
   m_Name: DamagedFloor
-  m_TagString: Untagged
+  m_TagString: Module
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
