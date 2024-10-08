@@ -8,10 +8,8 @@ using UnityEngine.UI;
 public class PlayerHintController : MonoBehaviour
 {
     public enum DeviceType { KEYBOARD = 0, GAMEPAD = 1}
-    public enum ActionType { NONE, GRAB, USE }
-
-
-
+    public enum ActionType { NONE, GRAB, USE, HOLDING }
+    
     [field: SerializeField]
     public DeviceType deviceType {  get; private set; }
 
@@ -22,16 +20,16 @@ public class PlayerHintController : MonoBehaviour
     [SerializeField]
     private Image hintImage;
     [SerializeField]
+    private ProgressBar progresBar;
+    [SerializeField]
     private float hintOffset;
-
-
+    
     private void Start()
     {
         canvas.worldCamera = Camera.main;
 
         PlayerInput input = GetComponent<PlayerInput>(); 
         InputDevice device = input.devices[0];  // En este caso, tomamos el primer dispositivo de la lista
-
 
         if (device is Gamepad)
             deviceType = DeviceType.GAMEPAD;
@@ -43,7 +41,10 @@ public class PlayerHintController : MonoBehaviour
 
     private void Update()
     {
-        hintImage.transform.position = transform.position + new Vector3(0, hintOffset, 0);
+        Vector3 playerPos = transform.position + new Vector3(0, hintOffset, 0);
+        hintImage.transform.position = playerPos;
+        progresBar.transform.position = playerPos;
+        
     }
 
     public void UpdateActionType(ActionType _action)
@@ -52,17 +53,28 @@ public class PlayerHintController : MonoBehaviour
         {
             //Ocultar la UI de inputs
             hintImage.gameObject.SetActive(false);
+            progresBar.gameObject.SetActive(false);
+            progresBar.SetCurrentValue(0);
+            return;
+        }
+
+        if (_action == ActionType.HOLDING)
+        {
+            hintImage.gameObject.SetActive(false);
+            progresBar.gameObject.SetActive(true);
             return;
         }
 
         //Mostrar la UI de inputs
         hintImage.gameObject.SetActive(true);
 
-
         Sprite currentSprite = ActionSprites[_action][(int)deviceType];
         hintImage.sprite = currentSprite;
-
     }
 
-
+    public void SetProgressBar(float max, float current)
+    {
+        progresBar.SetMaxValue(max);
+        progresBar.SetCurrentValue(current);
+    }
 }

@@ -30,7 +30,6 @@ public class Cannon : BaseWeapon
                 GetSelectedFurnitureVisual().Hide();
 
                 ShowNeededInputHint(player, player.hintController);
-                Debug.Log("Player Entered The Cannon");
             }
             else if (player.GetIsPilot())
             {
@@ -39,8 +38,6 @@ public class Cannon : BaseWeapon
                 player.SetIsPilot(false);
 
                 GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
-
-                Debug.Log("Player Exited The Cannon");
             }
         }
     }
@@ -59,12 +56,13 @@ public class Cannon : BaseWeapon
         if (GetHasBullet())
         {
             GameObject projectile = Instantiate(GetProjectilePrefab(), GetBulletSpawner().position + GetBulletSpawner().forward, Quaternion.identity);
-            projectile.GetComponent<Rigidbody>().isKinematic = false;
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-            if (projectileRb != null)
+            Bullet bulletScript = projectile.GetComponent<Bullet>();
+
+            if (bulletScript != null)
             {
-                projectileRb.AddForce(GetBulletSpawner().forward * GetShootForce(), ForceMode.Impulse);
+                bulletScript.SetDirection(GetBulletSpawner().forward.normalized);
             }
+
             SetHasBullet(false);
             SetInteractableObject(null);
             ShowNeededInputHint(player, player.hintController);

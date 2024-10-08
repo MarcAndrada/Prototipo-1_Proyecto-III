@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 
-public class Bullet : InteractableObject
+public class Bullet : MonoBehaviour
 {
-    public override void Interact(PlayerController player)
+    [SerializeField] private float speed = 10f;
+    private Vector3 direction;
+
+    void Update()
     {
-        transform.SetParent(null);
-        transform.GetComponent<Collider>().enabled = true;
-        
-        if (TryGetComponent(out Rigidbody objectRigidbody))
-        {
-            objectRigidbody.isKinematic = false;
-        }
-        
-        player.ClearInteractableObject();
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

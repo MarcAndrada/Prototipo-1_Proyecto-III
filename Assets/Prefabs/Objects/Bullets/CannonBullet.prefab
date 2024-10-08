@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8438890224936570327}
   - component: {fileID: 6457326335255130250}
-  - component: {fileID: 8477949079485796762}
-  - component: {fileID: 1794541921090263034}
-  - component: {fileID: 5753028660421625296}
+  - component: {fileID: -8739845761428657396}
   m_Layer: 6
   m_Name: CannonBullet
   m_TagString: Bullet
@@ -58,34 +56,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8477949079485796762
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917904115409053995}
-  serializedVersion: 4
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1794541921090263034
+--- !u!114 &-8739845761428657396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,27 +65,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3917904115409053995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9e2e3fb0b125ea4c87d69e49aa9bb04, type: 3}
+  m_Script: {fileID: 11500000, guid: 939b0be3081d48d6acc63271fbb7e36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineArray:
-  - {fileID: 6244603470525761548}
-  visualArray: []
---- !u!114 &5753028660421625296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917904115409053995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe3f041b10bf45c08e05e0c684df4ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactableObjectScriptable: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668,
-    type: 2}
-  selectedObjectVisual: {fileID: 1794541921090263034}
+  speed: 10
 --- !u!1001 &1201316261959548554
 PrefabInstance:
   m_ObjectHideFlags: 0

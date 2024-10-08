@@ -92,6 +92,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (selectedObject != null)
         {
             selectedObject.GetComponent<Rigidbody>().isKinematic = true;
+            selectedObject.OnPickUp();
             selectedObject.SetInteractableObjectParent(this);
         }
     }
@@ -187,8 +188,8 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         // Si el jugador esta montado, que pueda disparar
         if (isPilot)
         {
-            selectedFurniture.TryGetComponent(out Cannon selectedCannon);
-            selectedCannon.Activate(this);
+            if(selectedFurniture.TryGetComponent(out BaseWeapon selectedCannon))
+                selectedCannon.Activate(this);
         }
     }
     #endregion
@@ -338,7 +339,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         return isWalking;
     }
-
     public bool GetIsPilot()
     {
         return isPilot;
@@ -347,16 +347,19 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         isPilot = pilot;
     }
-
     public void SetCanMove(bool move)
     {
         canMove = move;
+    }
+    public PlayerHintController GetPlayerHintController()
+    {
+        return hintController;
     }
     private void OnDrawGizmos()
     {        
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(sphereCenter, sphereRadius);
 
         Collider[] hitColliders = Physics.OverlapSphere(sphereCenter, sphereRadius, interactableLayer);
