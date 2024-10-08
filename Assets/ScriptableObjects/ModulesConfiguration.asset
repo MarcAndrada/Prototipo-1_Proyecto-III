@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Width>k__BackingField: 3
   <Height>k__BackingField: 5
-  <ModuleOffset>k__BackingField: 7
+  <ModuleOffset>k__BackingField: 4
   ModulesPositions:
     _serializedList:
     - Key: {x: 1, y: 0}

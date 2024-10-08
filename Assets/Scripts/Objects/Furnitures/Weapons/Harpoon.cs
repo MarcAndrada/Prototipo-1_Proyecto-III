@@ -7,8 +7,9 @@ public class Harpoon : BaseWeapon
     private float cooldownTimer = 0f; 
     private bool isInCooldown = false;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         SetHasBullet(true);
     }
 

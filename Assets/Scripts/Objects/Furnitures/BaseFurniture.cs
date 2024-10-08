@@ -14,7 +14,7 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     protected GameObject brokenModel;
     protected bool isFornitureBroke;
 
-    protected void Start()
+    protected virtual void Start()
     {
         RepairForniture();
     }

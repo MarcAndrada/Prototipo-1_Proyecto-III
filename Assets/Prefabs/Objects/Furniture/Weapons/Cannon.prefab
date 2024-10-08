@@ -104,7 +104,7 @@ MonoBehaviour:
   brokenModel: {fileID: 8321871143103774827}
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}
-  projectilePrefab: {fileID: 3917904115409053995, guid: 9a4802f187a62f24fa17241fc1692a86,
+  projectilePrefab: {fileID: 3917904115409053995, guid: 431ac1bbb93939d438b824b9fee1f6e7,
     type: 3}
   acceptedObject: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668, type: 2}
   shootForce: 300
@@ -284,6 +284,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 819c5d15ba0b1644ea9be3a3c7ee9236, type: 2}
+    - target: {fileID: -4896626252465552065, guid: 2a161e6bfd3c71d49ac4a53ff07cb7ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -803405088876591012, guid: 2a161e6bfd3c71d49ac4a53ff07cb7ae,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
