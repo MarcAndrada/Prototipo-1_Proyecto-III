@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,24 +11,43 @@ public class BrokenModule : BaseFurniture
     private Module currentModule;
     private bool isInteracting;
     private float currentRepairTime;
-    private Coroutine repairCoroutine;
+
+    private PlayerController player;
     
     private void Awake()
     {
         currentModule = GetComponentInParent<Module>();
         currentRepairTime = 0f;
     }
+
+    private void Update()
+    {
+        if (isInteracting)
+        {
+            currentRepairTime += Time.deltaTime;
+
+            player.GetPlayerHintController().SetProgressBar(repairDuration, currentRepairTime);
+            ShowNeededInputHint(player, player.GetPlayerHintController());
+
+            if (currentRepairTime >= repairDuration)
+            {
+                FinishRepair(player);
+            }
+        }
+
+    }
+
     public override void Interact(PlayerController player)
     {
-        if (player.GetInteractableObject() && acceptedObject == player.GetInteractableObject().GetInteractableObjectScriptable())
+        
+        if (player.GetInteractableObject() && acceptedObject == player.GetInteractableObject().GetInteractableObjectScriptable() && !isInteracting)
         {
-            if (!isInteracting)
-            {
-                currentRepairTime = 0f;
-                isInteracting = true;
-                player.SetCanMove(false);
-                repairCoroutine = StartCoroutine(RepairModuleOverTime(player));
-            }
+
+            this.player = player;
+
+            currentRepairTime = 0f;
+            isInteracting = true;
+            player.SetCanMove(false);
         }
     }
     public override void Release(PlayerController player)
@@ -36,30 +56,11 @@ public class BrokenModule : BaseFurniture
         {
             isInteracting = false;
             player.SetCanMove(true);
-
-            if (repairCoroutine != null)
-            {
-                StopCoroutine(repairCoroutine);
-                repairCoroutine = null;
-            }
-            
             ShowNeededInputHint(player, player.GetPlayerHintController());
         }
     }
-
-    private IEnumerator RepairModuleOverTime(PlayerController player)
+    private void FinishRepair(PlayerController player)
     {
-        // Reparar el modulo
-        while (currentRepairTime < repairDuration)
-        {
-            currentRepairTime += Time.deltaTime;
-            
-            player.GetPlayerHintController().SetProgressBar(repairDuration, currentRepairTime);
-            ShowNeededInputHint(player, player.GetPlayerHintController());
-            
-            yield return null;
-        }
-        
         currentModule.RepairModule();
         Destroy(player.GetInteractableObject().gameObject);
         player.ClearInteractableObject();
