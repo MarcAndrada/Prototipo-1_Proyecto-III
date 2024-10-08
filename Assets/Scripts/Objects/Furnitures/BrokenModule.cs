@@ -42,6 +42,8 @@ public class BrokenModule : BaseFurniture
                 StopCoroutine(repairCoroutine);
                 repairCoroutine = null;
             }
+            
+            ShowNeededInputHint(player, player.GetPlayerHintController());
         }
     }
 
@@ -52,7 +54,8 @@ public class BrokenModule : BaseFurniture
         {
             currentRepairTime += Time.deltaTime;
             
-            // Aqui poner la UI de reparacion con el tiempo
+            player.GetPlayerHintController().SetProgressBar(repairDuration, currentRepairTime);
+            ShowNeededInputHint(player, player.GetPlayerHintController());
             
             yield return null;
         }
@@ -67,7 +70,12 @@ public class BrokenModule : BaseFurniture
     
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
-        if (_player.GetInteractableObject() && acceptedObject == _player.GetInteractableObject().GetInteractableObjectScriptable())
+        if (isInteracting)
+        {
+            _hintController.SetProgressBar(repairDuration, currentRepairTime);
+            _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+        }
+        else if (_player.GetInteractableObject() && acceptedObject == _player.GetInteractableObject().GetInteractableObjectScriptable())
         {
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }

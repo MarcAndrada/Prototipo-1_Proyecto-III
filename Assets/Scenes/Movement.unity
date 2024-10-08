@@ -2406,7 +2406,7 @@ PrefabInstance:
     - target: {fileID: 7509230690237181382, guid: 70a4c530fbc6d60469ce4be64303acef,
         type: 3}
       propertyPath: m_DefaultActionMap
-      value: c7211242-e653-496b-9c77-861129a2412a
+      value: Gameplay
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
