@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BrokenModule : BaseFurniture
@@ -17,7 +16,13 @@ public class BrokenModule : BaseFurniture
         currentModule = GetComponentInParent<Module>();
         currentRepairTime = 0f;
     }
-    public override void Interact(PlayerController player)
+
+    protected override void InteractFixedForniture(PlayerController player)
+    {
+        //Este objeto como solo podremos interactuar con el cuando este roto no hace falta definir esta funcion
+    }
+
+    protected override void InteractBrokenForniture(PlayerController player)
     {
         if (player.GetInteractableObject() && acceptedObject == player.GetInteractableObject().GetInteractableObjectScriptable())
         {
@@ -56,8 +61,8 @@ public class BrokenModule : BaseFurniture
             
             yield return null;
         }
-        
-        currentModule.RepairModule();
+
+        RepairForniture();
         Destroy(player.GetInteractableObject().gameObject);
         player.ClearInteractableObject();
 
@@ -72,4 +77,6 @@ public class BrokenModule : BaseFurniture
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }
     }
+
+    
 }

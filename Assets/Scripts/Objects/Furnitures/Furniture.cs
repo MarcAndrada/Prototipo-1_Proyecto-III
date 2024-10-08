@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Furniture : BaseFurniture
 {
-    public override void Interact(PlayerController player)
+    protected override void InteractFixedForniture(PlayerController player)
     {
         if (!HasInteractableObject())
         {
@@ -19,12 +19,23 @@ public class Furniture : BaseFurniture
             }
         }
     }
+    protected override void InteractBrokenForniture(PlayerController player)
+    {
+        RepairForniture();
+    }
     public override void Release(PlayerController player)
     {
         
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
+        //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
+        if (isFornitureBroke && !_player.HasInteractableObject())
+        {
+            _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+            return;
+        }
+
 
         if (!HasInteractableObject())
         {
@@ -41,4 +52,8 @@ public class Furniture : BaseFurniture
             }
         }
     }
+
+    
+
+    
 }

@@ -1,61 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class Module : MonoBehaviour
 {
-    public enum ModuleState { REPAIRED, DAMAGED, FIXED}
-
-    [SerializeField]
-    private float maxHealth;
-    private float health;
-
     [HideInInspector]
     public GameObject starterObjectInModule;
 
-    [Space, SerializeField]
-    private GameObject workingModule;
+    [field: Space, SerializeField]
+    public BrokenModule brokenModule {  get; private set; }
     [SerializeField]
-    private GameObject brokeModule;
+    private GameObject damageHitZone;
+    
 
-    [Space, SerializeField]
-    private GameObject damagedHitZone;
+    private int damageZoneCount;
 
-    // Start is called before the first frame update
-    void Start()
+    public void AddDamageZone()
     {
-        health = maxHealth;
+        damageZoneCount++;
+        damageHitZone.SetActive(true);
+    }
+    public void RemoveMainDamageZone()
+    {
+        damageZoneCount--;
 
-        workingModule.SetActive(true);
-        brokeModule.SetActive(false);
+        if (damageZoneCount <= 0)
+            damageHitZone.SetActive(false);
+
     }
 
-    public void GetDamage(float _damage)
-    {
-        health -= _damage;
-        health = Mathf.Clamp(health, 0, maxHealth);
-        CheckIfModuleBreak();
-    }
-    private void CheckIfModuleBreak()
-    {
-        if (health > 0)
-            return;
 
-        workingModule.SetActive(false);
-        brokeModule.SetActive(true);
-    }
-
-    public void RepairModule()
-    {
-        health = maxHealth;
-        workingModule.SetActive(true);
-        brokeModule.SetActive(false);
-    }
-
-    public void ToggleDamageZone(bool _enabled)
-    {
-        damagedHitZone.SetActive(_enabled);
-    }
 
 }

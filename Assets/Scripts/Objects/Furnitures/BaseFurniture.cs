@@ -7,10 +7,45 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private SelectedVisual selectedFurnitureVisual;
 
     private InteractableObject obj;
-    public abstract void Interact(PlayerController player);
+
+    [SerializeField]
+    protected GameObject baseModel;
+    [SerializeField]
+    protected GameObject brokenModel;
+    protected bool isFornitureBroke;
+
+    protected void Start()
+    {
+        RepairForniture();
+    }
+
+    public void Interact(PlayerController player)
+    {
+        if (!isFornitureBroke)
+            InteractFixedForniture(player);
+        else
+            InteractBrokenForniture(player);
+    }
+    protected abstract void InteractFixedForniture(PlayerController player);
+    protected abstract void InteractBrokenForniture(PlayerController player);
+
 
     public abstract void Release(PlayerController player);
     public abstract void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController);
+    
+    public virtual void BreakForniture()
+    {
+        baseModel.SetActive(false);
+        brokenModel.SetActive(true);
+        isFornitureBroke = true;
+    }
+    public virtual void RepairForniture()
+    {
+        baseModel.SetActive(true);
+        brokenModel.SetActive(false);
+        isFornitureBroke = false;
+    }
+
     public Transform GetInteractableObjectFollowTransform()
     {
         return spawnPoint;

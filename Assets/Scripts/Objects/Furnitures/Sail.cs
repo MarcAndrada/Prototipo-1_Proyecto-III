@@ -5,18 +5,13 @@ using UnityEngine;
 public class Sail : BaseFurniture
 {
     private InteractableObjectScriptable acceptedObject;
-    private bool isDisabled;
-    
-    public override void Interact(PlayerController player)
+
+    protected override void InteractFixedForniture(PlayerController player)
     {
-        if (isDisabled)
-        {
-            // Not move the raft
-        }
-        else
-        {
-            // Move the raft 
-        }
+    }
+    protected override void InteractBrokenForniture(PlayerController player)
+    {
+        RepairForniture();
     }
 
     public override void Release(PlayerController player)
@@ -25,16 +20,13 @@ public class Sail : BaseFurniture
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
-
+        //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
+        if (isFornitureBroke && !_player.HasInteractableObject())
+        {
+            _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+            return;
+        }
     }
 
-    public bool GetIsDisabled()
-    {
-        return isDisabled;
-    }
-
-    public void SetIsDisabled(bool _isDisabled)
-    {
-        isDisabled = _isDisabled;
-    }
+    
 }
