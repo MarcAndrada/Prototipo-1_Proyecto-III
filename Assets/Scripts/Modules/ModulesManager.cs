@@ -183,6 +183,8 @@ public class ModulesManager : MonoBehaviour
         modules[attackList[0].modulePos.y][attackList[0].modulePos.x].GetDamage(attackList[0].damage);
         modules[attackList[0].modulePos.y][attackList[0].modulePos.x].RemoveMainDamageZone();
 
+        
+
         //ESO PARA ATACAR A LOS MODULOS DE ALREDEDOR
         //Doble for
         // 'i' sera para la coordenada 'y'
@@ -207,5 +209,18 @@ public class ModulesManager : MonoBehaviour
 
 
         attackList.RemoveAt(0);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (modules != null && modules[0] != null && attackList.Count > 0)
+        {
+            Vector3 cubePos = modules[attackList[0].modulePos.y][attackList[0].modulePos.x].transform.position + new Vector3(0, 1, 0);
+            Gizmos.DrawWireCube(cubePos, new Vector3(7, 2, 7));
+
+
+        }
     }
 }
