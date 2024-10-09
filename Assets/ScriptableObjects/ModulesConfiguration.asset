@@ -35,3 +35,6 @@ MonoBehaviour:
     - Key: {x: 2, y: 2}
       Value: {fileID: 3001463927837854498, guid: b31f18d0637ae8d4584164273422e7e4,
         type: 3}
+    - Key: {x: 2, y: 3}
+      Value: {fileID: 4347801468084496283, guid: f1cff55774740f54e927a2cfaef7e346,
+        type: 3}

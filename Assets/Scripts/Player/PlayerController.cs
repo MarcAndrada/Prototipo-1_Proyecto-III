@@ -223,7 +223,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
 
         if (rb.velocity.magnitude > moveSpeed)
         {
-            rb.velocity = rb.velocity.normalized * moveSpeed;
+            rb.velocity = new Vector3(
+                rb.velocity.normalized.x * moveSpeed,
+                rb.velocity.y,
+                rb.velocity.normalized.z * moveSpeed
+                );
         }
     }
     private void RotatePlayer(Vector3 moveDir)
@@ -234,14 +238,18 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private void DeceleratePlayer()
     {
         float decelerationRate = 10f;
-        Vector3 decelerationForce = rb.velocity.normalized * -decelerationRate; 
+        Vector3 decelerationForce = new Vector3(
+            rb.velocity.normalized.x * -decelerationRate,
+            rb.velocity.y,
+            rb.velocity.normalized.z * -decelerationRate
+            ); 
         rb.AddForce(decelerationForce, ForceMode.Acceleration);
 
         Debug.Log(rb.velocity);
 
         if (rb.velocity.magnitude < 0.1f)
         {
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
     }
     private void HandleCannonMovement()
@@ -262,7 +270,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     
         if (rb.velocity.magnitude > cannonMovementSpeed)
         {
-            rb.velocity = rb.velocity.normalized * cannonMovementSpeed;
+            rb.velocity = new Vector3(
+                rb.velocity.normalized.x * cannonMovementSpeed,
+                rb.velocity.y,
+                rb.velocity.normalized.z * cannonMovementSpeed
+                );
         }
     }
     #endregion
