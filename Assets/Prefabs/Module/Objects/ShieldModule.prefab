@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 6038707594044752169, guid: 0d5843c9c573a3d42bf195aec4e25257,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8283638337382203391, guid: 0d5843c9c573a3d42bf195aec4e25257,
         type: 3}
       propertyPath: m_RootOrder

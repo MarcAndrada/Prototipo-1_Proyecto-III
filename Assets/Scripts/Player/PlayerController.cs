@@ -245,8 +245,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             ); 
         rb.AddForce(decelerationForce, ForceMode.Acceleration);
 
-        Debug.Log(rb.velocity);
-
         if (rb.velocity.magnitude < 0.1f)
         {
             rb.velocity = new Vector3(0, rb.velocity.y, 0);
