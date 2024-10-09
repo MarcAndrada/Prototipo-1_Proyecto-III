@@ -12,6 +12,14 @@ public class ModulesManager : MonoBehaviour
     private GameObject moduleBasePrefab;
     [SerializeField]
     private GameObject moduleWall;
+
+    [Space, SerializeField]
+    private GameObject particlesPrefab;
+    [SerializeField]
+    private Vector3 particleOffset;
+    [SerializeField]
+    private Quaternion particleRotation;
+
     private List<List<Module>> modules;
 
     public struct AttackProperties
@@ -39,6 +47,7 @@ public class ModulesManager : MonoBehaviour
         LoadModules();
         LoadModulesObjects();
         //LoadWalls();
+        LoadColumnsWaterParticles();
     }
 
     private void Update()
@@ -143,6 +152,19 @@ public class ModulesManager : MonoBehaviour
         wall.transform.position = endPosition;
         wall.transform.forward = _lookDirection;
     }
+    private void LoadColumnsWaterParticles()
+    {
+        for (int i = 0; i < modules[0].Count; i++)
+        {
+            GameObject currentParticles = Instantiate(particlesPrefab);
+            Vector3 particlePosSpawn = modules[0][i].transform.position + particleOffset;
+
+            currentParticles.transform.position = particlePosSpawn;
+            currentParticles.transform.rotation = particleRotation;
+            
+        }
+    }
+
 
     public void ModuleAttacked(AttackProperties _properties)
     {
@@ -176,7 +198,6 @@ public class ModulesManager : MonoBehaviour
         Invoke("DamageModule", timeToHitModules);
 
     }
-
     private void DamageModule()
     {
         //Recibir el daño maximo en la casilla golpeada
@@ -212,11 +233,10 @@ public class ModulesManager : MonoBehaviour
 
         attackList.RemoveAt(0);
     }
-
     private void CheckObjectsToBreak()
     {
         Vector3 cubePos = modules[attackList[0].modulePos.y][attackList[0].modulePos.x].transform.position + new Vector3(0, 1, 0);
-        RaycastHit[] hits = Physics.BoxCastAll(cubePos, Vector3.one * (configuration.ModuleOffset / 2), Vector3.up);
+        RaycastHit[] hits = Physics.BoxCastAll(cubePos, Vector3.one * (configuration.ModuleOffset / 2.5f), Vector3.up);
 
         foreach (RaycastHit hit in hits)
         {

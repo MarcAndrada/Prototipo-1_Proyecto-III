@@ -89,7 +89,7 @@ public class PlayersReadyController : MonoBehaviour
             players[i].transform.position = playersStartPos[i].position;
             players[i].actions.FindActionMap("PlayerSelectMenu").Disable();
             players[i].actions.FindActionMap("Gameplay").Enable();
-            
+            players[i].GetComponent<Rigidbody>().isKinematic = false;
         }
 
 
