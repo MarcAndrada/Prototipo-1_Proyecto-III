@@ -116,6 +116,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             ShootWeapon();
         }
     }
+
+    public void KillPlayer()
+    {
+
+    }
     #region Interactions
     private void HandleInteractions()
     {

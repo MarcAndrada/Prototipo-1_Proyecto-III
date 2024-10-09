@@ -13,7 +13,7 @@ public class SeaController : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-
+            collision.GetComponent<PlayerController>().KillPlayer();
         }
 
 

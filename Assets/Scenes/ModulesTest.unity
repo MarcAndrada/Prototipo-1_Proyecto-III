@@ -613,74 +613,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1265779608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4793520174551023064, guid: 561ed70c8148d534d9f61da8a5a3537f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1410940816}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1265779613
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265779608}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1265779618
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265779608}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
---- !u!114 &1265779619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265779608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eab2120fc590647b8cda27379532b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterSplashParticles: {fileID: 8205706795460263314, guid: ba6dcce29f32b7542b3b99372f48cfda,
-    type: 3}
 --- !u!1001 &1410940816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -694,345 +626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aguita
       objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023064, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreFade
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveSpeed
-      value: 0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: colorDepth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreBlend
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreDepth
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveLength
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: deepColor.r
-      value: 0.20097905
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveColor.b
-      value: 0.12913302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveColor.g
-      value: 0.12913302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveColor.r
-      value: 0.12913302
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: foamMovement
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreColor.b
-      value: 0.86666673
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreColor.g
-      value: 0.7843138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shoreColor.r
-      value: 0.48627454
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveSteepness
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveVisuals.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveVisuals.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: waveVisuals.z
-      value: 0.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: horizonColor.r
-      value: 0.20097911
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: shallowColor.r
-      value: 0.15124941
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: foamShadowDepth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: horizonDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: enableHeightMask
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: lightingHardness
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: enableFoamShadows
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: enableSurfaceFoam
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamSpeed1
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamSpeed2
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: underwaterColor.g
-      value: 0.40913042
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: underwaterColor.r
-      value: 0.23946422
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: useLegacyCaustics
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: foamShadowStrength
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: refractionStrength
-      value: 0.243
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamColor2.a
-      value: 0.34901962
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamColor2.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamColor2.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamColor2.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamBlend
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamDepth
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamScale
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamDirection1
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamDirection2
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamDistortion
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamMovement.w
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamMovement.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamMovement.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamMovement.z
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamSampling.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamCutoff
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionWaterBlend
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: enableIntersectionEffects
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamDirection
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamDistortion
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamMovement.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamMovement.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamSampling.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamSampling.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: surfaceFoamShadowProjection
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: intersectionFoamShadowProjection
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 105.44106
-      objectReference: {fileID: 0}
-    - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 153.35004
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
@@ -1087,19 +684,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4793520174551023064, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1265779613}
-    - targetCorrespondingSourceObject: {fileID: 4793520174551023064, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1265779619}
-    - targetCorrespondingSourceObject: {fileID: 4793520174551023064, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1265779618}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 561ed70c8148d534d9f61da8a5a3537f, type: 3}
 --- !u!1001 &1417472473
 PrefabInstance:
@@ -1182,15 +767,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2821621629979348495, guid: 8ce429487c119ce479a0dc29b6f69514,
+    - target: {fileID: 6352010646260031124, guid: 8ce429487c119ce479a0dc29b6f69514,
         type: 3}
-      propertyPath: zOffset
-      value: -5
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2821621629979348495, guid: 8ce429487c119ce479a0dc29b6f69514,
+    - target: {fileID: 6352010646260031124, guid: 8ce429487c119ce479a0dc29b6f69514,
         type: 3}
-      propertyPath: minYDistance
-      value: 2
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8772904409820979296, guid: 8ce429487c119ce479a0dc29b6f69514,
         type: 3}
@@ -1252,10 +837,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9122852371866061686, guid: 8ce429487c119ce479a0dc29b6f69514,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3605894096269600715, guid: 8ce429487c119ce479a0dc29b6f69514,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1429851057}
+    - targetCorrespondingSourceObject: {fileID: 1491701993758047083, guid: 8ce429487c119ce479a0dc29b6f69514,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1429851056}
   m_SourcePrefab: {fileID: 100100000, guid: 8ce429487c119ce479a0dc29b6f69514, type: 3}
 --- !u!114 &1429851052 stripped
 MonoBehaviour:
@@ -1275,6 +873,106 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1429851051}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1429851054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1491701993758047083, guid: 8ce429487c119ce479a0dc29b6f69514,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429851051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1429851055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3605894096269600715, guid: 8ce429487c119ce479a0dc29b6f69514,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429851051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1429851056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429851054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
+--- !u!114 &1429851057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429851055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1001 &8360088972817951664
 PrefabInstance:
   m_ObjectHideFlags: 0
