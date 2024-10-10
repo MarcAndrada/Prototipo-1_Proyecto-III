@@ -259,6 +259,7 @@ public class ModulesManager : MonoBehaviour
             {
                 Debug.Log("Esta el player " + _player.gameObject.name);
                 //Mata al player
+                _player.KillPlayer();
             }
             else
             {
