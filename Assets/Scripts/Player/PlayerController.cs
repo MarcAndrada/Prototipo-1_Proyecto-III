@@ -36,11 +36,14 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private bool canMove;
     private bool isPilot;
     private bool isWalking;
-
+    public bool isAlive { private set; get; } = true;
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
     public PlayerHintController hintController {  get; private set; }
+    public Transform spawnPos;
+
+
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
@@ -115,6 +118,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             ShootWeapon();
         }
+    }
+
+    public void KillPlayer()
+    {
+        isAlive = false;
+        Invoke("RevivePlayer", PlayersManager.instance.respawnTime);
+    }
+    public void RevivePlayer()
+    {
+        transform.position = spawnPos.position;
+        isAlive = true;
     }
     #region Interactions
     private void HandleInteractions()

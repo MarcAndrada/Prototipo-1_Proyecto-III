@@ -13,7 +13,7 @@ public class SeaController : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-
+            collision.GetComponent<PlayerController>().KillPlayer();
         }
 
 
@@ -23,7 +23,6 @@ public class SeaController : MonoBehaviour
         //Instanciar particulas
         Vector3 splashPosition = new Vector3(collision.transform.position.x, transform.position.y, collision.transform.position.z);
         Instantiate(waterSplashParticles, splashPosition, Quaternion.identity);
-        Debug.Log("SPLASH");
 
     }
 }
