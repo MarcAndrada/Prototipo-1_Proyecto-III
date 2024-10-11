@@ -40,7 +40,7 @@ public class ModulesManager : MonoBehaviour
     private float secondaryModulesHitDamage;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         attackList = new List<AttackProperties>();
 
@@ -267,6 +267,19 @@ public class ModulesManager : MonoBehaviour
             }
 
 
+        }
+    }
+
+    public Vector3 GetModulePositionAtSide(EnemyManager.Side _side)
+    {
+        switch (_side)
+        {
+            case EnemyManager.Side.LEFT:
+                return modules[0][0].transform.position;
+            case EnemyManager.Side.RIGHT:
+                return modules[0][configuration.Width - 1].transform.position;
+            default:
+                return Vector3.zero;
         }
     }
 

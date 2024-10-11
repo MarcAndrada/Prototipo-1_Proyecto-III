@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void FixedUpdate()
     {
-        if (canMove)
+        if (isAlive && canMove)
         {
             if (isPilot) // Si esta pilotando usar el movimiento del cañon
                 HandleCannonMovement();
