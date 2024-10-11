@@ -40,7 +40,9 @@ public class InteractableObject : MonoBehaviour
         interactableObjectParent.SetInteractableObject(this);
         
         transform.parent = interactableObjectParent.GetInteractableObjectFollowTransform();
+        
         transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
         
         transform.forward = interactableObjectParent.GetInteractableObjectFollowTransform().forward;
     }
