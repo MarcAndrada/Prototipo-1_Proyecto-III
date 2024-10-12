@@ -27,6 +27,4 @@ public class Sail : BaseFurniture
             return;
         }
     }
-
-    
 }

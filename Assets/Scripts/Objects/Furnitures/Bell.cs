@@ -36,4 +36,5 @@ public class Bell : BaseFurniture
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }
     }
+    
 }

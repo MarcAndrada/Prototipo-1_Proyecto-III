@@ -25,5 +25,6 @@ public class CannonBulletContainer : BaseFurniture
         {
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }
-    }    
+    }
+    
 }

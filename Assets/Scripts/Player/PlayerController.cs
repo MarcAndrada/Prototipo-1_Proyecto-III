@@ -12,13 +12,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
     
-    /*
-    [Header("Push/Drag Settings")]
-    [SerializeField] private float pushForce = 5f;
-    [SerializeField] private float dragForce = 3f;
-    [SerializeField] private float pushDragSpeed = 2f;
-    */
-    
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
@@ -36,13 +29,13 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private bool canMove;
     private bool isPilot;
     private bool isWalking;
+    
     public bool isAlive { private set; get; } = true;
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
     public PlayerHintController hintController {  get; private set; }
     public Transform spawnPos;
-
 
     private void Awake()
     {
