@@ -29,13 +29,13 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private bool canMove;
     private bool isPilot;
     private bool isWalking;
+    
     public bool isAlive { private set; get; } = true;
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
     public PlayerHintController hintController {  get; private set; }
     public Transform spawnPos;
-
 
     private void Awake()
     {

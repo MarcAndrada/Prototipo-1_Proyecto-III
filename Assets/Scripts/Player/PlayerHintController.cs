@@ -12,6 +12,7 @@ public class PlayerHintController : MonoBehaviour
     
     [field: SerializeField]
     public DeviceType deviceType {  get; private set; }
+    public PlayerProgressBarController playerProgressBarController;
 
     [Space, SerializeField, SerializedDictionary("Action", "Device Sprites")]
     private SerializedDictionary<ActionType, List<Sprite>> ActionSprites;
@@ -23,6 +24,8 @@ public class PlayerHintController : MonoBehaviour
     private ProgressBar progresBar;
     [SerializeField]
     private float hintOffset;
+
+    public bool isInteracting;
     
     private void Start()
     {
@@ -44,7 +47,6 @@ public class PlayerHintController : MonoBehaviour
         Vector3 playerPos = transform.position + new Vector3(0, hintOffset, 0);
         hintImage.transform.position = playerPos;
         progresBar.transform.position = playerPos;
-        
     }
 
     public void UpdateActionType(ActionType _action)
@@ -64,9 +66,10 @@ public class PlayerHintController : MonoBehaviour
             progresBar.gameObject.SetActive(true);
             return;
         }
-
+        
         //Mostrar la UI de inputs
         hintImage.gameObject.SetActive(true);
+        progresBar.gameObject.SetActive(false);
 
         Sprite currentSprite = ActionSprites[_action][(int)deviceType];
         hintImage.sprite = currentSprite;
