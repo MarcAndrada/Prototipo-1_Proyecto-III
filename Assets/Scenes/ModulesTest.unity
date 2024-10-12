@@ -683,6 +683,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aguita
       objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: deepColor.r
+      value: 0.20096716
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: waveColor.b
+      value: 0.12912112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: waveColor.g
+      value: 0.12912112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: waveColor.r
+      value: 0.12912112
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: horizonColor.r
+      value: 0.20096722
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: shallowColor.r
+      value: 0.15123752
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: underwaterColor.g
+      value: 0.40911788
+      objectReference: {fileID: 0}
+    - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: underwaterColor.r
+      value: 0.23945168
+      objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: m_RootOrder
@@ -754,7 +794,7 @@ PrefabInstance:
     - target: {fileID: 3696007233179127096, guid: c248f95ffea8b8543bc7ad0fffe0216d,
         type: 3}
       propertyPath: m_Name
-      value: CFXR4 Wind Trails
+      value: Wind Trails
       objectReference: {fileID: 0}
     - target: {fileID: 3696007233179127097, guid: c248f95ffea8b8543bc7ad0fffe0216d,
         type: 3}
@@ -939,17 +979,24 @@ MonoBehaviour:
   modulesManager: {fileID: 1239803565}
   enemyModulePrefab: {fileID: 7433593814718163865, guid: 17209e12a14b6544fb7a7b8c58201769,
     type: 3}
+  cannonPrefab: {fileID: 9062196098103873031, guid: b5c4c70916bb35543b525bd1d05c13d3,
+    type: 3}
   preloadsList:
   - side: 0
-    height: 2
-    width: 3
-    totalCanons: 0
+    height: 7
+    width: 7
+    totalCanons: 4
+    health: 4
+    shootCd: 3.5
   - side: 1
     height: 4
     width: 2
-    totalCanons: 0
-  shipOffset: 15
+    totalCanons: 2
+    health: 0
+    shootCd: 0
+  shipOffset: 13
   moduleOffset: 4
+  moduleHeight: 0.275
   particlesPrefab: {fileID: 3946913594227911072, guid: e5a48ca56d272ab41af347370efd10c9,
     type: 3}
   particleOffset: {x: 0, y: -1, z: -1.35}
