@@ -267,6 +267,7 @@ public class EnemyManager : MonoBehaviour
     {
         _module.BreakModule();
         enemies[_module.GetShipId()].AddMolduleBroke();
+        enemies[_module.GetShipId()].shipAnimator.SetTrigger("Damaged");
         //Comprobar si se rompe el barco
 
         Debug.Log("SE ROMPE");
