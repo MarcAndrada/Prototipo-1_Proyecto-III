@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     public enum Side { LEFT, RIGHT }
+
     [Serializable]
     struct EnemyPreload
     {
@@ -18,26 +19,35 @@ public class EnemyManager : MonoBehaviour
     }
     struct Enemy
     {
-        public List<List<GameObject>> ship;
+        public List<List<EnemyModule>> ship;
+        public GameObject shipParent;
+        public Animator shipAnimator;
+        public int totalModulesBroken;
+        public bool enemyAlive;
+        public void AddMolduleBroke()
+        {
+            totalModulesBroken++;
+        }
     }
 
     [SerializeField]
     private ModulesManager modulesManager;
 
-    [Space,  SerializeField]
+    [Space, Header("Modules"), SerializeField]
     private GameObject enemyModulePrefab;
     [SerializeField]
     private GameObject cannonPrefab;
     [SerializeField]
-    private List<EnemyPreload> preloadsList;
-    [SerializeField]
     private float shipOffset;
     [SerializeField]
     private float moduleOffset;
-    private List<Enemy> enemies;
-    private List<GameObject> cannonList;
     [SerializeField]
     private float moduleHeight;
+
+    [Space, Header("Enemies Preloads"), SerializeField]
+    private List<EnemyPreload> preloadsList;
+    private List<Enemy> enemies;
+    private List<EnemyCanon> cannonList;
 
     [Space, Header("Particles"), SerializeField]
     private GameObject particlesPrefab;
@@ -46,12 +56,14 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Quaternion particleRotation;
 
+    [Space, Header("Animation"), SerializeField]
+    private AnimatorController shipAnimations;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        cannonList = new List<GameObject>();
+        cannonList = new List<EnemyCanon>();
         LoadEnemiesBoats();
         LoadCanons();
         LoadColumnsWaterParticles();
@@ -64,6 +76,17 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < preloadsList.Count; i++)
         {
+            Enemy enemy = new Enemy();
+
+            enemy.enemyAlive = true;
+            enemy.totalModulesBroken = 0;
+
+            enemy.shipParent = new GameObject("EnemyShip" + i);
+            enemy.shipParent.transform.position = Vector3.zero;
+
+            enemy.shipAnimator = enemy.shipParent.AddComponent<Animator>();
+            enemy.shipAnimator.runtimeAnimatorController = shipAnimations;
+
             Vector3 direction = Vector3.zero;
             switch (preloadsList[i].side)
             {
@@ -78,21 +101,21 @@ public class EnemyManager : MonoBehaviour
             }
 
 
-
-            Enemy enemy = new Enemy();
-
-            enemy.ship = new List<List<GameObject>>();
+            enemy.ship = new List<List<EnemyModule>>();
             Vector3 originalPos = modulesManager.GetModulePositionAtSide(preloadsList[i].side) + direction * shipOffset;
 
             for (int j = 0; j < preloadsList[i].height; j++)
             {
-                enemy.ship.Add(new List<GameObject>());
+                enemy.ship.Add(new List<EnemyModule>());
 
                 for (int k = 0; k < preloadsList[i].width; k++)
                 {
-                    GameObject newModule = Instantiate(enemyModulePrefab, Vector3.zero, Quaternion.identity);
-                    enemy.ship[j].Add(newModule);
-                    newModule.transform.position = originalPos + (direction * moduleOffset * k) + (Vector3.forward * moduleOffset * j);
+                    EnemyModule enemyModule = Instantiate(enemyModulePrefab, enemy.shipParent.transform).GetComponent<EnemyModule>();
+                    enemyModule.SetManager(this);
+                    enemyModule.SetShipId(i);
+                    enemyModule.SetModuleId(j, k);
+                    enemy.ship[j].Add(enemyModule);
+                    enemyModule.transform.position = originalPos + (direction * moduleOffset * k) + (Vector3.forward * moduleOffset * j);
                 }
             }
 
@@ -138,9 +161,10 @@ public class EnemyManager : MonoBehaviour
                 }
 
                 //Instanciar cañon
-                GameObject currentCannon = Instantiate(cannonPrefab, cannonPos, Quaternion.identity);
+                GameObject currentCannon = Instantiate(cannonPrefab, enemies[i].ship[0][0].transform.parent);
+                currentCannon.transform.position = cannonPos;
                 currentCannon.transform.forward = lookDirection;
-                cannonList.Add(currentCannon);
+                cannonList.Add(currentCannon.GetComponent<EnemyCanon>());
             }
         }
     }
@@ -166,14 +190,13 @@ public class EnemyManager : MonoBehaviour
 
         return starterZPos + offsetZ * j;
     }
-
     private void LoadColumnsWaterParticles()
     {
         foreach (Enemy item in enemies)
         {
             for (int i = 0; i < item.ship[0].Count; i++)
             {
-                GameObject currentParticles = Instantiate(particlesPrefab);
+                GameObject currentParticles = Instantiate(particlesPrefab, item.ship[0][0].transform.parent);
                 Vector3 particlePosSpawn = item.ship[0][i].transform.position + particleOffset;
 
                 currentParticles.transform.position = particlePosSpawn;
@@ -182,4 +205,70 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+
+    public void ModuleHited(EnemyModule _module)
+    {
+        if (_module.IsModuleBroke())
+        {
+            //Encontrar otro modulo para romper
+            CheckNextModulesToBroke(_module);
+        }
+        else
+        {
+            BreakModule(_module);
+        }
+    }
+
+    private void CheckNextModulesToBroke(EnemyModule _module)
+    {
+
+        Vector2Int moduleId = _module.GetModuleId();
+        int shipId = _module.GetShipId();
+        // ESTO PARA ATACAR A LOS MODULOS DE ALREDEDOR
+        ////Doble for
+        //// 'i' sera para la coordenada 'y'
+        //// 'j' sera para la coordenada 'x'
+        for (int i = -1; i <= 1; i++)
+        {
+            //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
+
+            if (moduleId.y + i < 0 || moduleId.y + i >= enemies[shipId].ship.Count)
+                continue;
+
+            for (int j = -1; j <= 1; j++)
+            {
+                //Comprobar si la X esta dentro de la nave
+                if (moduleId.x + j < 0 || moduleId.x + j >= enemies[shipId].ship[0].Count || enemies[shipId].ship[moduleId.y + i][moduleId.x + j].IsModuleBroke())
+                    continue;
+
+                BreakModule(enemies[shipId].ship[moduleId.y + i][moduleId.x + j]);
+                return;
+            }
+        }
+
+
+        //Romper modulo Random
+
+        for (int i = 0; i <= enemies[shipId].ship.Count; i++)
+        {
+            for (int j = 0; j < enemies[shipId].ship[0].Count; j++)
+            {
+                if (!enemies[shipId].ship[i][j].IsModuleBroke())
+                {
+                    BreakModule(enemies[shipId].ship[i][j]);
+                    return;
+                }
+            }
+        }
+
+    }
+
+    private void BreakModule(EnemyModule _module)
+    {
+        _module.BreakModule();
+        enemies[_module.GetShipId()].AddMolduleBroke();
+        //Comprobar si se rompe el barco
+
+        Debug.Log("SE ROMPE");
+    }
 }

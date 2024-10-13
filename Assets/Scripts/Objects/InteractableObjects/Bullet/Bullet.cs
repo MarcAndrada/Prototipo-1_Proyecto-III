@@ -12,19 +12,9 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    void Update()
-    {
-       
-    }
-
     public void SetDirection(Vector3 dir)
     {
         direction = dir;
         rb.velocity = (direction * speed);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Destroy(gameObject);
     }
 }

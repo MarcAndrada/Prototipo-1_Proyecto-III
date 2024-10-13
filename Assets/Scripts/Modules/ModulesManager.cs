@@ -1,19 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class ModulesManager : MonoBehaviour
 {
 
-    [SerializeField]
+    [Header("Configuration"), SerializeField]
     private ModulesConfiguration configuration;
 
-    [SerializeField]
+    [Space, Header("Modules"), SerializeField]
     private GameObject moduleBasePrefab;
-    [SerializeField]
-    private GameObject moduleWall;
+    [Space, Header("Modules Damage"), SerializeField]
+    private float timeToHitModules;
 
-    [Space, SerializeField]
+
+    [Space, Header("Particles"), SerializeField]
     private GameObject particlesPrefab;
     [SerializeField]
     private Vector3 particleOffset;
@@ -32,13 +33,13 @@ public class ModulesManager : MonoBehaviour
         public Vector2Int modulePos;
         public float damage;
     }
-    private List<AttackProperties> attackList;    
+    private List<AttackProperties> attackList;
 
-    [Space, SerializeField]
-    private float timeToHitModules;
-    [SerializeField, Range(0.0f, 1f)]
-    private float secondaryModulesHitDamage;
-    
+    private GameObject shipParent;
+    private Animator shipAnimator;
+    [Space, Header("Animations"), SerializeField]
+    private AnimatorController shimAnims;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,7 +47,6 @@ public class ModulesManager : MonoBehaviour
 
         LoadModules();
         LoadModulesObjects();
-        //LoadWalls();
         LoadColumnsWaterParticles();
     }
 
@@ -64,6 +64,16 @@ public class ModulesManager : MonoBehaviour
         {
             ModuleAttacked(new AttackProperties(new Vector2Int(0, 0), 50f));
         }
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            shipAnimator.SetTrigger("Damaged");
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            shipAnimator.SetTrigger("Destroyed");
+        }
     }
 
     private void LoadModules()
@@ -71,14 +81,21 @@ public class ModulesManager : MonoBehaviour
         modules = new List<List<Module>>();
 
         Vector3 modulePosition = Vector3.zero;
+
+        shipParent = new GameObject("ShipObject");
+        shipAnimator = shipParent.AddComponent<Animator>();
+        shipAnimator.runtimeAnimatorController = shimAnims;
+
         for (int i = 0; i < configuration.Height; i++)
         {
+            
             modules.Add(new List<Module>());
             modulePosition.x = 0;
             for (int j = 0; j < configuration.Width; j++)
             {
-                modules[i].Add(Instantiate(moduleBasePrefab, modulePosition, Quaternion.identity).GetComponent<Module>());
-
+                Module module = Instantiate(moduleBasePrefab, shipParent.transform).GetComponent<Module>();
+                module.transform.position = modulePosition;
+                modules[i].Add(module);
                 modulePosition.x += configuration.ModuleOffset;
             }
 
@@ -89,74 +106,16 @@ public class ModulesManager : MonoBehaviour
     {
         foreach (KeyValuePair<Vector2Int, GameObject> modulePos in configuration.ModulesPositions) 
         {
-            GameObject moduleObject = Instantiate(modulePos.Value, modules[modulePos.Key.y][modulePos.Key.x].transform.position, Quaternion.identity);
+            GameObject moduleObject = Instantiate(modulePos.Value, shipParent.transform);
+            moduleObject.transform.position = modules[modulePos.Key.y][modulePos.Key.x].transform.position;
             modules[modulePos.Key.y][modulePos.Key.x].starterObjectInModule = moduleObject;
         }
-    }
-    private void LoadWalls()
-    {
-        Vector3 moduleScale = modules[0][0].transform.localScale;
-        // For para comprobar las paredes superiores y inferiores
-        for (int i = 0; i < modules.Count; i++)
-        {
-            if (i == 0){
-                //Estan en la parte de abajo
-                for (int j = 0; j < modules[i].Count; j++)
-                {
-                    CreateWall(0, -1, moduleScale, modules[i][j].transform.position, Vector3.forward);
-                }
-            }
-            else if (i >= modules.Count - 1)
-            {
-                //Estan en la parte de arriba
-                for (int j = 0; j < modules[i].Count; j++)
-                {
-                    CreateWall(0, 1, moduleScale, modules[i][j].transform.position, -Vector3.forward);
-                }
-
-            }
-
-
-
-            // For para comprobar las paredes laterales
-            for (int j = 0; j < modules[i].Count; j++)
-            {
-                if (j == 0)
-                {
-                    //Esta a la izquierda
-                    CreateWall(-1, 0, moduleScale, modules[i][j].transform.position, Vector3.right);
-                }
-                else if (j >= modules[i].Count - 1)
-                {
-                    //Esta a la derecha
-                    CreateWall(1, 0, moduleScale, modules[i][j].transform.position, -Vector3.right);
-                }
-            }
-
-        }
-
-        
-        
-       
-
-    }
-    private void CreateWall(float _directionX, float _directionZ, Vector3 _moduleScale, Vector3 _basePosition, Vector3 _lookDirection)
-    {
-        GameObject wall = Instantiate(moduleWall, Vector3.zero, Quaternion.identity);
-
-        float YOffset = (wall.transform.localScale.y / 2 + _moduleScale.y / 2);
-        float XZOffset = configuration.ModuleOffset / 2;
-
-        Vector3 endPosition = _basePosition + new Vector3(XZOffset * _directionX, YOffset, XZOffset * _directionZ);
-
-        wall.transform.position = endPosition;
-        wall.transform.forward = _lookDirection;
     }
     private void LoadColumnsWaterParticles()
     {
         for (int i = 0; i < modules[0].Count; i++)
         {
-            GameObject currentParticles = Instantiate(particlesPrefab);
+            GameObject currentParticles = Instantiate(particlesPrefab, shipParent.transform);
             Vector3 particlePosSpawn = modules[0][i].transform.position + particleOffset;
 
             currentParticles.transform.position = particlePosSpawn;
@@ -206,6 +165,7 @@ public class ModulesManager : MonoBehaviour
 
         CheckObjectsToBreak();
 
+        shipAnimator.SetTrigger("Damaged");
 
         /*ESO PARA ATACAR A LOS MODULOS DE ALREDEDOR
         * //Doble for

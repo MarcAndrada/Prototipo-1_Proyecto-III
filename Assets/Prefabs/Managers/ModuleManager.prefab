@@ -55,3 +55,4 @@ MonoBehaviour:
   particleRotation: {x: -0.000000013507563, y: -0.9510565, z: -0.30901703, w: 0.000000041571997}
   timeToHitModules: 3
   secondaryModulesHitDamage: 0.5
+  shimAnims: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}

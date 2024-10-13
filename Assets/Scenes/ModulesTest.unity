@@ -981,26 +981,27 @@ MonoBehaviour:
     type: 3}
   cannonPrefab: {fileID: 9062196098103873031, guid: b5c4c70916bb35543b525bd1d05c13d3,
     type: 3}
-  preloadsList:
-  - side: 0
-    height: 7
-    width: 7
-    totalCanons: 4
-    health: 4
-    shootCd: 3.5
-  - side: 1
-    height: 4
-    width: 2
-    totalCanons: 2
-    health: 0
-    shootCd: 0
   shipOffset: 13
   moduleOffset: 4
   moduleHeight: 0.275
+  preloadsList:
+  - side: 0
+    height: 5
+    width: 5
+    totalCanons: 4
+    health: 15
+    shootCd: 3.5
+  - side: 1
+    height: 2
+    width: 2
+    totalCanons: 2
+    health: 20
+    shootCd: 4
   particlesPrefab: {fileID: 3946913594227911072, guid: e5a48ca56d272ab41af347370efd10c9,
     type: 3}
   particleOffset: {x: 0, y: -1, z: -1.35}
   particleRotation: {x: -0.000000013507563, y: -0.9510565, z: -0.30901703, w: 0.000000041571997}
+  shipAnimations: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}
 --- !u!4 &1936290261
 Transform:
   m_ObjectHideFlags: 0
