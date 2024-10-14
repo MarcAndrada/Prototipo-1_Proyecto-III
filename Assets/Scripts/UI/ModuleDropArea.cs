@@ -23,7 +23,7 @@ public class ModuleDropArea : MonoBehaviour
             moduleImage.sprite = droppedItem.GetComponent<Image>().sprite;
             Debug.Log("Object Dropped");
             Vector2Int position = GetModulePosition();
-            config.ModulesPositions[position] = droppedItem;
+            config.ModulesPositions[position] = droppedItem.GetComponent<StoreItem>().gameObject;
         }
     }
 

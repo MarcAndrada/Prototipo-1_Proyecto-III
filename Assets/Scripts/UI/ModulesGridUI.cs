@@ -18,25 +18,25 @@ public class ModulesGridUI : MonoBehaviour
     [SerializeField] private Button expandLeftButton;
     private void Start()
     {
-        expandRightButton.onClick.AddListener(ExpandRight);
-        expandLeftButton.onClick.AddListener(ExpandLeft);
+        expandRightButton.onClick.AddListener(ExpandWidth);
+        expandLeftButton.onClick.AddListener(ExpandHeight);
         
         DrawGrid();
     }
-    private void ExpandRight()
+    private void ExpandWidth()
     {
         if (moneyManager.SpendMoney(expansionCost))
         {
-            config.ExpandGridRight();
+            config.ExpandWidth();
             DrawGrid();
         }
     }
 
-    private void ExpandLeft()
+    private void ExpandHeight()
     {
         if (moneyManager.SpendMoney(expansionCost) && config.Height < 5)
         {
-            config.ExpandGridUp();
+            config.ExpandHeight();
             DrawGrid();
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [SerializeField] private GameObject item;
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private Transform originalParent; 
@@ -14,7 +15,6 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         rectTransform = GetComponent<RectTransform>();
         originalParent = transform.parent;
         canvas = GetComponentInParent<Canvas>();
-
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -26,7 +26,6 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.position = Input.mousePosition;
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -41,8 +40,6 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             {
                 transform.SetParent(result.gameObject.transform);
                 rectTransform.anchoredPosition = Vector3.zero;
-
-                Debug.Log("Dropped on Module");
                 
                 isOnModule = true;
                 break;
@@ -54,5 +51,10 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             rectTransform.position = originalPosition;
             transform.SetParent(originalParent);
         }
+    }
+
+    public GameObject GetItem()
+    {
+        return item;
     }
 }

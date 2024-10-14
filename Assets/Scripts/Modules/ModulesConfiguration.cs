@@ -15,12 +15,12 @@ public class ModulesConfiguration : ScriptableObject
     [Space, SerializedDictionary("Position", "Object"), Tooltip("Esto relaciona la posicion del modulo con el objeto que habra en la casilla")]
     public SerializedDictionary<Vector2Int, GameObject> ModulesPositions;
     
-    public void ExpandGridRight()
+    public void ExpandWidth()
     {
         Width++;
     }
 
-    public void ExpandGridUp()
+    public void ExpandHeight()
     {
         Height++;
     }
