@@ -34,9 +34,9 @@ public class ModulesGridUI : MonoBehaviour
 
     private void ExpandLeft()
     {
-        if (moneyManager.SpendMoney(expansionCost))
+        if (moneyManager.SpendMoney(expansionCost) && config.Height < 5)
         {
-            config.ExpandGridLeft();
+            config.ExpandGridUp();
             DrawGrid();
         }
     }
@@ -62,6 +62,7 @@ public class ModulesGridUI : MonoBehaviour
             {
                 GameObject cell = Instantiate(cellPrefab, gridParent);
                 cell.name = $"Cell ({x}, {y})";
+                cell.AddComponent<ModuleDropArea>();
                 Vector2Int position = new Vector2Int(x, y);
 
                 if (config.ModulesPositions.ContainsKey(position))
