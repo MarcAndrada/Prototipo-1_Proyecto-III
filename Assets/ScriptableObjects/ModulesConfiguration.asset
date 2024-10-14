@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ModulesConfiguration
   m_EditorClassIdentifier: 
   <Width>k__BackingField: 5
-  <Height>k__BackingField: 5
+  <Height>k__BackingField: 3
   <ModuleOffset>k__BackingField: 4
   ModulesPositions:
     _serializedList:
