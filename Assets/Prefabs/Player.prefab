@@ -248,8 +248,9 @@ MonoBehaviour:
     m_Bits: 64
   interactDistance: 0.7
   sphereRadius: 0.7
-  throwForce: 5
+  throwForce: 12
   interactiveObjectHoldPoint: {fileID: 8634159134989998872}
+  spawnPos: {fileID: 0}
 --- !u!114 &4542375100772126205
 MonoBehaviour:
   m_ObjectHideFlags: 0

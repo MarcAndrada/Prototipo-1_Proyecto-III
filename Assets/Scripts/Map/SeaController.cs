@@ -16,6 +16,10 @@ public class SeaController : MonoBehaviour
             collision.GetComponent<PlayerController>().KillPlayer();
         }
 
+        if (collision.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+        }
 
 
 
