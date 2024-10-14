@@ -9,18 +9,44 @@ public class ModulesGridUI : MonoBehaviour
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] private Transform gridParent;
 
+    [Header("Money")]
+    [SerializeField] private MoneyManager moneyManager;
+    [SerializeField] private int expansionCost = 400;
+    
+    [Header("Buttons")]
+    [SerializeField] private Button expandRightButton;
+    [SerializeField] private Button expandLeftButton;
     private void Start()
     {
+        expandRightButton.onClick.AddListener(ExpandRight);
+        expandLeftButton.onClick.AddListener(ExpandLeft);
+        
+        DrawGrid();
+    }
+    private void ExpandRight()
+    {
+        if (moneyManager.SpendMoney(expansionCost))
+        {
+            config.ExpandGridRight();
+            DrawGrid();
+        }
+    }
+
+    private void ExpandLeft()
+    {
+        if (moneyManager.SpendMoney(expansionCost))
+        {
+            config.ExpandGridLeft();
+            DrawGrid();
+        }
+    }
+    private void DrawGrid()
+    {        
         foreach (Transform child in gridParent)
         {
             Destroy(child.gameObject);
         }
 
-        DrawGrid();
-    }
-
-    private void DrawGrid()
-    {
         int width = config.Width;
         int height = config.Height;
         
@@ -41,6 +67,8 @@ public class ModulesGridUI : MonoBehaviour
                 if (config.ModulesPositions.ContainsKey(position))
                 {
                     Image cellImage = cell.GetComponent<Image>();
+                    
+                    // De momento marcar las casillas ocupadas en rojo
                     cellImage.color = Color.red;
 
                     GameObject moduleObject = config.ModulesPositions[position];

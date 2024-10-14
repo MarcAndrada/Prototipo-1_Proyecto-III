@@ -10,19 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38e8cfeb04720d94dac78274fe45d813, type: 3}
-  m_Name: ModulesConfiguration
+  m_Name: ModulesConfigurationTest
   m_EditorClassIdentifier: 
   <Width>k__BackingField: 3
   <Height>k__BackingField: 3
   <ModuleOffset>k__BackingField: 4
   ModulesPositions:
     _serializedList:
-    - Key: {x: 2, y: 0}
+    - Key: {x: 1, y: 0}
       Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
         type: 3}
-    - Key: {x: 1, y: 1}
+    - Key: {x: 0, y: 1}
       Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
         type: 3}
-    - Key: {x: 2, y: 2}
+    - Key: {x: 1, y: 2}
       Value: {fileID: 909232763997680694, guid: 0bcefb29d3a44b440a7a00018536de7c,
+        type: 3}
+    - Key: {x: 3, y: 2}
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
+        type: 3}
+    - Key: {x: 1, y: 3}
+      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+        type: 3}
+    - Key: {x: 2, y: 2}
+      Value: {fileID: 3001463927837854498, guid: b31f18d0637ae8d4584164273422e7e4,
+        type: 3}
+    - Key: {x: 2, y: 3}
+      Value: {fileID: 4347801468084496283, guid: f1cff55774740f54e927a2cfaef7e346,
         type: 3}

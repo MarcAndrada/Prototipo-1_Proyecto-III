@@ -14,5 +14,24 @@ public class ModulesConfiguration : ScriptableObject
 
     [Space, SerializedDictionary("Position", "Object"), Tooltip("Esto relaciona la posicion del modulo con el objeto que habra en la casilla")]
     public SerializedDictionary<Vector2Int, GameObject> ModulesPositions;
+    
+    public void ExpandGridRight()
+    {
+        Width++;
+    }
 
+    public void ExpandGridLeft()
+    {
+        // Desplazar todos los módulos existentes una columna hacia la derecha
+        var newPositions = new SerializedDictionary<Vector2Int, GameObject>();
+
+        foreach (var entry in ModulesPositions)
+        {
+            Vector2Int newPosition = new Vector2Int(entry.Key.x + 1, entry.Key.y);
+            newPositions[newPosition] = entry.Value;
+        }
+
+        ModulesPositions = newPositions;
+        Width++;
+    }
 }
