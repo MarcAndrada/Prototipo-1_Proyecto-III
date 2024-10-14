@@ -979,24 +979,20 @@ MonoBehaviour:
   modulesManager: {fileID: 1239803565}
   enemyModulePrefab: {fileID: 7433593814718163865, guid: 17209e12a14b6544fb7a7b8c58201769,
     type: 3}
-  cannonPrefab: {fileID: 9062196098103873031, guid: b5c4c70916bb35543b525bd1d05c13d3,
-    type: 3}
   shipOffset: 13
   moduleOffset: 4
   moduleHeight: 0.275
+  cannonPrefab: {fileID: 9062196098103873031, guid: b5c4c70916bb35543b525bd1d05c13d3,
+    type: 3}
+  cannonBulletHeight: 3
+  cannonHitSpeed: 0.5
   preloadsList:
   - side: 0
     height: 5
     width: 5
-    totalCanons: 4
+    totalCanons: 1
     health: 15
-    shootCd: 3.5
-  - side: 1
-    height: 2
-    width: 2
-    totalCanons: 2
-    health: 20
-    shootCd: 4
+    shootCd: 7
   particlesPrefab: {fileID: 3946913594227911072, guid: e5a48ca56d272ab41af347370efd10c9,
     type: 3}
   particleOffset: {x: 0, y: -1, z: -1.35}

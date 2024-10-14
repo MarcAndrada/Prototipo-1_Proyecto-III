@@ -10,9 +10,6 @@ public class ModulesManager : MonoBehaviour
 
     [Space, Header("Modules"), SerializeField]
     private GameObject moduleBasePrefab;
-    [Space, Header("Modules Damage"), SerializeField]
-    private float timeToHitModules;
-
 
     [Space, Header("Particles"), SerializeField]
     private GameObject particlesPrefab;
@@ -23,17 +20,7 @@ public class ModulesManager : MonoBehaviour
 
     private List<List<Module>> modules;
 
-    public struct AttackProperties
-    {
-        public AttackProperties(Vector2Int _modulePos, float _damage)
-        {
-            modulePos = _modulePos;
-            damage = _damage;
-        }
-        public Vector2Int modulePos;
-        public float damage;
-    }
-    private List<AttackProperties> attackList;
+    private List<Vector2Int> attackList;
 
     private GameObject shipParent;
     private Animator shipAnimator;
@@ -43,7 +30,7 @@ public class ModulesManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        attackList = new List<AttackProperties>();
+        attackList = new List<Vector2Int>();
 
         LoadModules();
         LoadModulesObjects();
@@ -52,20 +39,6 @@ public class ModulesManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            ModuleAttacked(new AttackProperties(new Vector2Int(3, 10), 50f));
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ModuleAttacked(new AttackProperties(new Vector2Int(1, 1), 50f));
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ModuleAttacked(new AttackProperties(new Vector2Int(0, 0), 50f));
-        }
-
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             shipAnimator.SetTrigger("Damaged");
@@ -125,13 +98,13 @@ public class ModulesManager : MonoBehaviour
     }
 
 
-    public void ModuleAttacked(AttackProperties _properties)
+    public void ModuleAttacked(Vector2Int _properties)
     {
-        if ((_properties.modulePos.y < 0 || _properties.modulePos.y >= modules.Count) || (_properties.modulePos.x < 0 || _properties.modulePos.x >= modules[0].Count))
+        if ((_properties.y < 0 || _properties.y >= modules.Count) || (_properties.x < 0 || _properties.x >= modules[0].Count))
             return;
 
 
-        modules[_properties.modulePos.y][_properties.modulePos.x].AddDamageZone();
+        modules[_properties.y][_properties.x].AddDamageZone();
         // ESTO PARA ATACAR A LOS MODULOS DE ALREDEDOR
         ////Doble for
         //// 'i' sera para la coordenada 'y'
@@ -154,14 +127,13 @@ public class ModulesManager : MonoBehaviour
         //}
 
         attackList.Add(_properties);
-        Invoke("DamageModule", timeToHitModules);
 
     }
-    private void DamageModule()
+    public void DamageModule()
     {
         //Recibir el daño maximo en la casilla golpeada
-        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].brokenModule.BreakForniture();
-        modules[attackList[0].modulePos.y][attackList[0].modulePos.x].RemoveMainDamageZone();
+        modules[attackList[0].y][attackList[0].x].brokenModule.BreakForniture();
+        modules[attackList[0].y][attackList[0].x].RemoveMainDamageZone();
 
         CheckObjectsToBreak();
 
@@ -195,7 +167,7 @@ public class ModulesManager : MonoBehaviour
     }
     private void CheckObjectsToBreak()
     {
-        Vector3 cubePos = modules[attackList[0].modulePos.y][attackList[0].modulePos.x].transform.position + new Vector3(0, 1, 0);
+        Vector3 cubePos = modules[attackList[0].y][attackList[0].x].transform.position + new Vector3(0, 1, 0);
         RaycastHit[] hits = Physics.BoxCastAll(cubePos, Vector3.one * (configuration.ModuleOffset / 2.5f), Vector3.up);
 
         foreach (RaycastHit hit in hits)
@@ -243,13 +215,36 @@ public class ModulesManager : MonoBehaviour
         }
     }
 
+    public (Vector3, Vector2Int) GetRandomFixedModulePosition(int _loops)
+    {
+        int i = Random.Range(0, configuration.Height);
+        int j = Random.Range(0, configuration.Width);
 
+
+        if(_loops >= 10)
+            return (modules[i][j].transform.position, new Vector2Int(j, i));
+
+        if (modules[i][j].brokenModule)
+        {
+            return GetRandomFixedModulePosition(_loops + 1);
+        }
+
+        foreach (Vector2Int currentAttack in attackList)
+        {
+            if (currentAttack == new Vector2Int(j, i))
+                return GetRandomFixedModulePosition(_loops + 1);
+        }
+
+
+        return (modules[i][j].transform.position, new Vector2Int(i, j));
+
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         if (modules != null && modules[0] != null && attackList.Count > 0)
         {
-            Vector3 cubePos = modules[attackList[0].modulePos.y][attackList[0].modulePos.x].transform.position + new Vector3(0, 1, 0);
+            Vector3 cubePos = modules[attackList[0].y][attackList[0].x].transform.position + new Vector3(0, 1, 0);
             Gizmos.DrawWireCube(cubePos, new Vector3(7, 2, 7));
 
 

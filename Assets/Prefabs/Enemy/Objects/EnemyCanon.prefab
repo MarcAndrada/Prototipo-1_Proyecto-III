@@ -154,6 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <spawnBulletPos>k__BackingField: {fileID: 6751043060418469295}
+  currentState: 0
+  bulletPrefab: {fileID: 2115311192187052894, guid: bbeae1558ed924443be2b4a13aa90beb,
+    type: 3}
+  shootProcess: 0
+  shootCd: 0
 --- !u!1001 &8577683572191730935
 PrefabInstance:
   m_ObjectHideFlags: 0

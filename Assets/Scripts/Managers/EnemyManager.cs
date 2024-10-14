@@ -36,18 +36,23 @@ public class EnemyManager : MonoBehaviour
     [Space, Header("Modules"), SerializeField]
     private GameObject enemyModulePrefab;
     [SerializeField]
-    private GameObject cannonPrefab;
-    [SerializeField]
     private float shipOffset;
     [SerializeField]
     private float moduleOffset;
     [SerializeField]
     private float moduleHeight;
 
+    [Space, Header("Cannon"), SerializeField]
+    private GameObject cannonPrefab;
+    [SerializeField]
+    private float cannonBulletHeight;
+    [SerializeField]
+    private float cannonHitSpeed;
+    private List<EnemyCanon> cannonList;
+
     [Space, Header("Enemies Preloads"), SerializeField]
     private List<EnemyPreload> preloadsList;
     private List<Enemy> enemies;
-    private List<EnemyCanon> cannonList;
 
     [Space, Header("Particles"), SerializeField]
     private GameObject particlesPrefab;
@@ -69,6 +74,7 @@ public class EnemyManager : MonoBehaviour
         LoadColumnsWaterParticles();
     }
 
+    #region Load Functions
     private void LoadEnemiesBoats()
     {
         enemies = new List<Enemy>();
@@ -164,7 +170,10 @@ public class EnemyManager : MonoBehaviour
                 GameObject currentCannon = Instantiate(cannonPrefab, enemies[i].ship[0][0].transform.parent);
                 currentCannon.transform.position = cannonPos;
                 currentCannon.transform.forward = lookDirection;
-                cannonList.Add(currentCannon.GetComponent<EnemyCanon>());
+                EnemyCanon enemyCanon = currentCannon.GetComponent<EnemyCanon>();
+                enemyCanon.shootCd = preloadsList[i].shootCd;
+                enemyCanon.InitializeShootCd();
+                cannonList.Add(enemyCanon);
             }
         }
     }
@@ -204,6 +213,61 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    private void Update()
+    {
+        CheckCannonsState();
+    }
+
+    private void CheckCannonsState()
+    {
+        foreach (EnemyCanon item in cannonList)
+        {
+            switch (item.currentState)
+            {
+                case EnemyCanon.CannonState.LOADING:
+                    LoadCannon(item);
+                    break;
+                case EnemyCanon.CannonState.SHOOTING:
+                    ShootCannonProcess(item);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void LoadCannon(EnemyCanon _cannon)
+    {
+        _cannon.shootProcess += Time.deltaTime;
+
+        if (_cannon.shootProcess >= _cannon.shootCd)
+        {
+            (Vector3, Vector2Int) modulesPos = modulesManager.GetRandomFixedModulePosition(0);
+            Vector3 cannonHitPos = modulesPos.Item1;
+            _cannon.ShootBullet(cannonHitPos);
+            _cannon.shootProcess = 0;
+            modulesManager.ModuleAttacked(modulesPos.Item2);
+        }
+    }
+
+    private void ShootCannonProcess(EnemyCanon _cannon)
+    {
+        _cannon.shootProcess += cannonHitSpeed * Time.deltaTime;
+
+        _cannon.currentBullet.transform.position = Parabola(_cannon.spawnBulletPos.position, _cannon.shipTargetPos, cannonBulletHeight, _cannon.shootProcess);
+
+        if (_cannon.shootProcess >= 1)
+        {
+            //Hacer daño
+            modulesManager.DamageModule();
+            _cannon.shootProcess = 0;
+            Destroy(_cannon.currentBullet);
+            _cannon.currentState = EnemyCanon.CannonState.LOADING;
+        }
+    }
+
 
 
     public void ModuleHited(EnemyModule _module)
@@ -271,5 +335,14 @@ public class EnemyManager : MonoBehaviour
         //Comprobar si se rompe el barco
 
         Debug.Log("SE ROMPE");
+    }
+
+    public static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)
+    {
+        System.Func<float, float> f = x => -4 * height * x * x + 4 * height * x;
+
+        var mid = Vector3.Lerp(start, end, t);
+
+        return new Vector3(mid.x, f(t) + Mathf.Lerp(start.y, end.y, t), mid.z);
     }
 }
