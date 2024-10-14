@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8559261265168859335}
   - component: {fileID: 8432129455264544230}
   - component: {fileID: 3815328344123911165}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Module
   m_Icon: {fileID: 0}

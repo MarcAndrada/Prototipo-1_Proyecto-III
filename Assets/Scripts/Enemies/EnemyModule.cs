@@ -58,7 +58,6 @@ public class EnemyModule : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet")) 
         {
-            Debug.Log("HA CHOCADO");
             manager.ModuleHited(this);
             Destroy(collision.gameObject);
         }

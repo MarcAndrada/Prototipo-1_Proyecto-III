@@ -63,8 +63,9 @@ public class EnemyManager : MonoBehaviour
 
     [Space, Header("Animation"), SerializeField]
     private AnimatorController shipAnimations;
-    
 
+    [Space, SerializeField]
+    private GameObject characterSelectCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -217,10 +218,11 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        CheckCannonsState();
+        if (!characterSelectCanvas.activeInHierarchy)
+            CannonsBehaviours();
     }
 
-    private void CheckCannonsState()
+    private void CannonsBehaviours()
     {
         foreach (EnemyCanon item in cannonList)
         {
@@ -334,7 +336,6 @@ public class EnemyManager : MonoBehaviour
         enemies[_module.GetShipId()].shipAnimator.SetTrigger("Damaged");
         //Comprobar si se rompe el barco
 
-        Debug.Log("SE ROMPE");
     }
 
     public static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)

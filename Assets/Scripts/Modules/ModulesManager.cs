@@ -177,19 +177,16 @@ public class ModulesManager : MonoBehaviour
 
             if(hit.collider.TryGetComponent(out BaseFurniture _forniture))
             {
-                Debug.Log("Hay una forniture con el nombre " + _forniture.gameObject.name);
                 //Rompe la forniture
                 _forniture.BreakForniture();
             }
             else if(hit.collider.TryGetComponent(out InteractableObject _object))
             {
-                Debug.Log("Hay un objeto con el nombre " + _object.gameObject.name);
                 //Borra el objeto
                 Destroy(_object.gameObject);
             }
             else if (hit.collider.TryGetComponent(out PlayerController _player))
             {
-                Debug.Log("Esta el player " + _player.gameObject.name);
                 //Mata al player
                 _player.KillPlayer();
             }
