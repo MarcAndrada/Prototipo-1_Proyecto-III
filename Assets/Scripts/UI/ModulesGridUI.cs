@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using AYellowpaper.SerializedCollections;
 
 public class ModulesGridUI : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ModulesGridUI : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button expandRightButton;
     [SerializeField] private Button expandLeftButton;
+    
+    [Space, SerializedDictionary("SceneObject", "Prefab")]
+    public SerializedDictionary<GameObject, GameObject> objectsPrefabs;
+
     private void Start()
     {
         expandRightButton.onClick.AddListener(ExpandWidth);

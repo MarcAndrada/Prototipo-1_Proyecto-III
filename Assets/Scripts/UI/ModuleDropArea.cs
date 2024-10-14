@@ -1,29 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ModuleDropArea : MonoBehaviour
+public class ModuleDropArea : MonoBehaviour, IDropHandler, IPointerEnterHandler
 {
     [SerializeField] private ModulesConfiguration config;
+    private ModulesGridUI modulesGridUI;
     private Image moduleImage;
 
     private void Awake()
     {
+        modulesGridUI = GetComponentInParent<ModulesGridUI>();
         moduleImage = GetComponent<Image>();
     }
-
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Pointer entered drop area: " + gameObject.name);
+    }
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("Dropped object was: " + eventData.pointerDrag);
+
         GameObject droppedItem = eventData.pointerDrag;
+
+        Debug.Log(droppedItem);
 
         if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null)
         {
             moduleImage.sprite = droppedItem.GetComponent<Image>().sprite;
-            Debug.Log("Object Dropped");
+
             Vector2Int position = GetModulePosition();
-            config.ModulesPositions[position] = droppedItem.GetComponent<StoreItem>().gameObject;
+            config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
+            Debug.Log(config.ModulesPositions[position]);
         }
     }
 
