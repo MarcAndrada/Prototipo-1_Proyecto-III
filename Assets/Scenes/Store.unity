@@ -378,6 +378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -386,6 +391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f34f15be29644cc48a9ccebbec43f36d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,6 +530,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 517e609591166214eb197d96611e6e36, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -979,6 +994,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 517e609591166214eb197d96611e6e36, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1234,6 +1254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -1242,6 +1267,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a25ccec61037c5744b12570d8fa1a699, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1362,6 +1392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -1370,6 +1405,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: f34f15be29644cc48a9ccebbec43f36d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1490,6 +1530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -1498,6 +1543,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 63eb1dcc8c9c0a542a9ab861664281dc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1735,25 +1785,25 @@ MonoBehaviour:
       Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
         type: 3}
     - Key: {fileID: 1067121166}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
         type: 3}
     - Key: {fileID: 1422442951}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: f1cff55774740f54e927a2cfaef7e346,
         type: 3}
     - Key: {fileID: 691147133}
       Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
         type: 3}
     - Key: {fileID: 18743434}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 3001463927837854498, guid: b31f18d0637ae8d4584164273422e7e4,
         type: 3}
     - Key: {fileID: 1491692656}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: f1cff55774740f54e927a2cfaef7e346,
         type: 3}
     - Key: {fileID: 1293382089}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
         type: 3}
     - Key: {fileID: 29610931}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
         type: 3}
     - Key: {fileID: 1690683454}
       Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
@@ -2142,6 +2192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -2150,6 +2205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a25ccec61037c5744b12570d8fa1a699, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2290,6 +2350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 517e609591166214eb197d96611e6e36, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2410,6 +2475,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 1383324862}
@@ -2418,6 +2488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlots (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6184333947609667106, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a25ccec61037c5744b12570d8fa1a699, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
