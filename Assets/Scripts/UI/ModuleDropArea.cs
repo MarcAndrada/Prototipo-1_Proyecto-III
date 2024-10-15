@@ -2,27 +2,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ModuleDropArea : MonoBehaviour, IDropHandler, IPointerEnterHandler
+public class ModuleDropArea : MonoBehaviour, IDropHandler
 {
     [SerializeField] private ModulesConfiguration config;
     private ModulesGridUI modulesGridUI;
-    private Image moduleImage;
+    private bool avaliableModule = true;
 
     private void Awake()
     {
         modulesGridUI = GetComponentInParent<ModulesGridUI>();
-        moduleImage = GetComponent<Image>();
     }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("Pointer entered drop area: " + gameObject.name);
-    }
+
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedItem = eventData.pointerDrag;
 
-
-        if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null)
+        if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null && avaliableModule)
         {
             Vector2Int position = GetModulePosition();
             config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
@@ -41,5 +36,14 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler, IPointerEnterHandler
         int x = int.Parse(splitName[0].Trim());
         int y = int.Parse(splitName[1].Trim());
         return new Vector2Int(x, y);
+    }
+
+    public void SetAvaliableModule(bool _avaliableModule)
+    {
+        avaliableModule = _avaliableModule;
+    }    
+    public bool GetAvaliableModule()
+    {
+        return avaliableModule;
     }
 }

@@ -2,10 +2,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 
 public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private GameObject item;
+    [SerializeField] private MoneyManager moneyManager;
+    [SerializeField] private TextMeshProUGUI moneyText;
+    [SerializeField] private int cost;
+
     private RectTransform rectTransform;
     private Vector3 originalPosition;
     private Transform originalParent; 
@@ -18,6 +22,7 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         originalParent = transform.parent;
         canvas = GetComponentInParent<Canvas>();
         image = GetComponent<RawImage>();
+        moneyText.text = cost.ToString();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,8 +39,6 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.position = Input.mousePosition;
-        
-        
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -48,10 +51,15 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             if (result.gameObject.CompareTag("Module"))
             {
-                transform.SetParent(result.gameObject.transform);
-                rectTransform.anchoredPosition = Vector3.zero;
-                
-                isOnModule = true;
+                if (result.gameObject.GetComponent<ModuleDropArea>().GetAvaliableModule()) 
+                {
+                    transform.SetParent(result.gameObject.transform);
+                    rectTransform.anchoredPosition = Vector3.zero;
+
+                    moneyManager.SpendMoney(cost);
+                    Destroy(originalParent.gameObject);
+                    isOnModule = true;
+                }
                 break;
             }
         }
@@ -65,10 +73,5 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             image.raycastTarget = true;
         }
-    }
-
-    public GameObject GetItem()
-    {
-        return item;
     }
 }

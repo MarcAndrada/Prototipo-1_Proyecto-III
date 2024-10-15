@@ -72,8 +72,10 @@ public class ModulesGridUI : MonoBehaviour
                 if (config.ModulesPositions.ContainsKey(position))
                 {
                     Image cellImage = cell.GetComponent<Image>();
-                    
+                    ModuleDropArea module = cell.GetComponent<ModuleDropArea>();
+
                     // De momento marcar las casillas ocupadas en rojo
+                    module.SetAvaliableModule(false);
                     cellImage.color = Color.red;
 
                     GameObject moduleObject = config.ModulesPositions[position];
