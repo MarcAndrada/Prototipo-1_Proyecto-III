@@ -5,16 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class NodeMap : MonoBehaviour
 {
-    // Barco que se mueve por el mapa
     [SerializeField] private RectTransform ship;
-    
-    // Puntos de interes en el mapa
     [SerializeField] private Button[] mapButtons;
-    
-    // Sprite para tachar los niveles completados
+    [SerializeField] private string[] sceneNames;
     [SerializeField] private Sprite completedLevelSprite;
-
-    // Velocidad de movimiento del barco
     [SerializeField] private float shipSpeed = 1000f;
 
     private int currentLevel;
@@ -57,7 +51,7 @@ public class NodeMap : MonoBehaviour
             currentLevel = Array.IndexOf(mapButtons, targetPoint.GetComponent<Button>());
             MarkCompletedLevel(currentLevel);
 
-            // Aqui cargar la nueva escena de cada boton
+            LoadLevelScene(currentLevel);
 
             UpdateInteractableButtons();
         }
@@ -93,5 +87,13 @@ public class NodeMap : MonoBehaviour
         RectTransform markerRect = completedMarker.GetComponent<RectTransform>();
         markerRect.anchoredPosition = Vector2.zero;
         markerRect.sizeDelta = mapButtons[level].GetComponent<RectTransform>().sizeDelta;
+    }
+
+    private void LoadLevelScene(int level)
+    {
+        if (level < sceneNames.Length)
+        {
+            SceneManager.LoadScene(sceneNames[level]);
+        }
     }
 }
