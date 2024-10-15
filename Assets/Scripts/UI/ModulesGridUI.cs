@@ -67,7 +67,6 @@ public class ModulesGridUI : MonoBehaviour
             {
                 GameObject cell = Instantiate(cellPrefab, gridParent);
                 cell.name = $"Cell ({x}, {y})";
-                cell.AddComponent<ModuleDropArea>();
                 Vector2Int position = new Vector2Int(x, y);
 
                 if (config.ModulesPositions.ContainsKey(position))

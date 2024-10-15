@@ -19,16 +19,11 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler, IPointerEnterHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Dropped object was: " + eventData.pointerDrag);
-
         GameObject droppedItem = eventData.pointerDrag;
 
-        Debug.Log(droppedItem);
 
         if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null)
         {
-            moduleImage.sprite = droppedItem.GetComponent<Image>().sprite;
-
             Vector2Int position = GetModulePosition();
             config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
             Debug.Log(config.ModulesPositions[position]);
