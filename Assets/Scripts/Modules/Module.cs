@@ -9,10 +9,15 @@ public class Module : MonoBehaviour
     public BrokenModule brokenModule {  get; private set; }
     [SerializeField]
     private GameObject damageHitZone;
-    
+
+    public bool isBroken;
 
     private int damageZoneCount;
 
+    private void Start()
+    {
+        isBroken = false;
+    }
     public void AddDamageZone()
     {
         damageZoneCount++;

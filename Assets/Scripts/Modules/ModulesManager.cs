@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Timers;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class ModulesManager : MonoBehaviour
 
     [Space, Header("Modules"), SerializeField]
     private GameObject moduleBasePrefab;
+    private int health;
+    private int minHealth;
 
     [Space, Header("Particles"), SerializeField]
     private GameObject particlesPrefab;
@@ -32,23 +35,18 @@ public class ModulesManager : MonoBehaviour
     {
         attackList = new List<Vector2Int>();
 
+        CalculateHealth();
         LoadModules();
         LoadModulesObjects();
         LoadColumnsWaterParticles();
     }
 
-    private void Update()
+    #region Load Functions
+    private void CalculateHealth()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            shipAnimator.SetTrigger("Damaged");
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            shipAnimator.SetTrigger("Destroyed");
-        }
+        health = configuration.Height * configuration.Width;
+        minHealth = Mathf.FloorToInt(configuration.Height * configuration.Width / 2.5f);
     }
-
     private void LoadModules()
     {
         modules = new List<List<Module>>();
@@ -96,7 +94,7 @@ public class ModulesManager : MonoBehaviour
             
         }
     }
-
+    #endregion
 
     public void ModuleAttacked(Vector2Int _properties)
     {
@@ -126,8 +124,9 @@ public class ModulesManager : MonoBehaviour
         //    }
         //}
 
-        attackList.Add(_properties);
 
+        attackList.Add(_properties);
+        
     }
     public void DamageModule()
     {
@@ -139,31 +138,13 @@ public class ModulesManager : MonoBehaviour
 
         shipAnimator.SetTrigger("Damaged");
 
-        /*ESO PARA ATACAR A LOS MODULOS DE ALREDEDOR
-        * //Doble for
-        * // 'i' sera para la coordenada 'y'
-        * // 'j' sera para la coordenada 'x'
-        * for (int i = -1; i <= 1; i++)
-        * {
-        *     //Comprobar si la columna existe, si no lo hace continuar la siguiente parte del bucle
-        * 
-        *     if (attackList[0].modulePos.y + i < 0 || attackList[0].modulePos.y + i >= modules.Count)
-        *         continue;
-        * 
-        *     for (int j = -1; j <= 1; j++)
-        *     {
-        *         //Comprobar si la X esta dentro de la nave
-        *         if (attackList[0].modulePos.x + j < 0 || attackList[0].modulePos.x + j >= modules[0].Count)
-        *             continue;
-        * 
-        *         modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].GetDamage(attackList[0].damage * secondaryModulesHitDamage);
-        *         modules[attackList[0].modulePos.y + i][attackList[0].modulePos.x + j].RemoveSecondaryDamageZone();
-        *     }
-        * }
-        */
-
 
         attackList.RemoveAt(0);
+        //Dañar el barco
+        health--;
+        //Comprobar si el barco esta roto
+        if(health <= minHealth)
+            BreakShip();
     }
     private void CheckObjectsToBreak()
     {
@@ -198,6 +179,11 @@ public class ModulesManager : MonoBehaviour
 
         }
     }
+    private void BreakShip()
+    {
+        shipAnimator.SetTrigger("Destroyed");
+        Debug.Log("You Lose");
+    }
 
     public Vector3 GetModulePositionAtSide(EnemyManager.Side _side)
     {
@@ -218,10 +204,12 @@ public class ModulesManager : MonoBehaviour
         int j = Random.Range(0, configuration.Width);
 
 
-        if(_loops >= 10)
+        if(_loops >= 100)
+        {
             return (modules[i][j].transform.position, new Vector2Int(j, i));
+        }
 
-        if (modules[i][j].brokenModule)
+        if (modules[i][j].isBroken)
         {
             return GetRandomFixedModulePosition(_loops + 1);
         }
@@ -232,10 +220,11 @@ public class ModulesManager : MonoBehaviour
                 return GetRandomFixedModulePosition(_loops + 1);
         }
 
-
-        return (modules[i][j].transform.position, new Vector2Int(i, j));
+        modules[i][j].isBroken = true;
+        return (modules[i][j].transform.position, new Vector2Int(j, i));
 
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
