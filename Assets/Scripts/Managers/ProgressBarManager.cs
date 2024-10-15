@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,15 +5,6 @@ public class ProgressBarManager : MonoBehaviour
 {
     public static ProgressBarManager instance;
 
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(instance.gameObject);
-        }
-        
-        instance = this;
-    }
 
     struct ProgressBar
     {
@@ -26,8 +15,14 @@ public class ProgressBarManager : MonoBehaviour
     [SerializeField] private float repairSpeed;
     private List<ProgressBar> progressBars;
 
-    private void Start()
+    private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(instance.gameObject);
+        }
+        
+        instance = this;
         progressBars = new List<ProgressBar>();
     }
 

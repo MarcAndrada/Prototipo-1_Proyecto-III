@@ -51,7 +51,7 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
         isFornitureBroke = false;
         
     }
-    public void FinishRepair(PlayerController player)
+    public virtual void FinishRepair(PlayerController player)
     {
         if (player.GetInteractableObject() != null)
             Destroy(player.GetInteractableObject().gameObject);
