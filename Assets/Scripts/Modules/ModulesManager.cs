@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Timers;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -8,10 +7,12 @@ public class ModulesManager : MonoBehaviour
 
     [Header("Configuration"), SerializeField]
     private ModulesConfiguration configuration;
+    [SerializeField]
+    private GameObject loseCanvas;
 
     [Space, Header("Modules"), SerializeField]
     private GameObject moduleBasePrefab;
-    private int health;
+    public int health;
     private int minHealth;
 
     [Space, Header("Particles"), SerializeField]
@@ -68,6 +69,7 @@ public class ModulesManager : MonoBehaviour
                 module.transform.position = modulePosition;
                 modules[i].Add(module);
                 modulePosition.x += configuration.ModuleOffset;
+                module.GetComponentInChildren<BrokenModule>().manager = this;
             }
 
             modulePosition.z += configuration.ModuleOffset;
@@ -183,6 +185,8 @@ public class ModulesManager : MonoBehaviour
     {
         shipAnimator.SetTrigger("Destroyed");
         Debug.Log("You Lose");
+        loseCanvas.SetActive(true);
+
     }
 
     public Vector3 GetModulePositionAtSide(EnemyManager.Side _side)

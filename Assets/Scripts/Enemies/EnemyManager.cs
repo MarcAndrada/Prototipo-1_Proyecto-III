@@ -62,6 +62,8 @@ public class EnemyManager : MonoBehaviour
 
     [Space, SerializeField]
     private GameObject characterSelectCanvas;
+    [SerializeField]
+    private GameObject winCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -383,6 +385,7 @@ public class EnemyManager : MonoBehaviour
     private void Win()
     {
         Debug.Log("Has ganado");
+        winCanvas.SetActive(true);
     }
 
     public static Vector3 Parabola(Vector3 start, Vector3 end, float height, float t)

@@ -3,7 +3,13 @@ using UnityEngine;
 public class BrokenModule : BaseFurniture
 {
     [SerializeField] private InteractableObjectScriptable acceptedObject;
-    
+    public ModulesManager manager;
+    public override void FinishRepair(PlayerController player)
+    {
+        base.FinishRepair(player);
+        manager.health++;
+
+    }
     protected override void InteractFixedForniture(PlayerController player)
     {
         //Este objeto como solo podremos interactuar con el cuando este roto no hace falta definir esta funcion
