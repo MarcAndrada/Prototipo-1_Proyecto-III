@@ -15,25 +15,33 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Transform originalParent; 
     private Canvas canvas; 
     private RawImage image;
-
+    private ModuleDropArea currentModule;
+    
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         originalParent = transform.parent;
         canvas = GetComponentInParent<Canvas>();
         image = GetComponent<RawImage>();
-        moneyText.text = cost.ToString();
+        
+        if (moneyText != null)
+        {
+            moneyText.text = cost.ToString();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        originalPosition = rectTransform.position;
-        transform.SetParent(canvas.transform);
-        
+        currentModule = GetComponentInParent<ModuleDropArea>();
+
         if (image != null)
         {
             image.raycastTarget = false; 
         }
+        
+        originalPosition = rectTransform.position;
+        transform.SetParent(canvas.transform);
+
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -51,15 +59,38 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             if (result.gameObject.CompareTag("Module"))
             {
-                if (result.gameObject.GetComponent<ModuleDropArea>().GetAvaliableModule()) 
+                ModuleDropArea newModule = result.gameObject.GetComponent<ModuleDropArea>();
+                if (newModule.GetAvaliableModule())
                 {
+                    if (currentModule != null)
+                    {
+                        ModulesConfiguration config = currentModule.GetConfig();
+                        
+                        if (config.ModulesPositions.ContainsKey(currentModule.GetModulePosition()))
+                        {
+                            // Cambiamos el objeto del modulo de posicion
+                            GameObject moduleData = config.ModulesPositions[currentModule.GetModulePosition()];
+                            config.ModulesPositions.Remove(currentModule.GetModulePosition());
+                            config.ModulesPositions[newModule.GetModulePosition()] = moduleData;
+                        }
+            
+                        currentModule.SetAvaliableModule(true);
+                    }
+                    
                     transform.SetParent(result.gameObject.transform);
                     rectTransform.anchoredPosition = Vector3.zero;
 
-                    moneyManager.SpendMoney(cost);
-                    Destroy(originalParent.gameObject);
+                    if (moneyManager != null)
+                    {
+                        moneyManager.SpendMoney(cost);
+                        Destroy(originalParent.gameObject);
+                        moneyManager = null;
+                        moneyText = null;
+                    }
+
                     isOnModule = true;
                 }
+                originalParent = transform.parent;
                 break;
             }
         }

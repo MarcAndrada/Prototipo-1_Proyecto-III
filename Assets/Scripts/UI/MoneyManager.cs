@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,14 @@ public class MoneyManager : MonoBehaviour
     {
         currentMoney = startingMoney;
         UpdateMoneyUI();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            AddMoney(10000);
+        }
     }
 
     public bool SpendMoney(int amount)

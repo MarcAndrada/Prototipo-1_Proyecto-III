@@ -21,6 +21,8 @@ public class ModulesGridUI : MonoBehaviour
     [Space, SerializedDictionary("SceneObject", "Prefab")]
     public SerializedDictionary<GameObject, GameObject> objectsPrefabs;
 
+    [Space, SerializedDictionary("SceneObject", "Prefab")]
+    public SerializedDictionary<GameObject, Sprite> objectSprites;
     private void Start()
     {
         expandRightButton.onClick.AddListener(ExpandWidth);
@@ -71,14 +73,39 @@ public class ModulesGridUI : MonoBehaviour
 
                 if (config.ModulesPositions.ContainsKey(position))
                 {
-                    Image cellImage = cell.GetComponent<Image>();
                     ModuleDropArea module = cell.GetComponent<ModuleDropArea>();
 
-                    // De momento marcar las casillas ocupadas en rojo
-                    module.SetAvaliableModule(false);
-                    cellImage.color = Color.red;
-
                     GameObject moduleObject = config.ModulesPositions[position];
+                    
+                    // Crear una nueva imagen como hijo de la celda
+                    GameObject spriteObject = new GameObject("ModuleSprite");
+                    spriteObject.transform.SetParent(cell.transform);
+
+                    // Asegurarse de que el objeto esté en el centro y escalado correctamente
+                    RectTransform rectTransform = spriteObject.AddComponent<RectTransform>();
+                    rectTransform.anchorMin = Vector2.zero;
+                    rectTransform.anchorMax = Vector2.one;
+                    rectTransform.offsetMin = Vector2.zero;
+                    rectTransform.offsetMax = Vector2.zero;
+                    rectTransform.localScale = Vector3.one;
+                    
+                    // Agregar el componente Image al nuevo objeto
+                    Image imageComponent = spriteObject.AddComponent<Image>();
+
+                    // Agregar el componente StoreItem al objeto
+                    spriteObject.AddComponent<StoreItem>();
+                    
+                    if (objectSprites.ContainsKey(moduleObject))
+                    {
+                        imageComponent.sprite = objectSprites[moduleObject];
+                    }
+                    else
+                    {
+                        // Para los objetos que no tengan sprite
+                        imageComponent.color = Color.red;
+                    }
+
+                    module.SetAvaliableModule(false);
                 }
             }
         }

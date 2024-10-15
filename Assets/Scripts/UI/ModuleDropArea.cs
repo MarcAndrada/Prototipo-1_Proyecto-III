@@ -21,6 +21,7 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler
         {
             Vector2Int position = GetModulePosition();
             config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
+            
             Debug.Log(config.ModulesPositions[position]);
         }
     }
@@ -30,7 +31,7 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler
         this.config = config;
     }
     
-    private Vector2Int GetModulePosition()
+    public Vector2Int GetModulePosition()
     {
         string[] splitName = gameObject.name.Replace("Cell (", "").Replace(")", "").Split(',');
         int x = int.Parse(splitName[0].Trim());
@@ -38,6 +39,11 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler
         return new Vector2Int(x, y);
     }
 
+    public void SetNewObjectInModule(GameObject droppedItem)
+    {
+        Vector2Int position = GetModulePosition();
+        config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
+    }
     public void SetAvaliableModule(bool _avaliableModule)
     {
         avaliableModule = _avaliableModule;
@@ -45,5 +51,9 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler
     public bool GetAvaliableModule()
     {
         return avaliableModule;
+    }
+    public ModulesConfiguration GetConfig()
+    {
+        return config;
     }
 }
