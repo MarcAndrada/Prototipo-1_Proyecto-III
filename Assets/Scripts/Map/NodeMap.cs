@@ -16,6 +16,8 @@ public class NodeMap : MonoBehaviour
     private bool isMoving = false;
     private void Start()
     {
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+
         ship.position = mapButtons[currentLevel].GetComponent<RectTransform>().position;
         
         foreach (var button in mapButtons)
@@ -87,6 +89,9 @@ public class NodeMap : MonoBehaviour
         RectTransform markerRect = completedMarker.GetComponent<RectTransform>();
         markerRect.anchoredPosition = Vector2.zero;
         markerRect.sizeDelta = mapButtons[level].GetComponent<RectTransform>().sizeDelta;
+        
+        PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+        PlayerPrefs.Save();
     }
 
     private void LoadLevelScene(int level)
@@ -95,5 +100,11 @@ public class NodeMap : MonoBehaviour
         {
             SceneManager.LoadScene(sceneNames[level]);
         }
+    }
+    
+    private void OnApplicationQuit()
+    {
+        // Borrar los PlayerPrefs al cerrar el juego
+        PlayerPrefs.DeleteKey("CurrentLevel");
     }
 }
