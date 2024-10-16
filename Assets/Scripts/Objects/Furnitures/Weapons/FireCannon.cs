@@ -91,6 +91,7 @@ public class FireCannon : BaseWeapon
             SetHasBullet(false);
             SetInteractableObject(null);
             ShowNeededInputHint(player, player.hintController);
+            Instantiate(shootParticles, GetBulletSpawner().position, Quaternion.identity);
         }
     }
 

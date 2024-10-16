@@ -6,6 +6,10 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rb;
 
+    [SerializeField]
+    private GameObject explosionParticles;
+    [HideInInspector]
+    public bool doExplosion;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,5 +20,12 @@ public class Bullet : MonoBehaviour
     {
         direction = dir;
         rb.velocity = (direction * speed);
+    }
+
+
+    private void OnDestroy()
+    {
+        if(doExplosion)
+            Instantiate(explosionParticles, transform.position, Quaternion.identity);
     }
 }

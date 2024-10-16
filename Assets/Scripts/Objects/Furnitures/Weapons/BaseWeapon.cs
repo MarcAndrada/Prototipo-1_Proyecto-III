@@ -2,18 +2,21 @@
 
 public abstract class BaseWeapon : BaseFurniture
 {    
-    [Header("Positions")]
+    [Header("Positions"), Space]
     [SerializeField] private Transform bulletSpawner;
     [SerializeField] private Transform pilotPosition;
     
-    [Header("Projectiles")]
+    [Header("Projectiles"), Space]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private InteractableObjectScriptable acceptedObject;
     [SerializeField] private float shootForce = 20f;
     
-    [Header("Reload Bullet")]
+    [Header("Reload Bullet"), Space]
     protected bool isReloading = false;
-    
+
+    [Header("Projectiles"), Space, SerializeField]
+    protected GameObject shootParticles;
+
     private Transform originalParent;
     private bool hasBullet;
     private bool hasPilot;
