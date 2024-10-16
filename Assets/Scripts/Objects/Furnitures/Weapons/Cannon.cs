@@ -61,10 +61,19 @@ public class Cannon : BaseWeapon
     
             Release(player);
         }
+        else
+        {
+            base.FinishRepair(player);
+        }
     }
     protected override void InteractBrokenForniture(PlayerController player)
     {
-        RepairForniture();
+        if (!player.GetInteractableObject())
+        {
+            player.SetCanMove(false);
+            ProgressBarManager.instance.AddPlayer(player, this);
+            player.hintController.isInteracting = true;
+        }
     }
 
     public override void Release(PlayerController player)
@@ -99,10 +108,17 @@ public class Cannon : BaseWeapon
         //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
         if (isFornitureBroke && !_player.HasInteractableObject())
         {
-            _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
-            return;
+            if (_hintController.isInteracting)
+            {
+                _hintController.SetProgressBar(repairDuration, currentRepairTime);
+                _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+            }
+            else
+            {
+                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+                return;
+            }
         }
-
 
         if (_player.HasInteractableObject())
         {
@@ -115,6 +131,10 @@ public class Cannon : BaseWeapon
             {
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
             }
+        }
+        else if (_hintController.isInteracting)
+        {
+            
         }
         else
         {
