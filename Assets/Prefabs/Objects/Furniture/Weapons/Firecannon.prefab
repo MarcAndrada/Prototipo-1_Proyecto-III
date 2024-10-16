@@ -132,7 +132,7 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 3007221458440809614}
   brokenModel: {fileID: 3164888832573602063}
-  repairDuration: 5
+  repairDuration: 2
   currentRepairTime: 0
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}

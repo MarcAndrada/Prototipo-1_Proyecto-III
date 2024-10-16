@@ -28,10 +28,10 @@ public class FireCannon : BaseWeapon
             if (!player.GetIsPilot() && !GetHasPilot())
             {
                 EnterPilot(player.transform);
-                SetOriginalParent(this.transform.parent);
+                SetOriginalParent(transform.parent);
                 
-                this.transform.SetParent(player.GetInteractableObjectFollowTransform());
-                player.SetIsPilot(true);
+                transform.SetParent(player.GetInteractableObjectFollowTransform());
+                player.SetIsPilot(true, this);
 
                 GetSelectedFurnitureVisual().SetCanSeeVisuals(false);
                 GetSelectedFurnitureVisual().Hide();
@@ -41,10 +41,7 @@ public class FireCannon : BaseWeapon
             else if (player.GetIsPilot())
             {
                 ExitPilot();
-                this.transform.SetParent(GetOriginalParent());
-                player.SetIsPilot(false);
-                
-                GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
+                player.SetIsPilot(false, null);
             }
         }
     }

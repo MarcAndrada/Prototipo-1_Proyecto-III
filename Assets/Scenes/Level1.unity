@@ -513,7 +513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192166494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 3}
+  m_LocalPosition: {x: 6, y: 1.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211782311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 6}
+  m_LocalPosition: {x: 10, y: 1.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1016,7 +1016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 581026661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 2, y: 1.5, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1578,7 +1578,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263360605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 9}
+  m_LocalPosition: {x: 2, y: 1.5, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2854,7 +2854,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].shootCd
-      value: 7.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
@@ -2864,7 +2864,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].totalCanons
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}

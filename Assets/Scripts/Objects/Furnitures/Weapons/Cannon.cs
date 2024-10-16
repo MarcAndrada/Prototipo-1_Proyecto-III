@@ -26,10 +26,11 @@ public class Cannon : BaseWeapon
             if (!player.GetIsPilot() && !GetHasPilot())
             {
                 EnterPilot(player.transform);
+                
                 SetOriginalParent(this.transform.parent);
 
                 transform.SetParent(player.GetInteractableObjectFollowTransform());
-                player.SetIsPilot(true);
+                player.SetIsPilot(true, this);
 
                 GetSelectedFurnitureVisual().SetCanSeeVisuals(false);
                 GetSelectedFurnitureVisual().Hide();
@@ -39,10 +40,8 @@ public class Cannon : BaseWeapon
             else if (player.GetIsPilot())
             {
                 ExitPilot();
-                transform.SetParent(GetOriginalParent());
-                player.SetIsPilot(false);
+                player.SetIsPilot(false, null);
 
-                GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
             }
         }
     }

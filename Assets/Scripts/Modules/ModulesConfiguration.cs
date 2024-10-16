@@ -24,4 +24,11 @@ public class ModulesConfiguration : ScriptableObject
     {
         Height++;
     }
+
+    public void SetConfig(int _width, int _height, SerializedDictionary<Vector2Int, GameObject> _modulesPositions)
+    {
+        Width = _width;
+        Height = _height;
+        ModulesPositions = _modulesPositions;
+    }
 }

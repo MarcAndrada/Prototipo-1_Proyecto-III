@@ -32,10 +32,10 @@ public class Harpoon : BaseWeapon
         if (!player.GetIsPilot() && !GetHasPilot())
         {
             EnterPilot(player.transform);
-            SetOriginalParent(this.transform.parent);
+            SetOriginalParent(transform.parent);
             
             this.transform.SetParent(player.GetInteractableObjectFollowTransform());
-            player.SetIsPilot(true);
+            player.SetIsPilot(true, this);
 
             GetSelectedFurnitureVisual().SetCanSeeVisuals(false);
             GetSelectedFurnitureVisual().Hide();
@@ -45,8 +45,8 @@ public class Harpoon : BaseWeapon
         else if (player.GetIsPilot())
         {
             ExitPilot();
-            this.transform.SetParent(GetOriginalParent());
-            player.SetIsPilot(false);
+            transform.SetParent(GetOriginalParent());
+            player.SetIsPilot(false, null);
             
             GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
         }

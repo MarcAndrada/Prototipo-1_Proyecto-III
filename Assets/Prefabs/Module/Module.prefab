@@ -106,7 +106,7 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3815328344123911165}
   baseModel: {fileID: 4843305583638456891}
   brokenModel: {fileID: 8645751473567475680}
-  repairDuration: 5
+  repairDuration: 2
   currentRepairTime: 0
   acceptedObject: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28, type: 2}
   manager: {fileID: 0}

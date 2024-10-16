@@ -84,6 +84,8 @@ public class PlayersReadyController : MonoBehaviour
         cameraController.enabled = true;
         for (int i = 0; i < PlayersManager.instance.players.Count; i++)
         {
+            PlayersManager.instance.players[i].currentActionMap.FindAction("StartGame").performed -= StartGameEvent;
+            PlayersManager.instance.players[i].currentActionMap.FindAction("GoBack").performed -= RemovePlayerEvent;
             PlayersManager.instance.players[i].transform.position = playersStartPos[i].position;
             PlayersManager.instance.players[i].actions.FindActionMap("PlayerSelectMenu").Disable();
             PlayersManager.instance.players[i].actions.FindActionMap("Gameplay").Enable();

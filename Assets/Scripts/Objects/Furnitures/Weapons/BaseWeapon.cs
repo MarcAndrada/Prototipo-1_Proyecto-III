@@ -38,6 +38,8 @@ public abstract class BaseWeapon : BaseFurniture
     {
         if (hasPilot)
         {
+            transform.SetParent(GetOriginalParent());
+            GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
             hasPilot = false;
         }
     }
@@ -46,6 +48,12 @@ public abstract class BaseWeapon : BaseFurniture
         hasBullet = bullet;
     }
 
+    public override void BreakForniture()
+    {
+        ExitPilot();
+        SetHasBullet(false);
+        base.BreakForniture();
+    }
     public void SetOriginalParent(Transform parent)
     {
         originalParent = parent;

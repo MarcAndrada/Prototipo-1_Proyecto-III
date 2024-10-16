@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public PlayerHintController hintController {  get; private set; }
     public Transform spawnPos;
 
+    [HideInInspector]
+    public BaseWeapon currentWeapon;
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         isAlive = false;
         Invoke("RevivePlayer", PlayersManager.instance.respawnTime);
+        SetIsPilot(false, null);
     }
     public void RevivePlayer()
     {
@@ -269,6 +272,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void HandleCannonMovement()
     {
+        if (currentWeapon.IsBroke())
+            SetIsPilot(false, null);
+
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
         float forwardInput = inputVector.y;
@@ -372,9 +378,10 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         return isPilot;
     }
-    public void SetIsPilot(bool pilot)
+    public void SetIsPilot(bool pilot, BaseWeapon _weapon)
     {
         isPilot = pilot;
+        currentWeapon = _weapon;
     }
     public void SetCanMove(bool move)
     {

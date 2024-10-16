@@ -90,4 +90,8 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     {
         return selectedFurnitureVisual;
     }
+    public bool IsBroke()
+    {
+        return isFornitureBroke;
+    }
 }
