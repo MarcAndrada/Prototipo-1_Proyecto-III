@@ -13,6 +13,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sail
       objectReference: {fileID: 0}
+    - target: {fileID: 3984568471543423313, guid: f4457417fdde63c468e02dd01447bab7,
+        type: 3}
+      propertyPath: visualArray.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3984568471543423313, guid: f4457417fdde63c468e02dd01447bab7,
+        type: 3}
+      propertyPath: visualArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1434190419325704276}
+    - target: {fileID: 3984568471543423313, guid: f4457417fdde63c468e02dd01447bab7,
+        type: 3}
+      propertyPath: outlineArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 7344637765388412755}
     - target: {fileID: 8283638337382203391, guid: f4457417fdde63c468e02dd01447bab7,
         type: 3}
       propertyPath: m_RootOrder
@@ -71,8 +86,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1162172845275340353, guid: f4457417fdde63c468e02dd01447bab7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7344637765388412755}
   m_SourcePrefab: {fileID: 100100000, guid: f4457417fdde63c468e02dd01447bab7, type: 3}
+--- !u!1 &1434190419325704276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1162172845275340353, guid: f4457417fdde63c468e02dd01447bab7,
+    type: 3}
+  m_PrefabInstance: {fileID: 272356305573807637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7344637765388412755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434190419325704276}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &8156863006725749226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8283638337382203391, guid: f4457417fdde63c468e02dd01447bab7,
@@ -90,7 +133,7 @@ PrefabInstance:
     - target: {fileID: 1291668852375258430, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291668852375258430, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
@@ -145,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 1920641235127596683, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
       propertyPath: m_Name
-      value: SailModule Variant
+      value: SailModule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

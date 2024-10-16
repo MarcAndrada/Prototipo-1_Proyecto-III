@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8559261265168859335}
   - component: {fileID: 8432129455264544230}
   - component: {fileID: 3815328344123911165}
+  - component: {fileID: 6041926972796223761}
   m_Layer: 6
   m_Name: FloorCollider
   m_TagString: Module
@@ -105,8 +106,10 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3815328344123911165}
   baseModel: {fileID: 4843305583638456891}
   brokenModel: {fileID: 8645751473567475680}
-  acceptedObject: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28, type: 2}
   repairDuration: 5
+  currentRepairTime: 0
+  acceptedObject: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28, type: 2}
+  manager: {fileID: 0}
 --- !u!114 &3815328344123911165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +128,19 @@ MonoBehaviour:
   - {fileID: 5829375947542163925}
   - {fileID: 2290823358307073686}
   visualArray: []
+--- !u!114 &6041926972796223761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492137444767492769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 0
 --- !u!1 &4843305583638456891
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +304,7 @@ MonoBehaviour:
   starterObjectInModule: {fileID: 0}
   <brokenModule>k__BackingField: {fileID: 8432129455264544230}
   damageHitZone: {fileID: 6902561000199599696}
+  isBroken: 0
 --- !u!1 &8645751473567475680
 GameObject:
   m_ObjectHideFlags: 0

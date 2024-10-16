@@ -97,8 +97,10 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: d38463f931d3b1f4e8a83edf6a8e5bcd,
+    type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 782d14e863a53644dbf109c171bc6aac,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2536,7 +2538,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 112895241}
         m_TargetAssemblyTypeName: ReturnToMap, Assembly-CSharp
-        m_MethodName: Return
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2811,6 +2813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
+      propertyPath: preloadsList.Array.data[0].side
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
+        type: 3}
       propertyPath: preloadsList.Array.data[1].side
       value: 1
       objectReference: {fileID: 0}
@@ -2827,7 +2834,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].health
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
@@ -2847,7 +2854,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].shootCd
-      value: 3
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
@@ -2877,7 +2884,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].movementOffset
-      value: 7.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}

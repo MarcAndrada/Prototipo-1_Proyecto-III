@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8283638337382203391}
   - component: {fileID: 5579557546182708755}
   - component: {fileID: 3984568471543423313}
+  - component: {fileID: 7732055394372361730}
   m_Layer: 6
   m_Name: Shower
   m_TagString: Untagged
@@ -72,6 +73,19 @@ MonoBehaviour:
   - {fileID: 8188167182640524689}
   - {fileID: 1870429593617885712}
   visualArray: []
+--- !u!114 &7732055394372361730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985252921774819168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 1
 --- !u!1001 &3473858446606138169
 PrefabInstance:
   m_ObjectHideFlags: 0

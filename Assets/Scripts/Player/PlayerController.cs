@@ -142,25 +142,35 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         // Mirar la cantidad de objetos que ha colisionado la esfera
         if (hitColliders.Length > 0)
         {
+            Collider selectedCollider = null;
+            int maxPriority = -1;
             // Si el collider detecta un objeto le activa o desactivar el outline
             foreach (Collider objCollide in hitColliders)
             {
-                if (objCollide.TryGetComponent(out BaseFurniture furniture))
+                PriorityLevelController priority = objCollide.GetComponent<PriorityLevelController>();
+                if(priority.priorityLevel > maxPriority)
                 {
-                    ShowFurniture(furniture);
+                    selectedCollider = objCollide;
+                    maxPriority = priority.priorityLevel;
                 }
-                else 
-                {
-                    HideFurniture();
-                }
-                if (objCollide.TryGetComponent(out InteractableObject interactable) && !HasInteractableObject())
-                {
-                    ShowObject(interactable);
-                }
-                else
-                {
-                    HideObject();
-                }
+            }
+
+
+            if (selectedCollider.TryGetComponent(out BaseFurniture furniture))
+            {
+                ShowFurniture(furniture);
+            }
+            else
+            {
+                HideFurniture();
+            }
+            if (selectedCollider.TryGetComponent(out InteractableObject interactable) && !HasInteractableObject())
+            {
+                ShowObject(interactable);
+            }
+            else
+            {
+                HideObject();
             }
         }
         else
