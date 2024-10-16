@@ -8,13 +8,10 @@ public class Shield : InteractableObject
     [SerializeField] private GameObject shieldObject;
     [SerializeField] private float cooldown = 20f;
 
-    private Collider shieldCollision;
     private bool canShieldActivate = false;
 
     private void Awake()
     {
-        shieldCollision = shieldObject.GetComponent<Collider>();
-        shieldCollision.isTrigger = true;
         canShieldActivate = true;
         shieldObject.SetActive(false);
     }

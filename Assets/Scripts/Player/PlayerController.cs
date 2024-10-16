@@ -12,13 +12,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
     
-    /*
-    [Header("Push/Drag Settings")]
-    [SerializeField] private float pushForce = 5f;
-    [SerializeField] private float dragForce = 3f;
-    [SerializeField] private float pushDragSpeed = 2f;
-    */
-    
     [Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
@@ -36,11 +29,14 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private bool canMove;
     private bool isPilot;
     private bool isWalking;
-
+    
+    public bool isAlive { private set; get; } = true;
     private BaseFurniture selectedFurniture;
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
     public PlayerHintController hintController {  get; private set; }
+    public Transform spawnPos;
+
     private void Awake()
     {
         gameInput = GetComponent<GameInput>();
@@ -69,7 +65,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     }
     private void FixedUpdate()
     {
-        if (canMove)
+        if (isAlive && canMove)
         {
             if (isPilot) // Si esta pilotando usar el movimiento del cañon
                 HandleCannonMovement();
@@ -115,6 +111,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         {
             ShootWeapon();
         }
+    }
+
+    public void KillPlayer()
+    {
+        isAlive = false;
+        Invoke("RevivePlayer", PlayersManager.instance.respawnTime);
+    }
+    public void RevivePlayer()
+    {
+        transform.position = spawnPos.position;
+        isAlive = true;
     }
     #region Interactions
     private void HandleInteractions()
@@ -223,7 +230,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
 
         if (rb.velocity.magnitude > moveSpeed)
         {
-            rb.velocity = rb.velocity.normalized * moveSpeed;
+            rb.velocity = new Vector3(
+                rb.velocity.normalized.x * moveSpeed,
+                rb.velocity.y,
+                rb.velocity.normalized.z * moveSpeed
+                );
         }
     }
     private void RotatePlayer(Vector3 moveDir)
@@ -234,14 +245,16 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private void DeceleratePlayer()
     {
         float decelerationRate = 10f;
-        Vector3 decelerationForce = rb.velocity.normalized * -decelerationRate; 
+        Vector3 decelerationForce = new Vector3(
+            rb.velocity.normalized.x * -decelerationRate,
+            rb.velocity.y,
+            rb.velocity.normalized.z * -decelerationRate
+            ); 
         rb.AddForce(decelerationForce, ForceMode.Acceleration);
-
-        Debug.Log(rb.velocity);
 
         if (rb.velocity.magnitude < 0.1f)
         {
-            rb.velocity = Vector3.zero;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
     }
     private void HandleCannonMovement()
@@ -262,7 +275,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     
         if (rb.velocity.magnitude > cannonMovementSpeed)
         {
-            rb.velocity = rb.velocity.normalized * cannonMovementSpeed;
+            rb.velocity = new Vector3(
+                rb.velocity.normalized.x * cannonMovementSpeed,
+                rb.velocity.y,
+                rb.velocity.normalized.z * cannonMovementSpeed
+                );
         }
     }
     #endregion

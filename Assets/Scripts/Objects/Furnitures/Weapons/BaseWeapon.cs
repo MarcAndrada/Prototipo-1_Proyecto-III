@@ -11,6 +11,9 @@ public abstract class BaseWeapon : BaseFurniture
     [SerializeField] private InteractableObjectScriptable acceptedObject;
     [SerializeField] private float shootForce = 20f;
     
+    [Header("Reload Bullet")]
+    protected bool isReloading = false;
+    
     private Transform originalParent;
     private bool hasBullet;
     private bool hasPilot;
@@ -47,7 +50,6 @@ public abstract class BaseWeapon : BaseFurniture
     {
         originalParent = parent;
     }
-    
     protected Transform GetBulletSpawner()
     {
         return bulletSpawner;

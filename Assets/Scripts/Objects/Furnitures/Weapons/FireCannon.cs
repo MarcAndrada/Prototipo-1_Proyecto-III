@@ -6,16 +6,21 @@ public class FireCannon : BaseWeapon
 {
     protected override void InteractFixedForniture(PlayerController player)
     {
+        if (isReloading) return;
+
         if (player.HasInteractableObject())
         {
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                // TODO - Animacion de recargar la bala
+                player.SetCanMove(false);
+                ProgressBarManager.instance.AddFurniture(this);
+                ProgressBarManager.instance.AddPlayer(player, this);
+                player.hintController.isInteracting = true;
                 
-                Destroy(player.GetInteractableObject().gameObject);
-                player.ClearInteractableObject();
+                isReloading = true;
+                currentRepairTime = 0f;
 
-                SetHasBullet(true);
+                ShowNeededInputHint(player, player.GetPlayerHintController());
             }
         }
         else
@@ -43,7 +48,22 @@ public class FireCannon : BaseWeapon
             }
         }
     }
-
+    public override void FinishRepair(PlayerController player)
+    {
+        // Recargar con el tiempo de reparacion 
+        if (isReloading)
+        {
+            SetHasBullet(true);
+            isReloading = false;
+            
+            if (player.GetInteractableObject() != null)
+                Destroy(player.GetInteractableObject().gameObject);
+    
+            player.ClearInteractableObject();
+    
+            Release(player);
+        }
+    }
     protected override void InteractBrokenForniture(PlayerController player)
     {
         RepairForniture();
@@ -51,7 +71,13 @@ public class FireCannon : BaseWeapon
 
     public override void Release(PlayerController player)
     {
+        ProgressBarManager.instance.RemoveFurniture(this);
+        ProgressBarManager.instance.RemovePlayer(player, this);
+        player.hintController.isInteracting = false;
+        isReloading = false;
+        player.SetCanMove(true);
         
+        ShowNeededInputHint(player, player.GetPlayerHintController());
     }
     public override void Activate(PlayerController player)
     {
@@ -75,9 +101,13 @@ public class FireCannon : BaseWeapon
     {
         if (_player.HasInteractableObject())
         {
-            if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
+            if (_hintController.isInteracting)
             {
-                // Poner la bala dentro del ca�on
+                _hintController.SetProgressBar(repairDuration, currentRepairTime);
+                _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+            }
+            else if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
+            {
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
             }
         }

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3623124637848709810
 MonoBehaviour:
@@ -49,5 +49,10 @@ MonoBehaviour:
     type: 3}
   moduleWall: {fileID: 5834921259620747859, guid: 108c3f45443672f4cb60c9b523953e98,
     type: 3}
+  particlesPrefab: {fileID: 3946913594227911072, guid: e5a48ca56d272ab41af347370efd10c9,
+    type: 3}
+  particleOffset: {x: 0, y: -1, z: -1.35}
+  particleRotation: {x: -0.000000013507563, y: -0.9510565, z: -0.30901703, w: 0.000000041571997}
   timeToHitModules: 3
   secondaryModulesHitDamage: 0.5
+  shimAnims: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}

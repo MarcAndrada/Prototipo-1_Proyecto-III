@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 4793520174551023068}
   - component: {fileID: 4793520174551023071}
   - component: {fileID: 4793520174551023065}
+  - component: {fileID: 7431133099906751442}
+  - component: {fileID: 8308002464607137427}
+  - component: {fileID: 3294671760531460268}
   m_Layer: 4
   m_Name: Aguita
   m_TagString: Water
@@ -26,12 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4793520174551023064}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.5, y: 2.7, z: -47.7}
-  m_LocalScale: {x: 12.94249, y: 0.48279, z: 22.234}
+  m_LocalScale: {x: 105.44106, y: 0.48279, z: 153.35004}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4793520174551023068
 MeshFilter:
@@ -52,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -156,35 +161,36 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
+    m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.15172791, g: 0.47207642, b: 0.5943396, a: 1}
-  deepColor: {r: 0.20145756, g: 0.5803921, b: 0.7254902, a: 1}
-  colorDepth: 2.2
-  horizonColor: {r: 0.20145759, g: 0.5803921, b: 0.7254902, a: 1}
-  horizonDistance: 20
-  shoreFade: 4.64
-  shoreColor: {r: 0, g: 0.054391377, b: 0.98039216, a: 0}
+  shallowColor: {r: 0.15124694, g: 0.47207642, b: 0.5943396, a: 1}
+  deepColor: {r: 0.20097658, g: 0.5803921, b: 0.7254902, a: 1}
+  colorDepth: 0
+  horizonColor: {r: 0.20097664, g: 0.5803921, b: 0.7254902, a: 1}
+  horizonDistance: 0
+  shoreFade: 1
+  shoreColor: {r: 0.48627454, g: 0.7843138, b: 0.86666673, a: 0}
   shoreStrength: 0
-  shoreBlend: 4.39
-  shoreDepth: 4.63
-  waveColor: {r: 0.12961152, g: 0.12961152, b: 0.12961152, a: 1}
-  underwaterColor: {r: 0.23996904, g: 0.40963525, b: 0.745283, a: 0}
+  shoreBlend: 1
+  shoreDepth: 3
+  waveColor: {r: 0.12913054, g: 0.12913054, b: 0.12913054, a: 1}
+  underwaterColor: {r: 0.2394616, g: 0.4091278, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: -0.14
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
-  surfaceFoamSampling: {x: 0.119, y: 0.75}
+  surfaceFoamSampling: {x: 0.119, y: 0.7}
   surfaceFoamCutoff: 0.119
-  surfaceFoamDistortion: 0.75
+  surfaceFoamDistortion: 0.7
   surfaceFoamBlend: 1
   surfaceFoamColor1: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.4117647}
-  surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.1764706}
-  surfaceFoamMovement: {x: 0.934, y: 0.1, z: 0.934, w: 0.16}
-  surfaceFoamDirection1: 0.934
-  surfaceFoamDirection2: 0.934
-  surfaceFoamSpeed1: 0.1
-  surfaceFoamSpeed2: 0.16
+  surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.34901962}
+  surfaceFoamMovement: {x: 0.2, y: 0.2, z: 0.25, w: 0.3}
+  surfaceFoamDirection1: 0.2
+  surfaceFoamDirection2: 0.25
+  surfaceFoamSpeed1: 0.2
+  surfaceFoamSpeed2: 0.3
   surfaceFoamTilingAndOffset: {x: -1, y: -1, z: 1.2, w: 2}
   surfaceFoamOffsetX: -1
   surfaceFoamOffsetY: -1
@@ -194,21 +200,22 @@ MonoBehaviour:
   surfaceFoamHeightMask: 0
   surfaceFoamHeightMaskSmoothness: 0
   enableHeightMask: 0
-  foamShadowStrength: 0.35
+  foamShadowStrength: 0
   foamShadowDepth: 10
   surfaceFoamShadowProjection: 15
-  intersectionFoamShadowProjection: 4.6
+  intersectionFoamShadowProjection: 15
   foamMovement: 0
-  intersectionFoamDepth: 0.7
-  intersectionFoamTexture: {fileID: 2800000, guid: 772031b03d9d46e4ab03e15c8e17718c, type: 3}
-  intersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
-  intersectionFoamMovement: {x: 0.1, y: 0.014}
+  intersectionFoamDepth: 0
+  intersectionFoamTexture: {fileID: 2800000, guid: 772031b03d9d46e4ab03e15c8e17718c,
+    type: 3}
+  intersectionFoamColor: {r: 0, g: 0, b: 0, a: 0}
+  intersectionFoamMovement: {x: 0.1, y: 2}
   intersectionFoamDirection: 0.1
-  intersectionFoamSpeed: 0.014
-  intersectionFoamScale: 1.35
-  intersectionFoamSampling: {x: 1, y: 0}
+  intersectionFoamSpeed: 2
+  intersectionFoamScale: 2
+  intersectionFoamSampling: {x: 1, y: 3}
   intersectionFoamCutoff: 1
-  intersectionFoamDistortion: 0
+  intersectionFoamDistortion: 3
   enableIntersectionEffects: 1
   intersectionFoamBlend: 1
   intersectionWaterBlend: 1
@@ -227,11 +234,11 @@ MonoBehaviour:
   normalsStrength: 2.15
   normalsScale: 9
   normalsSpeed: 0.026
-  refractionStrength: 0.035
-  waveVisuals: {x: 0.348, y: 13.1, z: 2}
-  waveSteepness: 0.348
-  waveLength: 13.1
-  waveSpeed: 2
+  refractionStrength: 0.243
+  waveVisuals: {x: 0.25, y: 2, z: 0.36}
+  waveSteepness: 0.25
+  waveLength: 2
+  waveSpeed: 0.36
   waveDirections: {x: 0.465, y: 0.721, z: 0.246, w: 19.92}
   waveDirection1: 0.465
   waveDirection2: 0.721
@@ -244,3 +251,65 @@ MonoBehaviour:
   meshRenderer: {fileID: 4793520174551023071}
   meshFilter: {fileID: 4793520174551023068}
   material: {fileID: 2100000, guid: c014f6c7d1303454fbdfedfaf87c5d28, type: 2}
+--- !u!65 &7431133099906751442
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793520174551023064}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8308002464607137427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793520174551023064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27eab2120fc590647b8cda27379532b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterSplashParticles: {fileID: 8205706795460263314, guid: ba6dcce29f32b7542b3b99372f48cfda,
+    type: 3}
+--- !u!54 &3294671760531460268
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4793520174551023064}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

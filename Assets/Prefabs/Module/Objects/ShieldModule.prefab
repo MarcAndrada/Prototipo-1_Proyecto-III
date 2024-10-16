@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1291668852375258430, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291668852375258430, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 1920641235127596683, guid: 8fb18bd96a7582546b2de247626720b4,
         type: 3}
       propertyPath: m_Name
-      value: ShieldModule Variant
+      value: ShieldModule
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -96,6 +96,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShieldGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 6038707594044752169, guid: 0d5843c9c573a3d42bf195aec4e25257,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8283638337382203391, guid: 0d5843c9c573a3d42bf195aec4e25257,
         type: 3}
       propertyPath: m_RootOrder
@@ -114,7 +119,7 @@ PrefabInstance:
     - target: {fileID: 8283638337382203391, guid: 0d5843c9c573a3d42bf195aec4e25257,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.52
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8283638337382203391, guid: 0d5843c9c573a3d42bf195aec4e25257,
         type: 3}

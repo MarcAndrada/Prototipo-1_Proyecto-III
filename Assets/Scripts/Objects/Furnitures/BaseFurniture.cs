@@ -13,12 +13,15 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     [SerializeField]
     protected GameObject brokenModel;
     protected bool isFornitureBroke;
+    
+    public float repairDuration = 5f;
 
+    public float currentRepairTime;
+    
     protected virtual void Start()
     {
         RepairForniture();
     }
-
     public void Interact(PlayerController player)
     {
         if (!isFornitureBroke)
@@ -28,24 +31,37 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     }
     protected abstract void InteractFixedForniture(PlayerController player);
     protected abstract void InteractBrokenForniture(PlayerController player);
-
-
+    
     public abstract void Release(PlayerController player);
     public abstract void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController);
-    
     public virtual void BreakForniture()
     {
+        ProgressBarManager.instance.AddFurniture(this);
+        
         baseModel.SetActive(false);
         brokenModel.SetActive(true);
         isFornitureBroke = true;
     }
     public virtual void RepairForniture()
     {
+        ProgressBarManager.instance.RemoveFurniture(this);
+        
         baseModel.SetActive(true);
         brokenModel.SetActive(false);
         isFornitureBroke = false;
+        
     }
+    public virtual void FinishRepair(PlayerController player)
+    {
+        if (player.GetInteractableObject() != null)
+            Destroy(player.GetInteractableObject().gameObject);
+        
+        player.ClearInteractableObject();
+        
+        Release(player);
 
+        //player.hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
+    }
     public Transform GetInteractableObjectFollowTransform()
     {
         return spawnPoint;

@@ -2,18 +2,23 @@ using UnityEngine;
 
 public class Cannon : BaseWeapon
 {
-
     protected override void InteractFixedForniture(PlayerController player)
     {
+        if (isReloading) return;
+
         if (player.HasInteractableObject())
         {
             if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                // Animacion de la bala
-                Destroy(player.GetInteractableObject().gameObject);
-                player.ClearInteractableObject();
+                player.SetCanMove(false);
+                ProgressBarManager.instance.AddFurniture(this);
+                ProgressBarManager.instance.AddPlayer(player, this);
+                player.hintController.isInteracting = true;
+                
+                isReloading = true;
+                currentRepairTime = 0f;
 
-                SetHasBullet(true);
+                ShowNeededInputHint(player, player.GetPlayerHintController());
             }
         }
         else
@@ -23,7 +28,7 @@ public class Cannon : BaseWeapon
                 EnterPilot(player.transform);
                 SetOriginalParent(this.transform.parent);
 
-                this.transform.SetParent(player.GetInteractableObjectFollowTransform());
+                transform.SetParent(player.GetInteractableObjectFollowTransform());
                 player.SetIsPilot(true);
 
                 GetSelectedFurnitureVisual().SetCanSeeVisuals(false);
@@ -34,7 +39,7 @@ public class Cannon : BaseWeapon
             else if (player.GetIsPilot())
             {
                 ExitPilot();
-                this.transform.SetParent(GetOriginalParent());
+                transform.SetParent(GetOriginalParent());
                 player.SetIsPilot(false);
 
                 GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
@@ -42,14 +47,44 @@ public class Cannon : BaseWeapon
         }
     }
 
+    public override void FinishRepair(PlayerController player)
+    {
+        if (isReloading)
+        {
+            SetHasBullet(true);
+            isReloading = false;
+            
+            if (player.GetInteractableObject() != null)
+                Destroy(player.GetInteractableObject().gameObject);
+    
+            player.ClearInteractableObject();
+    
+            Release(player);
+        }
+        else
+        {
+            base.FinishRepair(player);
+        }
+    }
     protected override void InteractBrokenForniture(PlayerController player)
     {
-        RepairForniture();
+        if (!player.GetInteractableObject())
+        {
+            player.SetCanMove(false);
+            ProgressBarManager.instance.AddPlayer(player, this);
+            player.hintController.isInteracting = true;
+        }
     }
 
     public override void Release(PlayerController player)
     {
+        ProgressBarManager.instance.RemoveFurniture(this);
+        ProgressBarManager.instance.RemovePlayer(player, this);
+        player.hintController.isInteracting = false;
+        isReloading = false;
+        player.SetCanMove(true);
         
+        ShowNeededInputHint(player, player.GetPlayerHintController());
     }
     public override void Activate(PlayerController player)
     {
@@ -68,24 +103,38 @@ public class Cannon : BaseWeapon
             ShowNeededInputHint(player, player.hintController);
         }
     }
-
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
         //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
         if (isFornitureBroke && !_player.HasInteractableObject())
         {
-            _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
-            return;
+            if (_hintController.isInteracting)
+            {
+                _hintController.SetProgressBar(repairDuration, currentRepairTime);
+                _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+            }
+            else
+            {
+                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+                return;
+            }
         }
-
 
         if (_player.HasInteractableObject())
         {
-            if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
+            if (_hintController.isInteracting)
             {
-                // Poner la bala dentro del ca�on
+                _hintController.SetProgressBar(repairDuration, currentRepairTime);
+                _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+            }
+            else if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
+            {
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
             }
+        }
+        else if (_hintController.isInteracting)
+        {
+            
         }
         else
         {

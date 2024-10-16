@@ -131,6 +131,8 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 1104646210875661819}
   brokenModel: {fileID: 7436088653810832382}
+  repairDuration: 2
+  currentRepairTime: 0
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}
   projectilePrefab: {fileID: 3917904115409053995, guid: 431ac1bbb93939d438b824b9fee1f6e7,
@@ -222,14 +224,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8545800793677771844}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1.041, z: -1.76}
+  m_LocalRotation: {x: 0, y: 0.99984777, z: 0.01745245, w: 0}
+  m_LocalPosition: {x: 0, y: 1.195, z: -1.721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8283638337382203391}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -2, y: 180, z: 0}
 --- !u!1001 &258134757243920554
 PrefabInstance:
   m_ObjectHideFlags: 0
