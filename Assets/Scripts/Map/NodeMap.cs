@@ -42,7 +42,6 @@ public class NodeMap : MonoBehaviour
         targetPoint = clickedButton.GetComponent<RectTransform>();
         isMoving = true;
     }
-    
     private void MoveShip()
     {
         ship.position = Vector3.MoveTowards(ship.position, targetPoint.position, shipSpeed * Time.deltaTime);
@@ -93,7 +92,6 @@ public class NodeMap : MonoBehaviour
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
         PlayerPrefs.Save();
     }
-
     private void LoadLevelScene(int level)
     {
         if (level < sceneNames.Length)
@@ -101,7 +99,6 @@ public class NodeMap : MonoBehaviour
             SceneManager.LoadScene(sceneNames[level]);
         }
     }
-    
     private void OnApplicationQuit()
     {
         // Borrar los PlayerPrefs al cerrar el juego

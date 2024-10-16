@@ -8,7 +8,6 @@ public class BrokenModule : BaseFurniture
     {
         base.FinishRepair(player);
         manager.health++;
-
     }
     protected override void InteractFixedForniture(PlayerController player)
     {

@@ -131,6 +131,8 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 1104646210875661819}
   brokenModel: {fileID: 7436088653810832382}
+  repairDuration: 2
+  currentRepairTime: 0
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}
   projectilePrefab: {fileID: 3917904115409053995, guid: 431ac1bbb93939d438b824b9fee1f6e7,

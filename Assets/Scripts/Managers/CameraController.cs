@@ -34,10 +34,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float XZSpeed;
     
-    
-
-
-
     private void Start()
     {
         //Guardamos la Y del primer Player
