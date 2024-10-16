@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5579557546182708755}
   - component: {fileID: 6821806778961577860}
   - component: {fileID: 3984568471543423313}
+  - component: {fileID: 8993151559706300750}
   m_Layer: 6
   m_Name: WoodContainer
   m_TagString: Untagged
@@ -73,6 +74,8 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 1033488552734150612}
   brokenModel: {fileID: 3882477705268847715}
+  repairDuration: 5
+  currentRepairTime: 0
   interactableObjectSO: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28,
     type: 2}
 --- !u!114 &3984568471543423313
@@ -95,6 +98,19 @@ MonoBehaviour:
   - {fileID: 7061991457095469137}
   - {fileID: 1324214118704389716}
   visualArray: []
+--- !u!114 &8993151559706300750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985252921774819168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 5
 --- !u!1001 &186575634551272069
 PrefabInstance:
   m_ObjectHideFlags: 0

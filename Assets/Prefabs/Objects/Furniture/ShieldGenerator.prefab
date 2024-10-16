@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6038707594044752169}
   - component: {fileID: 3984568471543423313}
   - component: {fileID: 3369224080957887786}
+  - component: {fileID: 7143376057797119067}
   m_Layer: 6
   m_Name: ShieldGenerator
   m_TagString: Untagged
@@ -117,6 +118,19 @@ MonoBehaviour:
   selectedObjectVisual: {fileID: 3984568471543423313}
   shieldObject: {fileID: 7965705656724264802}
   cooldown: 20
+--- !u!114 &7143376057797119067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985252921774819168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 2
 --- !u!1 &7965705656724264802
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 263021024948880139}
   - component: {fileID: 3984568471543423313}
   - component: {fileID: 5517669135736371557}
+  - component: {fileID: 284816640352597840}
   m_Layer: 6
   m_Name: Cannon
   m_TagString: Untagged
@@ -131,12 +132,27 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 1104646210875661819}
   brokenModel: {fileID: 7436088653810832382}
+  repairDuration: 5
+  currentRepairTime: 0
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}
   projectilePrefab: {fileID: 3917904115409053995, guid: 431ac1bbb93939d438b824b9fee1f6e7,
     type: 3}
   acceptedObject: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668, type: 2}
   shootForce: 500
+--- !u!114 &284816640352597840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985252921774819168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 4
 --- !u!1 &1784010229620053932
 GameObject:
   m_ObjectHideFlags: 0

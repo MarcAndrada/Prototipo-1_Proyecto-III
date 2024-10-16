@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5579557546182708755}
   - component: {fileID: 3915977673919704284}
   - component: {fileID: 3984568471543423313}
+  - component: {fileID: 2048518086937694669}
   m_Layer: 6
   m_Name: Box
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 5081208532748274190}
   - {fileID: 4260663416652798002}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5579557546182708755
 BoxCollider:
@@ -74,6 +75,8 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 2197606452462080076}
   brokenModel: {fileID: 3721202936053664453}
+  repairDuration: 5
+  currentRepairTime: 0
 --- !u!114 &3984568471543423313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +93,19 @@ MonoBehaviour:
   - {fileID: 5831220913142407255}
   - {fileID: 5822878220995642106}
   visualArray: []
+--- !u!114 &2048518086937694669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985252921774819168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04842a38f89e00444ba52a1e1243dddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <priorityLevel>k__BackingField: 2
 --- !u!1 &2197606452462080076
 GameObject:
   m_ObjectHideFlags: 0
