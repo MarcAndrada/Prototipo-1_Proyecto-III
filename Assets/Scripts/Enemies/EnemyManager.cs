@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class EnemyManager : MonoBehaviour
         public int totalCanons;
         public int health;
         public float shootCd;
+        public float movementSpeed;
+        public float movementOffset;
     }
     struct Enemy
     {
@@ -92,6 +95,9 @@ public class EnemyManager : MonoBehaviour
             GameObject animatorObject = new GameObject("ShipAnimator");
             animatorObject.transform.parent = enemy.shipParent.transform;
             animatorObject.transform.localPosition = Vector3.zero;
+            
+            
+
 
             enemy.shipAnimator = animatorObject.AddComponent<Animator>();
             enemy.shipAnimator.runtimeAnimatorController = shipAnimations;
@@ -127,6 +133,9 @@ public class EnemyManager : MonoBehaviour
                     enemyModule.transform.position = originalPos + (direction * moduleOffset * k) + (Vector3.forward * moduleOffset * j);
                 }
             }
+
+            MoveEnemyController movementController = animatorObject.transform.parent.AddComponent<MoveEnemyController>();
+            movementController.SetMovementValues(preloadsList[i].movementSpeed, preloadsList[i].movementOffset);
 
             enemies.Add(enemy);
 

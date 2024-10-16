@@ -2536,7 +2536,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 112895241}
         m_TargetAssemblyTypeName: ReturnToMap, Assembly-CSharp
-        m_MethodName: Return
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2807,7 +2807,7 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
@@ -2817,22 +2817,22 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].width
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[1].width
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].health
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].height
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
@@ -2842,27 +2842,27 @@ PrefabInstance:
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[1].height
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].shootCd
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[1].shootCd
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[0].totalCanons
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: preloadsList.Array.data[1].totalCanons
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}

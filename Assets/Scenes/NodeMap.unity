@@ -1589,15 +1589,15 @@ MonoBehaviour:
   ship: {fileID: 274314780}
   mapButtons:
   - {fileID: 1917316125}
-  - {fileID: 379218641}
   - {fileID: 433268759}
+  - {fileID: 379218641}
   - {fileID: 1823786034}
   - {fileID: 911244506}
   sceneNames:
   - 
+  - Level1
   - Store
-  - ModulesTest
-  - ModulesTest
+  - Level2
   - 
   completedLevelSprite: {fileID: 21300000, guid: 5f36d35b5b9edc54b94c1593625bc469,
     type: 3}
