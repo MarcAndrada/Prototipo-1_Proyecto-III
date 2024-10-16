@@ -59,6 +59,7 @@ public class EnemyModule : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet")) 
         {
             manager.ModuleHited(this);
+            collision.gameObject.GetComponent<Bullet>().doExplosion = true;
             Destroy(collision.gameObject);
         }
     }

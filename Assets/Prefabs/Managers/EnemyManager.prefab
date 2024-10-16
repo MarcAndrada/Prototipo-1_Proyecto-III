@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6776578904012457904
 MonoBehaviour:
@@ -60,3 +60,7 @@ MonoBehaviour:
   particleOffset: {x: 0, y: -1, z: -1.35}
   particleRotation: {x: -0.000000013507563, y: -0.9510565, z: -0.30901703, w: 0.000000041571997}
   shipAnimations: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}
+  bulletHitParticles: {fileID: 2433282508537954060, guid: 1035be7a8ae0aa24c9d5c71792c67dbb,
+    type: 3}
+  characterSelectCanvas: {fileID: 0}
+  winCanvas: {fileID: 0}

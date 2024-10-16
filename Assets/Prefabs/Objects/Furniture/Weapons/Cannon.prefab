@@ -140,6 +140,8 @@ MonoBehaviour:
     type: 3}
   acceptedObject: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668, type: 2}
   shootForce: 500
+  shootParticles: {fileID: 725748389856807714, guid: 55f833a9d5fecfc49bd7ba9992bba2b5,
+    type: 3}
 --- !u!114 &284816640352597840
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,8 +60,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Quaternion particleRotation;
 
-    [Space, Header("Animation"), SerializeField]
+    [Space, Header("Feedback"), SerializeField]
     private AnimatorController shipAnimations;
+    [SerializeField]
+    private GameObject bulletHitParticles;
 
     [Space, SerializeField]
     private GameObject characterSelectCanvas;
@@ -279,6 +281,7 @@ public class EnemyManager : MonoBehaviour
             _cannon.shootProcess = 0;
             Destroy(_cannon.currentBullet);
             _cannon.currentState = EnemyCanon.CannonState.LOADING;
+            Instantiate(bulletHitParticles, _cannon.shipTargetPos, Quaternion.identity);
         }
     }
     
