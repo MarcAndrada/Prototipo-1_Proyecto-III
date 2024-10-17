@@ -77,10 +77,14 @@ public class Cannon : BaseWeapon
 
     public override void Release(PlayerController player)
     {
-        ProgressBarManager.instance.RemoveFurniture(this);
+        if (isReloading)
+        {
+            ProgressBarManager.instance.RemoveFurniture(this);
+            isReloading = false;
+        }
+
         ProgressBarManager.instance.RemovePlayer(player, this);
         player.hintController.isInteracting = false;
-        isReloading = false;
         player.SetCanMove(true);
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
