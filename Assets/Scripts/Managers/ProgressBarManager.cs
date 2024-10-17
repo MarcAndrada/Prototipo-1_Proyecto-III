@@ -79,6 +79,7 @@ public class ProgressBarManager : MonoBehaviour
         {
             if (progressBars[i].furniture == furniture)
             {
+                player.animator.SetBool("Interacting", true);
                 progressBars[i].players.Add(player);
             }
         }
@@ -89,6 +90,7 @@ public class ProgressBarManager : MonoBehaviour
         {
             if (progressBars[i].furniture == furniture)
             {
+                player.animator.SetBool("Interacting", false);
                 progressBars[i].players.Remove(player);
             }
         }

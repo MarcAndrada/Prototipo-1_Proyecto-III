@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class ModulesManager : MonoBehaviour
@@ -29,7 +28,7 @@ public class ModulesManager : MonoBehaviour
     private GameObject shipParent;
     private Animator shipAnimator;
     [Space, Header("Animations"), SerializeField]
-    private AnimatorController shimAnims;
+    private RuntimeAnimatorController shimAnims;
 
     // Start is called before the first frame update
     void Awake()

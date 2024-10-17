@@ -367,7 +367,7 @@ MonoBehaviour:
   camState: 0
   playerColliders: []
   playerControllers: []
-  minYDistance: 12
+  minYDistance: 13.5
   zOffset: -15
   insideCamera: {fileID: 3926395861688165838}
   externalCamera: {fileID: 6552450789520782717}

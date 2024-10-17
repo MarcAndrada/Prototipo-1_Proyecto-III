@@ -106,6 +106,8 @@ public class Cannon : BaseWeapon
             ShowNeededInputHint(player, player.hintController);
 
             Instantiate(shootParticles, GetBulletSpawner().position, Quaternion.identity);
+
+            player.animator.SetTrigger("Shoot");
         }
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)

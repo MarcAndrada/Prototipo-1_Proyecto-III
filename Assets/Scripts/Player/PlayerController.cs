@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     private InteractableObject selectedObject;
     private InteractableObject heldObject;
     public PlayerHintController hintController {  get; private set; }
+    [HideInInspector]
     public Transform spawnPos;
+    public Animator animator { get; private set; }
 
     [HideInInspector]
     public BaseWeapon currentWeapon;
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         gameInput = GetComponent<GameInput>();
         rb = GetComponent<Rigidbody>();
         hintController = GetComponent<PlayerHintController>();
-
+        animator = GetComponentInChildren<Animator>();
         canMove = true;
     }
 
@@ -117,12 +119,14 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
 
     public void KillPlayer()
     {
+        animator.SetTrigger("Dead");
         isAlive = false;
         Invoke("RevivePlayer", PlayersManager.instance.respawnTime);
         SetIsPilot(false, null);
     }
     public void RevivePlayer()
     {
+        animator.SetTrigger("Revive");
         transform.position = spawnPos.position;
         isAlive = true;
     }
@@ -228,13 +232,15 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             // Mover y rotar el jugador
             MovePlayer(moveDir);
             RotatePlayer(moveDir);
+            animator.SetBool("Moving", true);
         }
         else
         {
             // Desacelerar el jugador
             DeceleratePlayer();
+            animator.SetBool("Moving", false);
         }
-        
+
         rb.angularVelocity = Vector3.zero;
     }
     private void MovePlayer(Vector3 moveDir)
@@ -367,9 +373,10 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public void SetInteractableObject(InteractableObject interactableObject)
     {
         heldObject = interactableObject;
+        animator.SetTrigger("Pick");
     }
     #endregion
-    
+
     public bool GetIsWalking()
     {
         return isWalking;

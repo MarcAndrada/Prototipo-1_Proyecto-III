@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -61,7 +59,7 @@ public class EnemyManager : MonoBehaviour
     private Quaternion particleRotation;
 
     [Space, Header("Feedback"), SerializeField]
-    private AnimatorController shipAnimations;
+    private RuntimeAnimatorController shipAnimations;
     [SerializeField]
     private GameObject bulletHitParticles;
 
@@ -136,7 +134,7 @@ public class EnemyManager : MonoBehaviour
                 }
             }
 
-            MoveEnemyController movementController = animatorObject.transform.parent.AddComponent<MoveEnemyController>();
+            MoveEnemyController movementController = animatorObject.transform.parent.gameObject.AddComponent<MoveEnemyController>();
             movementController.SetMovementValues(preloadsList[i].movementSpeed, preloadsList[i].movementOffset);
 
             enemies.Add(enemy);
