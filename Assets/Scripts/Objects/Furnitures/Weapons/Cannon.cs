@@ -137,10 +137,6 @@ public class Cannon : BaseWeapon
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
             }
         }
-        else if (_hintController.isInteracting)
-        {
-            
-        }
         else
         {
             if (!_player.GetIsPilot())
