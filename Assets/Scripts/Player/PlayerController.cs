@@ -120,8 +120,11 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (isPilot)
         {
             SetIsPilot(false, null);
-            if(selectedFurniture.TryGetComponent(out BaseWeapon selectedCannon))
-                selectedCannon.ExitPilot();
+            if (selectedFurniture != null)
+            {
+                if (selectedFurniture.TryGetComponent(out BaseWeapon selectedCannon))
+                    selectedCannon.ExitPilot();
+            }
         }
         isAlive = false;
         Invoke("RevivePlayer", PlayersManager.instance.respawnTime);

@@ -47,7 +47,6 @@ public class FireCannon : BaseWeapon
     }
     public override void FinishRepair(PlayerController player)
     {
-        // Recargar con el tiempo de reparacion 
         if (isReloading)
         {
             SetHasBullet(true);
@@ -59,6 +58,10 @@ public class FireCannon : BaseWeapon
             player.ClearInteractableObject();
     
             Release(player);
+        }
+        else
+        {
+            base.FinishRepair(player);
         }
     }
     protected override void InteractBrokenForniture(PlayerController player)
