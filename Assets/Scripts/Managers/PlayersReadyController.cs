@@ -50,6 +50,8 @@ public class PlayersReadyController : MonoBehaviour
         joinGameButtonsUI[_playerIndex].SetActive(false);
         //mover el player al punto exacto del menu
         PlayersManager.instance.players[_playerIndex].transform.position = playerUIPos[_playerIndex].transform.position;
+        PlayersManager.instance.players[_playerIndex].transform.forward = -playerUIPos[_playerIndex].transform.forward;
+
     }
     private void SetPlayerInputEvents(PlayerInput _playerInput)
     {
