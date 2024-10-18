@@ -45,7 +45,7 @@ public class Furniture : BaseFurniture
             _hintController.SetProgressBar(repairDuration, currentRepairTime);
             _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
         }
-        if (!_player.HasInteractableObject())
+        else if (!_player.HasInteractableObject())
         {
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
         }

@@ -121,11 +121,9 @@ public class Cannon : BaseWeapon
             else
             {
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
-                return;
             }
         }
-
-        if (_player.HasInteractableObject())
+        else if (_player.HasInteractableObject())
         {
             if (_hintController.isInteracting)
             {
@@ -139,7 +137,7 @@ public class Cannon : BaseWeapon
         }
         else
         {
-            if (!_player.GetIsPilot())
+            if (!_player.GetIsPilot() && !isFornitureBroke)
             {
                 //Mostrar que puede pilotar el ca�on
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);

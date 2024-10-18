@@ -74,7 +74,7 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3646614395910088698}
   baseModel: {fileID: 2455740661974912002}
   brokenModel: {fileID: 2455740661974912002}
-  repairDuration: 5
+  repairDuration: 2
   currentRepairTime: 0
   audioClip: {fileID: 8300000, guid: 80a04f4eb8c56a24c82b1f4314f0ba78, type: 3}
 --- !u!114 &3646614395910088698
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
