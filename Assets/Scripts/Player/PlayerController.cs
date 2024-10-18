@@ -365,6 +365,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public void ClearInteractableObject()
     {
         heldObject = null;
+        animator.SetBool("Pick", false);
     }
     public bool HasInteractableObject()
     {
@@ -373,7 +374,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public void SetInteractableObject(InteractableObject interactableObject)
     {
         heldObject = interactableObject;
-        animator.SetTrigger("Pick");
+        animator.SetBool("Pick", true);
     }
     #endregion
 
