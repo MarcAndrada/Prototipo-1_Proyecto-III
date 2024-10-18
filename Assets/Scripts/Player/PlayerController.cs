@@ -117,9 +117,15 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
 
     public void KillPlayer()
     {
+        if (isPilot)
+        {
+            SetIsPilot(false, null);
+            if(selectedFurniture.TryGetComponent(out BaseWeapon selectedCannon))
+                selectedCannon.ExitPilot();
+        }
         isAlive = false;
         Invoke("RevivePlayer", PlayersManager.instance.respawnTime);
-        SetIsPilot(false, null);
+        
     }
     public void RevivePlayer()
     {
@@ -157,7 +163,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
                     maxPriority = priority.priorityLevel;
                 }
             }
-
 
             if (selectedCollider.TryGetComponent(out BaseFurniture furniture))
             {
