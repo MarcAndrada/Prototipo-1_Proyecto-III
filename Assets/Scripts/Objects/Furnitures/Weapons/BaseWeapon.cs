@@ -20,8 +20,10 @@ public abstract class BaseWeapon : BaseFurniture
     private Transform originalParent;
     private bool hasBullet;
     private bool hasPilot;
+    private Rigidbody rb;
     private void Awake()
     {
+        rb = GetComponent<Rigidbody>();
         hasBullet = false;
     }
 
@@ -31,6 +33,8 @@ public abstract class BaseWeapon : BaseFurniture
     {
         if (!hasPilot)
         {
+            rb.isKinematic = true;
+            
             hasPilot = true;
             pilot.position = pilotPosition.position;
             pilot.rotation = Quaternion.LookRotation(pilotPosition.forward);
@@ -41,6 +45,8 @@ public abstract class BaseWeapon : BaseFurniture
     {
         if (hasPilot)
         {
+            rb.isKinematic = false;
+            
             transform.SetParent(GetOriginalParent());
             GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
             hasPilot = false;

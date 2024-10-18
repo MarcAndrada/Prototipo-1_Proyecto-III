@@ -63,15 +63,24 @@ public class FireCannon : BaseWeapon
     }
     protected override void InteractBrokenForniture(PlayerController player)
     {
-        RepairForniture();
+        if (!player.GetInteractableObject())
+        {
+            player.SetCanMove(false);
+            ProgressBarManager.instance.AddPlayer(player, this);
+            player.hintController.isInteracting = true;
+        }
     }
 
     public override void Release(PlayerController player)
     {
-        ProgressBarManager.instance.RemoveFurniture(this);
+        if (isReloading)
+        {
+            ProgressBarManager.instance.RemoveFurniture(this);
+            isReloading = false;
+        }
+
         ProgressBarManager.instance.RemovePlayer(player, this);
         player.hintController.isInteracting = false;
-        isReloading = false;
         player.SetCanMove(true);
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
@@ -97,7 +106,20 @@ public class FireCannon : BaseWeapon
 
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
-        if (_player.HasInteractableObject())
+        //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
+        if (isFornitureBroke && !_player.HasInteractableObject())
+        {
+            if (_hintController.isInteracting)
+            {
+                _hintController.SetProgressBar(repairDuration, currentRepairTime);
+                _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+            }
+            else
+            {
+                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
+            }
+        }
+        else if (_player.HasInteractableObject())
         {
             if (_hintController.isInteracting)
             {
@@ -106,12 +128,12 @@ public class FireCannon : BaseWeapon
             }
             else if (_player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
             {
-                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);                
+                _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
             }
         }
         else
         {
-            if (!_player.GetIsPilot())
+            if (!_player.GetIsPilot() && !isFornitureBroke)
             {
                 //Mostrar que puede pilotar el ca�on
                 _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);

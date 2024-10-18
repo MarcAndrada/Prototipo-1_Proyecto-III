@@ -71,6 +71,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4260663416652798002}
   selectedFurnitureVisual: {fileID: 3984568471543423313}
+  baseModel: {fileID: 0}
+  brokenModel: {fileID: 0}
+  repairDuration: 2
+  currentRepairTime: 0
   interactableObjectSO: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668,
     type: 2}
 --- !u!114 &3984568471543423313

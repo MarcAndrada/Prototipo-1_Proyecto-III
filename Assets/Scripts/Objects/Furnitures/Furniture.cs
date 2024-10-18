@@ -21,19 +21,33 @@ public class Furniture : BaseFurniture
     }
     protected override void InteractBrokenForniture(PlayerController player)
     {
-        RepairForniture();
+        if (!player.GetInteractableObject())
+        {
+            player.SetCanMove(false);
+            ProgressBarManager.instance.AddPlayer(player, this);
+            player.hintController.isInteracting = true;
+        }
+        
+        ShowNeededInputHint(player, player.GetPlayerHintController());
     }
     public override void Release(PlayerController player)
     {
+        ProgressBarManager.instance.RemovePlayer(player, this);
+        player.hintController.isInteracting = false;
+        player.SetCanMove(true);
         
+        ShowNeededInputHint(player, player.GetPlayerHintController());
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {
-        //Comprobamos si la forniture esta rota y no tenemos ningun item en la mano el boton para interactuar
-        if (isFornitureBroke && !_player.HasInteractableObject())
+        if (_hintController.isInteracting && isFornitureBroke)
+        {
+            _hintController.SetProgressBar(repairDuration, currentRepairTime);
+            _hintController.UpdateActionType(PlayerHintController.ActionType.HOLDING);
+        }
+        else if (!_player.HasInteractableObject())
         {
             _hintController.UpdateActionType(PlayerHintController.ActionType.GRAB);
-            return;
         }
 
 
