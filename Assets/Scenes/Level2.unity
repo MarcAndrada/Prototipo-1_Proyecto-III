@@ -2048,16 +2048,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2821621629979348495, guid: 8ce429487c119ce479a0dc29b6f69514,
-        type: 3}
-      propertyPath: zOffset
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2821621629979348495, guid: 8ce429487c119ce479a0dc29b6f69514,
-        type: 3}
-      propertyPath: minYDistance
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 8772904409820979296, guid: 8ce429487c119ce479a0dc29b6f69514,
         type: 3}
       propertyPath: m_RootOrder

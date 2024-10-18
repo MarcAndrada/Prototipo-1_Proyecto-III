@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public abstract class BaseWeapon : BaseFurniture
 {    
@@ -35,6 +36,7 @@ public abstract class BaseWeapon : BaseFurniture
             hasPilot = true;
             pilot.position = pilotPosition.position;
             pilot.rotation = Quaternion.LookRotation(pilotPosition.forward);
+            pilot.GetComponent<PlayerController>().animator.SetBool("OnCannon", true);
         }
     }
 
@@ -42,6 +44,7 @@ public abstract class BaseWeapon : BaseFurniture
     {
         if (hasPilot)
         {
+            GetComponentInParent<PlayerController>().animator.SetBool("OnCannon", false);
             transform.SetParent(GetOriginalParent());
             GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
             hasPilot = false;
