@@ -13,11 +13,14 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     [SerializeField]
     protected GameObject brokenModel;
     protected bool isFornitureBroke;
-    
+
     public float repairDuration = 5f;
 
+    [HideInInspector]
     public float currentRepairTime;
-    
+    [SerializeField]
+    protected ParticleSystem repairParticles;
+
     protected virtual void Start()
     {
         RepairForniture();
@@ -49,6 +52,8 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
         baseModel.SetActive(true);
         brokenModel.SetActive(false);
         isFornitureBroke = false;
+
+        ToggleRepairParticles(false);
         
     }
     public virtual void FinishRepair(PlayerController player)
@@ -93,5 +98,13 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
     public bool IsBroke()
     {
         return isFornitureBroke;
+    }
+
+    public void ToggleRepairParticles(bool _enabled)
+    {
+        if (_enabled)
+            repairParticles.Play(true);
+        else
+            repairParticles.Stop(true);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class BrokenModule : BaseFurniture
 {
     [SerializeField] private InteractableObjectScriptable acceptedObject;
+    [HideInInspector]
     public ModulesManager manager;
     public override void FinishRepair(PlayerController player)
     {

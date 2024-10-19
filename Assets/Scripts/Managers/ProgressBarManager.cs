@@ -72,6 +72,8 @@ public class ProgressBarManager : MonoBehaviour
                 progressBars.RemoveAt(i);
             }
         }
+
+        furniture.ToggleRepairParticles(false);
     }
     public void AddPlayer(PlayerController player, BaseFurniture furniture)
     {
@@ -81,8 +83,11 @@ public class ProgressBarManager : MonoBehaviour
             {
                 player.animator.SetBool("Interacting", true);
                 progressBars[i].players.Add(player);
+                break;
             }
         }
+
+        furniture.ToggleRepairParticles(true);
     }
     public void RemovePlayer(PlayerController player, BaseFurniture furniture)
     {
@@ -92,7 +97,13 @@ public class ProgressBarManager : MonoBehaviour
             {
                 player.animator.SetBool("Interacting", false);
                 progressBars[i].players.Remove(player);
+
+                if (progressBars[i].players.Count <= 0)
+                    furniture.ToggleRepairParticles(false);
+
+                break;
             }
         }
+
     }
 }

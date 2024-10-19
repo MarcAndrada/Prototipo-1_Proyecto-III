@@ -172,10 +172,6 @@ public class ModulesManager : MonoBehaviour
                 //Mata al player
                 _player.KillPlayer();
             }
-            else
-            {
-                Debug.Log("No sabemos lo que es, tiene el nombre de: " + hit.collider.gameObject.name);
-            }
 
 
         }
