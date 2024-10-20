@@ -6,6 +6,8 @@ public class EnemyModule : MonoBehaviour
     private GameObject normalModule;
     [SerializeField]
     private GameObject brokenModule;
+    [SerializeField]
+    private GameObject burnParticles;
 
     private EnemyManager manager;
     private bool moduleBroke;
@@ -54,6 +56,11 @@ public class EnemyModule : MonoBehaviour
         shipId = _id;
     }
 
+    public void ActivateFireParticles()
+    {
+        burnParticles.SetActive(true);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet")) 
@@ -62,5 +69,14 @@ public class EnemyModule : MonoBehaviour
             collision.gameObject.GetComponent<Bullet>().doExplosion = true;
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("FireBullet"))
+        {
+            manager.ModuleHited(this, true);
+            manager.ModuleHited(this, true);
+            collision.gameObject.GetComponent<Bullet>().doExplosion = true;
+            Destroy(collision.gameObject);
+        }
+
     }
 }

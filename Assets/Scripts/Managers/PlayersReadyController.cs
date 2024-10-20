@@ -24,6 +24,8 @@ public class PlayersReadyController : MonoBehaviour
 
     private Vector3 camStarterPos;
 
+    [Space, SerializeField]
+    private Material[] characterMat;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +44,19 @@ public class PlayersReadyController : MonoBehaviour
         _newPlayer.GetComponent<PlayerController>().spawnPos = playersStartPos[playerIndex];
         SetPlayerInputEvents(_newPlayer);
         DisplayStartGameButton();
+
+
+        
+
+        SkinnedMeshRenderer[] renderers = _newPlayer.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer renderer in renderers)
+        {
+            renderer.material = characterMat[_newPlayer.playerIndex];
+        }
+
+        MeshRenderer hatRenderer = _newPlayer.gameObject.GetComponentInChildren<MeshRenderer>();
+        hatRenderer.material = characterMat[_newPlayer.playerIndex];
     }   
 
     private void PlacePlayerOnMenu(int _playerIndex)

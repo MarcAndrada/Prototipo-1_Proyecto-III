@@ -143,6 +143,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  characterMat:
+  - {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+  - {fileID: 2100000, guid: 703fa0c0048cb154f8cd2edab291b87d, type: 2}
+  - {fileID: 2100000, guid: 18a77cd9bf9980b42a3161a48d685be8, type: 2}
+  - {fileID: 2100000, guid: 6d382340a9c102d40b93c8427c73af71, type: 2}
+  characterParent: {fileID: 0}
 --- !u!1 &814048497559769876
 GameObject:
   m_ObjectHideFlags: 0
