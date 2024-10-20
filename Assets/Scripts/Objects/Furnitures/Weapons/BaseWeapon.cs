@@ -36,7 +36,9 @@ public abstract class BaseWeapon : BaseFurniture
             hasPilot = true;
             pilot.position = pilotPosition.position;
             pilot.rotation = Quaternion.LookRotation(pilotPosition.forward);
-            pilot.GetComponent<PlayerController>().animator.SetBool("OnCannon", true);
+            Animator playerAnim = pilot.GetComponent<PlayerController>().animator;
+            playerAnim.SetBool("OnCannon", true);
+            playerAnim.SetBool("Pick", true);
         }
     }
 
@@ -44,7 +46,10 @@ public abstract class BaseWeapon : BaseFurniture
     {
         if (hasPilot)
         {
-            GetComponentInParent<PlayerController>().animator.SetBool("OnCannon", false);
+            Animator playerAnim = GetComponentInParent<PlayerController>().animator;
+            playerAnim.SetBool("OnCannon", false);
+            playerAnim.SetBool("Pick", false);
+
             transform.SetParent(GetOriginalParent());
             GetSelectedFurnitureVisual().SetCanSeeVisuals(true);
             hasPilot = false;

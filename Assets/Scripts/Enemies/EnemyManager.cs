@@ -62,6 +62,7 @@ public class EnemyManager : MonoBehaviour
     private RuntimeAnimatorController shipAnimations;
     [SerializeField]
     private GameObject bulletHitParticles;
+    
 
     [Space, SerializeField]
     private GameObject characterSelectCanvas;
@@ -284,20 +285,20 @@ public class EnemyManager : MonoBehaviour
     }
     
 
-    public void ModuleHited(EnemyModule _module)
+    public void ModuleHited(EnemyModule _module, bool _burnModule = false)
     {
         if (_module.IsModuleBroke())
         {
             //Encontrar otro modulo para romper
-            CheckNextModulesToBroke(_module);
+            CheckNextModulesToBroke(_module, _burnModule);
         }
         else
         {
-            BreakModule(_module);
+            BreakModule(_module, _burnModule);
         }
     }
 
-    private void CheckNextModulesToBroke(EnemyModule _module)
+    private void CheckNextModulesToBroke(EnemyModule _module, bool _burnModule)
     {
 
         Vector2Int moduleId = _module.GetModuleId();
@@ -319,7 +320,7 @@ public class EnemyManager : MonoBehaviour
                 if (moduleId.x + j < 0 || moduleId.x + j >= enemies[shipId].ship[0].Count || enemies[shipId].ship[moduleId.y + i][moduleId.x + j].IsModuleBroke())
                     continue;
 
-                BreakModule(enemies[shipId].ship[moduleId.y + i][moduleId.x + j]);
+                BreakModule(enemies[shipId].ship[moduleId.y + i][moduleId.x + j], _burnModule);
                 return;
             }
         }
@@ -333,7 +334,7 @@ public class EnemyManager : MonoBehaviour
             {
                 if (!enemies[shipId].ship[i][j].IsModuleBroke())
                 {
-                    BreakModule(enemies[shipId].ship[i][j]);
+                    BreakModule(enemies[shipId].ship[i][j], _burnModule);
                     return;
                 }
             }
@@ -341,13 +342,17 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    private void BreakModule(EnemyModule _module)
+    private void BreakModule(EnemyModule _module, bool _burnModule)
     {
         _module.BreakModule();
         Enemy enemy = enemies[_module.GetShipId()];
         enemy.totalModulesBroken++;
         enemies[_module.GetShipId()] = enemy;
         enemies[_module.GetShipId()].shipAnimator.SetTrigger("Damaged");
+        //Activar particulas de fuego
+        if (_burnModule)
+            _module.ActivateFireParticles();
+
         //Comprobar si se rompe el barco
         CheckIfShipBroken(_module.GetShipId());
     }

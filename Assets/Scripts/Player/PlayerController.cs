@@ -290,11 +290,21 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         if (currentWeapon.IsBroke())
             SetIsPilot(false, null);
 
+
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
         float forwardInput = inputVector.y;
         float rotationInput = inputVector.x;
-        
+
+        if (forwardInput != 0)
+        {
+            animator.SetBool("Moving", true);
+            animator.SetBool("MovingBack", forwardInput < 0);
+        }
+        else
+            animator.SetBool("Moving", false);
+
+
         Vector3 moveDirection = transform.forward * forwardInput;
         rb.AddForce(moveDirection * acceleration, ForceMode.Acceleration);
 
