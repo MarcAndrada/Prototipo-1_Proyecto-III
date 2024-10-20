@@ -91,7 +91,11 @@ public class EnemyManager : MonoBehaviour
             enemy.totalModulesBroken = 0;
 
             enemy.shipParent = new GameObject("EnemyShip" + i);
-            enemy.shipParent.transform.position = Vector3.zero;
+            enemy.shipParent.transform.position = new Vector3(
+                (preloadsList[i].width / 2) * moduleOffset,
+                0,
+                0
+                );
 
             GameObject animatorObject = new GameObject("ShipAnimator");
             animatorObject.transform.parent = enemy.shipParent.transform;

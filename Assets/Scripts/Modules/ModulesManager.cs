@@ -53,9 +53,20 @@ public class ModulesManager : MonoBehaviour
 
         Vector3 modulePosition = Vector3.zero;
 
-        shipParent = new GameObject("ShipObject");
+        GameObject animatorParent = new GameObject("ShipObject");
+        animatorParent.transform.position = new Vector3(
+            (configuration.Width / 2) * configuration.ModuleOffset,
+            0,
+            0
+            );
+
+        shipParent = new GameObject("ShipAnimator");
+        shipParent.transform.parent = animatorParent.transform;
+        shipParent.transform.localPosition = Vector3.zero;
+
         shipAnimator = shipParent.AddComponent<Animator>();
         shipAnimator.runtimeAnimatorController = shimAnims;
+
 
         for (int i = 0; i < configuration.Height; i++)
         {
