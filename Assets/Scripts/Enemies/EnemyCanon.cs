@@ -17,6 +17,7 @@ public class EnemyCanon : MonoBehaviour
     public float shootCd;
     public Vector3 shipTargetPos {  get; private set; }
 
+    [HideInInspector]
     public int shipId;
 
     public GameObject currentBullet {  get; private set; }
