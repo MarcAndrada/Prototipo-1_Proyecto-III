@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38e8cfeb04720d94dac78274fe45d813, type: 3}
   m_Name: ModulesConfiguration
   m_EditorClassIdentifier: 
-  <Width>k__BackingField: 3
-  <Height>k__BackingField: 3
+  <Width>k__BackingField: 4
+  <Height>k__BackingField: 4
   <ModuleOffset>k__BackingField: 4
   ModulesPositions:
     _serializedList:

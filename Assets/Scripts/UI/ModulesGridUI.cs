@@ -87,7 +87,7 @@ public class ModulesGridUI : MonoBehaviour
                     rectTransform.anchorMax = Vector2.one;
                     rectTransform.offsetMin = Vector2.zero;
                     rectTransform.offsetMax = Vector2.zero;
-                    rectTransform.localScale = Vector3.one;
+                    rectTransform.localScale = new Vector3(0.75f, 0.75f, 1);
                     
                     // Agregar el componente Image al nuevo objeto
                     Image imageComponent = spriteObject.AddComponent<Image>();
