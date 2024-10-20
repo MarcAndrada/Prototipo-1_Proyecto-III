@@ -240,6 +240,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             // Mover y rotar el jugador
             MovePlayer(moveDir);
             RotatePlayer(moveDir);
+            Debug.Log("Moving");
             animator.SetBool("Moving", true);
         }
         else
