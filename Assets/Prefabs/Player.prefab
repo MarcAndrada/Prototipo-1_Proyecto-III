@@ -770,11 +770,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8420439007254882976, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+    - target: {fileID: -7738652505069355772, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+    - target: {fileID: -4348951990779965208, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+    - target: {fileID: -1161860275224355241, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
     - target: {fileID: 919132149155446097, guid: 7f01ff0f885ba024dad205a8fb628ac0,
         type: 3}
       propertyPath: m_Name
       value: Barbarian
       objectReference: {fileID: 0}
+    - target: {fileID: 2738565456548723376, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+    - target: {fileID: 2909256914867834565, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
+    - target: {fileID: 4681804441759626293, guid: 7f01ff0f885ba024dad205a8fb628ac0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f101b646ae5cc6740853319888f2d9ad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -1831242830755310587, guid: 7f01ff0f885ba024dad205a8fb628ac0, type: 3}
