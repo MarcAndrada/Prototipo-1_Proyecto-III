@@ -23,7 +23,7 @@ public class ModulesGridUI : MonoBehaviour
 
     [Space, SerializedDictionary("SceneObject", "Prefab")]
     public SerializedDictionary<GameObject, Sprite> objectSprites;
-    private void Start()
+    private void Awake()
     {
         expandRightButton.onClick.AddListener(ExpandWidth);
         expandLeftButton.onClick.AddListener(ExpandHeight);
