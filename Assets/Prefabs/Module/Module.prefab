@@ -109,6 +109,7 @@ MonoBehaviour:
   repairDuration: 2
   currentRepairTime: 0
   repairParticles: {fileID: 5076455158836956248}
+  repairClip: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
   acceptedObject: {fileID: 11400000, guid: 513c3727aacd8b546b6ae51200e89c28, type: 2}
   manager: {fileID: 0}
 --- !u!114 &3815328344123911165

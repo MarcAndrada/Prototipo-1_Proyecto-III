@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterSplashParticles: {fileID: 8205706795460263314, guid: ba6dcce29f32b7542b3b99372f48cfda,
     type: 3}
+  fallWaterClip: {fileID: 8300000, guid: 808ca7a33089ccd49a0f5a865a61de2d, type: 3}
 --- !u!54 &3294671760531460268
 Rigidbody:
   m_ObjectHideFlags: 0

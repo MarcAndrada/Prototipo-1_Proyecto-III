@@ -133,9 +133,10 @@ MonoBehaviour:
   selectedFurnitureVisual: {fileID: 3984568471543423313}
   baseModel: {fileID: 3007221458440809614}
   brokenModel: {fileID: 3164888832573602063}
-  repairDuration: 2
+  repairDuration: 0.5
   currentRepairTime: 0
   repairParticles: {fileID: 7333543007929317956}
+  repairClip: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
   bulletSpawner: {fileID: 3078922993052336472}
   pilotPosition: {fileID: 8116665991949365699}
   projectilePrefab: {fileID: 3917904115409053995, guid: a019f72fcfd10894d8af589b3c826145,
@@ -144,6 +145,8 @@ MonoBehaviour:
   shootForce: 100
   shootParticles: {fileID: 725748389856807714, guid: 55f833a9d5fecfc49bd7ba9992bba2b5,
     type: 3}
+  cannonShootClip: {fileID: 8300000, guid: 6341edf98b5a86246ac592c378056df6, type: 3}
+  reloadCannonClip: {fileID: 8300000, guid: 95dc95a248d1b8247a7b3e46e9dae157, type: 3}
 --- !u!114 &3146194948643562589
 MonoBehaviour:
   m_ObjectHideFlags: 0

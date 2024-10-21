@@ -32,11 +32,6 @@ public class InteractableObject : MonoBehaviour
 
         this.interactableObjectParent = interactableObjectParent;
         
-        if (interactableObjectParent.HasInteractableObject())
-        {
-            Debug.LogError("Already has an object");
-        }
-        
         interactableObjectParent.SetInteractableObject(this);
         
         transform.parent = interactableObjectParent.GetInteractableObjectFollowTransform();

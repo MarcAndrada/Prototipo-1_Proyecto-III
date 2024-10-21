@@ -62,5 +62,9 @@ MonoBehaviour:
   shipAnimations: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}
   bulletHitParticles: {fileID: 2433282508537954060, guid: 1035be7a8ae0aa24c9d5c71792c67dbb,
     type: 3}
+  bulletShootClip: {fileID: 8300000, guid: eac65268023cca94bbad0812fd8a7ca9, type: 3}
+  bulletHitClip: {fileID: 8300000, guid: 131cf6e344d650240b4feebd01036d96, type: 3}
+  hittedClip: {fileID: 8300000, guid: 6c53526577a61284e8f81524cac7178f, type: 3}
+  sinkedClip: {fileID: 8300000, guid: 6c1bf323dd62d4e49ade45abd0038d45, type: 3}
   characterSelectCanvas: {fileID: 0}
   winCanvas: {fileID: 0}

@@ -10,6 +10,10 @@ public class Bullet : MonoBehaviour
     private GameObject explosionParticles;
     [HideInInspector]
     public bool doExplosion;
+
+    [Space, Header("Audio"), SerializeField]
+    private AudioClip bulletHitClip;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -25,7 +29,10 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(doExplosion)
+        if (doExplosion)
+        {
             Instantiate(explosionParticles, transform.position, Quaternion.identity);
+            AudioManager.instance.Play2dOneShotSound(bulletHitClip, "Master", 0.3f);
+        }
     }
 }

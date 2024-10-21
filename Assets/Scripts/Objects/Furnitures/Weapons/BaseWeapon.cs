@@ -1,5 +1,4 @@
-﻿using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class BaseWeapon : BaseFurniture
 {    
@@ -17,6 +16,11 @@ public abstract class BaseWeapon : BaseFurniture
 
     [Header("Projectiles"), Space, SerializeField]
     protected GameObject shootParticles;
+
+    [Space, Header("Audio"), SerializeField]
+    protected AudioClip cannonShootClip;
+    [SerializeField]
+    protected AudioClip reloadCannonClip;
 
     private Transform originalParent;
     private bool hasBullet;

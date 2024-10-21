@@ -62,7 +62,15 @@ public class EnemyManager : MonoBehaviour
     private RuntimeAnimatorController shipAnimations;
     [SerializeField]
     private GameObject bulletHitParticles;
-    
+
+    [Space, Header("Audio"), SerializeField]
+    private AudioClip bulletShootClip;
+    [SerializeField]
+    private AudioClip bulletHitClip;
+    [SerializeField]
+    private AudioClip hittedClip;
+    [SerializeField]
+    private AudioClip sinkedClip;
 
     [Space, SerializeField]
     private GameObject characterSelectCanvas;
@@ -268,6 +276,7 @@ public class EnemyManager : MonoBehaviour
             _cannon.ShootBullet(cannonHitPos);
             _cannon.shootProcess = 0;
             modulesManager.ModuleAttacked(modulesPos.Item2);
+            AudioManager.instance.Play2dOneShotSound(bulletShootClip, "Master", 0.2f);
         }
     }
 
@@ -277,15 +286,16 @@ public class EnemyManager : MonoBehaviour
 
         _cannon.currentBullet.transform.position = Parabola(_cannon.spawnBulletPos.position, _cannon.shipTargetPos, cannonBulletHeight, _cannon.shootProcess);
 
-        if (_cannon.shootProcess >= 1)
-        {
-            //Hacer daño
-            modulesManager.DamageModule();
-            _cannon.shootProcess = 0;
-            Destroy(_cannon.currentBullet);
-            _cannon.currentState = EnemyCanon.CannonState.LOADING;
-            Instantiate(bulletHitParticles, _cannon.shipTargetPos, Quaternion.identity);
-        }
+        if (_cannon.shootProcess < 1)
+            return; 
+
+        //Hacer daño
+        modulesManager.DamageModule();
+        _cannon.shootProcess = 0;
+        Destroy(_cannon.currentBullet);
+        _cannon.currentState = EnemyCanon.CannonState.LOADING;
+        Instantiate(bulletHitParticles, _cannon.shipTargetPos, Quaternion.identity);
+        AudioManager.instance.Play2dOneShotSound(bulletHitClip, "Master", 0.5f);
     }
     
 
@@ -363,10 +373,15 @@ public class EnemyManager : MonoBehaviour
     private void CheckIfShipBroken(int _shipId)
     {
         if (enemies[_shipId].totalModulesBroken < preloadsList[_shipId].health)
+        {
+            AudioManager.instance.Play2dOneShotSound(hittedClip, "Master", 0.5f, 1, 1);
             return;
+        }
 
         //Romper
         BreakShip(_shipId);
+        AudioManager.instance.Play2dOneShotSound(sinkedClip, "Master", 0.5f, 1, 1);
+
     }
 
     private void BreakShip(int _shipId)
@@ -403,7 +418,6 @@ public class EnemyManager : MonoBehaviour
     }
     private void Win()
     {
-        Debug.Log("Has ganado");
         winCanvas.SetActive(true);
     }
 
