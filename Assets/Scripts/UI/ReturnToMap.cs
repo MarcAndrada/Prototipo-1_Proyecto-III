@@ -21,4 +21,9 @@ public class ReturnToMap : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
