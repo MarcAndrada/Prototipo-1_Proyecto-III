@@ -288,6 +288,21 @@ PrefabInstance:
       propertyPath: playersStartPos.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6533775861341568882, guid: bec1d543f742b644abf9560a5739983f,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 904.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533775861341568882, guid: bec1d543f742b644abf9560a5739983f,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 897.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533775861341568882, guid: bec1d543f742b644abf9560a5739983f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 46.32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

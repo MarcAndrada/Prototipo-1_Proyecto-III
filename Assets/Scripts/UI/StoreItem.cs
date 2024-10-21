@@ -60,7 +60,7 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             if (result.gameObject.CompareTag("Module"))
             {
                 ModuleDropArea newModule = result.gameObject.GetComponent<ModuleDropArea>();
-                if (newModule.GetAvaliableModule())
+                if (newModule.GetAvaliableModule() && moneyManager.GetCurrentMoney() >= cost)
                 {
                     if (currentModule != null)
                     {
