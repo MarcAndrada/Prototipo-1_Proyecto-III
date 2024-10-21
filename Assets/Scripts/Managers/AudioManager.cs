@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
         }
 
         instance = this;
+        DontDestroyOnLoad(this);
 
         actions2dAS = new AudioSource[total2DAS];
         actions3dAS = new AudioSource[total3DAS];

@@ -112,7 +112,6 @@ public class FireCannon : BaseWeapon
             
             player.animator.SetTrigger("Shoot");
             AudioManager.instance.Play2dOneShotSound(cannonShootClip, "Master", 0.4f);
-
         }
     }
 

@@ -1933,42 +1933,42 @@ PrefabInstance:
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: deepColor.r
-      value: 0.20091996
+      value: 0.20090705
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.b
-      value: 0.12907392
+      value: 0.12906101
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.g
-      value: 0.12907392
+      value: 0.12906101
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.r
-      value: 0.12907392
+      value: 0.12906101
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: horizonColor.r
-      value: 0.20092002
+      value: 0.20090711
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: shallowColor.r
-      value: 0.15119031
+      value: 0.1511774
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: underwaterColor.g
-      value: 0.40906808
+      value: 0.40905446
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: underwaterColor.r
-      value: 0.23940188
+      value: 0.23938826
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
@@ -2024,11 +2024,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7431133099906751442, guid: 561ed70c8148d534d9f61da8a5a3537f,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8308002464607137427, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}

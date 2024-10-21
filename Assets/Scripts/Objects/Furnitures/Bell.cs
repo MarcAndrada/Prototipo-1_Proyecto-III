@@ -4,11 +4,18 @@ using UnityEngine;
 public class Bell : BaseFurniture
 {
     [SerializeField] private AudioClip bonkClip;
+    private Animation animationComp;
 
-    
+    private void Awake()
+    {
+        animationComp = GetComponent<Animation>();
+    }
+
     protected override void InteractFixedForniture(PlayerController player)
     {
         AudioManager.instance.Play2dOneShotSound(bonkClip, "Master", 0.7f, 0.95f, 1.05f);
+        animationComp.Stop();
+        animationComp.Play();
     }
 
     protected override void InteractBrokenForniture(PlayerController player)

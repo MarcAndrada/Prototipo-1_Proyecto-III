@@ -271,7 +271,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -3, z: 0}
 --- !u!114 &8308002464607137427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterSplashParticles: {fileID: 8205706795460263314, guid: ba6dcce29f32b7542b3b99372f48cfda,
     type: 3}
+  seaLoopClip: {fileID: 8300000, guid: fc182581f57e06a46839046f97345af2, type: 3}
   fallWaterClip: {fileID: 8300000, guid: 808ca7a33089ccd49a0f5a865a61de2d, type: 3}
 --- !u!54 &3294671760531460268
 Rigidbody:
