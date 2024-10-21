@@ -11,6 +11,6 @@ public class StartGameController : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         currentModule.SetConfig(baseModule.Height, baseModule.Width, baseModule.ModulesPositions);
-        SceneManager.LoadScene("NodeMap");
+        SceneManager.LoadScene("MainMenu");
     }
 }
