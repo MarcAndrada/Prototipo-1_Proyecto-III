@@ -8,17 +8,19 @@ public class StartBook : MonoBehaviour
     [Header("Book Animation Start")]
     [SerializeField] private Sprite[] bookSprites;
     [SerializeField] private float totalAnimationTime = 0.5f;
-    
+    [SerializeField] private float animationStartDelay = 1.2f; 
+
     private Image bookImage;
     
     private float frameTime;
     private int currentFrame = 0;
     private float timer = 0f;
+    private bool hasAnimationStarted = false;
     
     [Header("Fade In")]
     [SerializeField] private Graphic[] uiElements;
-    [SerializeField] private float contentAppearanceDelay = 1f;
-    [SerializeField] private float fadeInDuration = 1f;
+    [SerializeField] private float contentAppearanceDelay = 1.2f;
+    [SerializeField] private float fadeInDuration = 0.5f;
 
     private Graphic[] allGraphics;
     private bool isFadingIn = false;
@@ -40,8 +42,14 @@ public class StartBook : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        
+        if (!hasAnimationStarted && timer >= animationStartDelay)
+        {
+            hasAnimationStarted = true;
+            timer = 0f;
+        }
 
-        if (timer >= frameTime && currentFrame < bookSprites.Length)
+        if (hasAnimationStarted && timer >= frameTime && currentFrame < bookSprites.Length)
         {
             bookImage.sprite = bookSprites[currentFrame];
             currentFrame++;

@@ -10,7 +10,8 @@ public class NodeMap : MonoBehaviour
     [SerializeField] private string[] sceneNames;
     [SerializeField] private Sprite completedLevelSprite;
     [SerializeField] private float shipSpeed = 1000f;
-
+    [SerializeField] private SceneController sceneController;
+    
     private int currentLevel;
     private RectTransform targetPoint;
     private bool isMoving = false;
@@ -96,7 +97,7 @@ public class NodeMap : MonoBehaviour
     {
         if (level < sceneNames.Length)
         {
-            SceneManager.LoadScene(sceneNames[level]);
+            sceneController.NextLevel(sceneNames[level]);
         }
     }
     private void OnApplicationQuit()

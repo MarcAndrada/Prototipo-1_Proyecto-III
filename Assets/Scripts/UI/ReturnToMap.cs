@@ -3,23 +3,24 @@ using UnityEngine.SceneManagement;
 
 public class ReturnToMap : MonoBehaviour
 {
+    [SerializeField] private SceneController sceneController;
     public void Return()
     {
-        SceneManager.LoadScene("NodeMap");
+        sceneController.NextLevel("NodeMap");
     }
-    public void RestartLevel ()
+    public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        sceneController.NextLevel(SceneManager.GetActiveScene().name);
     }
 
     public void GoToLevel (string _sceneName) 
     {
-        SceneManager.LoadScene(_sceneName);
+        sceneController.NextLevel(_sceneName);
     }
 
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        sceneController.NextLevel("MainMenu");
     }
 
     public void QuitGame()
