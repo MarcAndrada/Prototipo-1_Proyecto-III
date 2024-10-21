@@ -2817,7 +2817,7 @@ PrefabInstance:
         type: 3}
       propertyPath: winCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 526397033}
     - target: {fileID: 6776578904012457904, guid: f3c735c7dd8e1f140a8ef5ece90be8b9,
         type: 3}
       propertyPath: modulesManager
@@ -2998,7 +2998,7 @@ PrefabInstance:
         type: 3}
       propertyPath: loseCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2057088039}
     - target: {fileID: 4285519628072394882, guid: a9bd65ee89989284288567fa8126640e,
         type: 3}
       propertyPath: m_RootOrder
