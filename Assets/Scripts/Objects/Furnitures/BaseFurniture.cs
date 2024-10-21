@@ -18,8 +18,13 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
 
     [HideInInspector]
     public float currentRepairTime;
-    [SerializeField]
+    [Space, SerializeField]
     protected ParticleSystem repairParticles;
+
+    [Space, Header("Base Forniture Audio"), SerializeField]
+    protected AudioClip repairClip;
+    protected AudioSource repairAudioSource;
+
 
     protected virtual void Start()
     {
@@ -53,8 +58,7 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
         brokenModel.SetActive(false);
         isFornitureBroke = false;
 
-        ToggleRepairParticles(false);
-        
+        ToggleRepairParticles(false);        
     }
     public virtual void FinishRepair(PlayerController player)
     {

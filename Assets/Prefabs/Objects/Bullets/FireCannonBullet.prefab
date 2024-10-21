@@ -72,6 +72,8 @@ MonoBehaviour:
   explosionParticles: {fileID: 2504214343621411470, guid: cd4578b820ae11b4e802a59fe6178848,
     type: 3}
   doExplosion: 0
+  bulletHitClip: {fileID: 8300000, guid: 536004383f0072044a67fca8e29cd754, type: 3}
+  fallWaterClip: {fileID: 8300000, guid: 808ca7a33089ccd49a0f5a865a61de2d, type: 3}
 --- !u!54 &7444278022360334945
 Rigidbody:
   m_ObjectHideFlags: 0

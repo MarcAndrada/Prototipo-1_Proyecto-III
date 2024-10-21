@@ -22,6 +22,12 @@ public class EnemyCanon : MonoBehaviour
 
     public GameObject currentBullet {  get; private set; }
 
+    private void Start()
+    {
+        GetComponentInChildren<Animator>().SetBool("Pick", true);
+    }
+
+
     public void InitializeShootCd()
     {
         shootProcess = Random.Range(0, shootCd / 2);

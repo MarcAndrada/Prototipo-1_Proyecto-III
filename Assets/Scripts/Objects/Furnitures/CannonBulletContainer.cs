@@ -18,8 +18,9 @@ public class CannonBulletContainer : BaseFurniture
             player.SetCanMove(false);
             ProgressBarManager.instance.AddPlayer(player, this);
             player.hintController.isInteracting = true;
+            repairAudioSource = AudioManager.instance.Play2dLoop(repairClip, "Master", 0.7f, 0.95f, 1.05f);
         }
-        
+
         ShowNeededInputHint(player, player.GetPlayerHintController());
     }
     public override void Release(PlayerController player)
@@ -29,6 +30,8 @@ public class CannonBulletContainer : BaseFurniture
         player.SetCanMove(true);
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
+        AudioManager.instance.StopLoopSound(repairAudioSource);
+        repairAudioSource = null;
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)
     {

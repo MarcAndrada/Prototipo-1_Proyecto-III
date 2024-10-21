@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configuration: {fileID: 11400000, guid: 364bdaac999c0144eb39a0bc88cc41cf, type: 2}
+  loseCanvas: {fileID: 0}
   moduleBasePrefab: {fileID: 7433593814718163865, guid: a3bf14b033798354aa14379d3b5f7582,
     type: 3}
-  moduleWall: {fileID: 5834921259620747859, guid: 108c3f45443672f4cb60c9b523953e98,
-    type: 3}
+  health: 0
   particlesPrefab: {fileID: 3946913594227911072, guid: e5a48ca56d272ab41af347370efd10c9,
     type: 3}
   particleOffset: {x: 0, y: -1, z: -1.35}
   particleRotation: {x: -0.000000013507563, y: -0.9510565, z: -0.30901703, w: 0.000000041571997}
-  timeToHitModules: 3
-  secondaryModulesHitDamage: 0.5
   shimAnims: {fileID: 9100000, guid: 442a861cde95a814cbc944fb5a3a2e0a, type: 2}
+  hittedClip: {fileID: 8300000, guid: 6c53526577a61284e8f81524cac7178f, type: 3}
+  sinkedClip: {fileID: 8300000, guid: 6c1bf323dd62d4e49ade45abd0038d45, type: 3}

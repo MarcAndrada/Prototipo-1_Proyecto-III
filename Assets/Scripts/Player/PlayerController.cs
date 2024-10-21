@@ -3,26 +3,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IInteractableObjectParent
 {
-    [Header("Movement")]
+    [Space, Header("Movement")]
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float rotateSpeed = 15f;
 
-    [Header("Cannon Movement")]
+    [Space, Header("Cannon Movement")]
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
     
-    [Header("Layers")]
+    [Space, Header("Layers")]
     [SerializeField] private LayerMask interactableLayer;
     
-    [Header("Interact collisions")]
+    [Space, Header("Interact collisions")]
     [SerializeField] private float interactDistance = 0.7f;
     [SerializeField] private float sphereRadius = 0.9f;
     
-    [Header("Miscellaneous")]
+    [Space, Header("Miscellaneous")]
     [SerializeField] private float throwForce = 20f;
     [SerializeField] private Transform interactiveObjectHoldPoint;
 
+    [Space, Header("Audio"), SerializeField]
+    private AudioClip pickUpClip;
+    [SerializeField]
+    private AudioClip dieClip;
+    [SerializeField]
+    private AudioClip reviveClip;
     private GameInput gameInput;
     private Rigidbody rb;
 
@@ -120,6 +126,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public void KillPlayer()
     {
         animator.SetTrigger("Dead");
+        AudioManager.instance.Play2dOneShotSound(dieClip, "Master", 0.2f, 0.9f, 1.1f);
         if (isPilot)
         {
             SetIsPilot(false, null);
@@ -136,6 +143,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     public void RevivePlayer()
     {
         animator.SetTrigger("Revive");
+        AudioManager.instance.Play2dOneShotSound(reviveClip, "Master", 0.75f, 0.9f, 1.1f);
         transform.position = spawnPos.position;
         isAlive = true;
     }
@@ -240,7 +248,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
             // Mover y rotar el jugador
             MovePlayer(moveDir);
             RotatePlayer(moveDir);
-            Debug.Log("Moving");
             animator.SetBool("Moving", true);
         }
         else
@@ -394,6 +401,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         heldObject = interactableObject;
         animator.SetBool("Pick", true);
+        AudioManager.instance.Play2dOneShotSound(pickUpClip, "Master", 0.6f, 0.9f, 1.1f);
     }
     #endregion
 
@@ -418,6 +426,17 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         return hintController;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("FireBullet"))
+        {
+            KillPlayer();
+            collision.gameObject.GetComponent<Bullet>().doExplosion = true;
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void OnDrawGizmos()
     {        
         Vector3 sphereCenter = transform.position + transform.forward * interactDistance;

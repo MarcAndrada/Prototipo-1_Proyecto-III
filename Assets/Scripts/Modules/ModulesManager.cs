@@ -30,6 +30,12 @@ public class ModulesManager : MonoBehaviour
     [Space, Header("Animations"), SerializeField]
     private RuntimeAnimatorController shimAnims;
 
+    [Space, Header("Audio"), SerializeField]
+    private AudioClip hittedClip;
+    [SerializeField]
+    private AudioClip sinkedClip;
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -92,6 +98,15 @@ public class ModulesManager : MonoBehaviour
             GameObject moduleObject = Instantiate(modulePos.Value, shipParent.transform);
             moduleObject.transform.position = modules[modulePos.Key.y][modulePos.Key.x].transform.position;
             modules[modulePos.Key.y][modulePos.Key.x].starterObjectInModule = moduleObject;
+
+            if (moduleObject.name == "CannonModule(Clone)" || moduleObject.name == "FireCannonModule(Clone)")
+            {
+                float middleXPos = configuration.Width / 2 * configuration.ModuleOffset;
+
+                if(moduleObject.transform.position.x > middleXPos)
+                    moduleObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+
         }
     }
     private void LoadColumnsWaterParticles()
@@ -157,6 +172,9 @@ public class ModulesManager : MonoBehaviour
         //Comprobar si el barco esta roto
         if(health <= minHealth)
             BreakShip();
+        else
+            AudioManager.instance.Play2dOneShotSound(hittedClip, "Master", 0.8f, 1, 1);
+
     }
     private void CheckObjectsToBreak()
     {
@@ -190,8 +208,8 @@ public class ModulesManager : MonoBehaviour
     private void BreakShip()
     {
         shipAnimator.SetTrigger("Destroyed");
-        Debug.Log("You Lose");
         loseCanvas.SetActive(true);
+        AudioManager.instance.Play2dOneShotSound(sinkedClip, "Master", 0.8f, 1, 1);
 
     }
 

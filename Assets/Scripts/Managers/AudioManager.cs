@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         actions2dAS = new AudioSource[total2DAS];
         actions3dAS = new AudioSource[total3DAS];
 
-        AudioMixerGroup mixerGroup = mixer.FindMatchingGroups("SFX")[0];
+        AudioMixerGroup mixerGroup = mixer.FindMatchingGroups("Master")[0];
         for (int i = 0; i < total2DAS; i++)
         {
             actions2dAS[i] = actions2dASObj.AddComponent<AudioSource>();
@@ -111,7 +111,7 @@ public class AudioManager : MonoBehaviour
         Play3dOneShotSound(_clips[Random.Range(0, _clips.Length)], mixerGroup, _radius, _pos, _minPitch, _maxPitch, _volume);
     }
    
-    public AudioSource Play2dLoop(AudioClip _clip, string mixerGroup, float _minPitch = 0.75f, float _maxPitch = 1.25f, float _volume = 0.7f) 
+    public AudioSource Play2dLoop(AudioClip _clip, string mixerGroup, float _volume = 0.7f, float _minPitch = 0.75f, float _maxPitch = 1.25f) 
     {
         AudioSource _as = GetUnused2dAS();
         

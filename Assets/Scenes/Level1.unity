@@ -678,6 +678,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290984022}
   m_CullTransparentMesh: 1
+--- !u!1001 &297695139
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3814108635945947093, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7218213200779254488, guid: 9583a42d8bea50644935fe309b5b4886,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9583a42d8bea50644935fe309b5b4886, type: 3}
 --- !u!1 &527871240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,42 +1933,42 @@ PrefabInstance:
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: deepColor.r
-      value: 0.20096716
+      value: 0.20091996
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.b
-      value: 0.12912112
+      value: 0.12907392
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.g
-      value: 0.12912112
+      value: 0.12907392
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: waveColor.r
-      value: 0.12912112
+      value: 0.12907392
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: horizonColor.r
-      value: 0.20096722
+      value: 0.20092002
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: shallowColor.r
-      value: 0.15123752
+      value: 0.15119031
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: underwaterColor.g
-      value: 0.40911788
+      value: 0.40906808
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023065, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
       propertyPath: underwaterColor.r
-      value: 0.23945168
+      value: 0.23940188
       objectReference: {fileID: 0}
     - target: {fileID: 4793520174551023069, guid: 561ed70c8148d534d9f61da8a5a3537f,
         type: 3}
@@ -1957,6 +2030,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 8308002464607137427, guid: 561ed70c8148d534d9f61da8a5a3537f,
+        type: 3}
+      propertyPath: seaLoopClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fc182581f57e06a46839046f97345af2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

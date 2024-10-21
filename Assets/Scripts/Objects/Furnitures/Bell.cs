@@ -3,20 +3,12 @@ using UnityEngine;
 
 public class Bell : BaseFurniture
 {
-    private AudioSource audioSource;
-    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip bonkClip;
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
     
     protected override void InteractFixedForniture(PlayerController player)
     {
-        if (audioSource != null && audioClip != null)
-        {
-            audioSource.PlayOneShot(audioClip);
-        }
+        AudioManager.instance.Play2dOneShotSound(bonkClip, "Master", 0.7f, 0.95f, 1.05f);
     }
 
     protected override void InteractBrokenForniture(PlayerController player)
@@ -26,6 +18,7 @@ public class Bell : BaseFurniture
             player.SetCanMove(false);
             ProgressBarManager.instance.AddPlayer(player, this);
             player.hintController.isInteracting = true;
+            repairAudioSource = AudioManager.instance.Play2dLoop(repairClip, "Master");
         }
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
@@ -36,7 +29,8 @@ public class Bell : BaseFurniture
         ProgressBarManager.instance.RemovePlayer(player, this);
         player.hintController.isInteracting = false;
         player.SetCanMove(true);
-        
+        AudioManager.instance.StopLoopSound(repairAudioSource);
+        repairAudioSource = null;
         ShowNeededInputHint(player, player.GetPlayerHintController());
     }
 

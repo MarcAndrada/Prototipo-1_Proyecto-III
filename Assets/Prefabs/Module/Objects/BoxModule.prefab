@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3915977673919704284, guid: a73d821efb2115a42b833335efddc595,
+        type: 3}
+      propertyPath: repairClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
     - target: {fileID: 8283638337382203391, guid: a73d821efb2115a42b833335efddc595,
         type: 3}
       propertyPath: m_RootOrder
@@ -187,6 +192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3915977673919704284, guid: a73d821efb2115a42b833335efddc595,
+        type: 3}
+      propertyPath: repairClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
     - target: {fileID: 8283638337382203391, guid: a73d821efb2115a42b833335efddc595,
         type: 3}
       propertyPath: m_RootOrder
@@ -266,6 +276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3915977673919704284, guid: a73d821efb2115a42b833335efddc595,
+        type: 3}
+      propertyPath: repairClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
     - target: {fileID: 8283638337382203391, guid: a73d821efb2115a42b833335efddc595,
         type: 3}
       propertyPath: m_RootOrder
@@ -345,6 +360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 3915977673919704284, guid: a73d821efb2115a42b833335efddc595,
+        type: 3}
+      propertyPath: repairClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
     - target: {fileID: 8283638337382203391, guid: a73d821efb2115a42b833335efddc595,
         type: 3}
       propertyPath: m_RootOrder

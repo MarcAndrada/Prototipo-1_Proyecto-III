@@ -6,28 +6,32 @@ public class Cannon : BaseWeapon
     {
         if (isReloading) return;
 
-        if (player.HasInteractableObject())
+        if (player.HasInteractableObject() 
+            && player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() 
+            && !GetHasBullet()
+            ) //Comprobamos si el player tiene un objeto y este es el que necesitamos cargar el cañon
         {
-            if (player.GetInteractableObject().GetInteractableObjectScriptable() == GetAcceptedObject() && !GetHasBullet())
-            {
-                player.SetCanMove(false);
-                ProgressBarManager.instance.AddFurniture(this);
-                ProgressBarManager.instance.AddPlayer(player, this);
-                player.hintController.isInteracting = true;
-                
-                isReloading = true;
-                currentRepairTime = 0f;
+            
+            player.SetCanMove(false);
+            ProgressBarManager.instance.AddFurniture(this);
+            ProgressBarManager.instance.AddPlayer(player, this);
+            player.hintController.isInteracting = true;
+            
+            isReloading = true;
+            currentRepairTime = 0f;
 
-                ShowNeededInputHint(player, player.GetPlayerHintController());
-            }
+            ShowNeededInputHint(player, player.GetPlayerHintController());
+            AudioManager.instance.Play2dOneShotSound(reloadCannonClip, "Master", 0.4f, 0.8f, 1.2f);
+
+
         }
-        else
+        else 
         {
-            if (!player.GetIsPilot() && !GetHasPilot())
+            if (!player.GetIsPilot() && !GetHasPilot()) //Comprobamos si el player se puede montar en el cañon
             {
                 EnterPilot(player.transform);
                 
-                SetOriginalParent(this.transform.parent);
+                SetOriginalParent(transform.parent);
 
                 transform.SetParent(player.GetInteractableObjectFollowTransform());
                 player.SetIsPilot(true, this);
@@ -37,11 +41,10 @@ public class Cannon : BaseWeapon
 
                 ShowNeededInputHint(player, player.hintController);
             }
-            else if (player.GetIsPilot())
+            else if (player.GetIsPilot()) //Comprobamos si el player se puede desmontar en el cañon
             {
                 ExitPilot();
                 player.SetIsPilot(false, null);
-
             }
         }
     }
@@ -72,6 +75,7 @@ public class Cannon : BaseWeapon
             player.SetCanMove(false);
             ProgressBarManager.instance.AddPlayer(player, this);
             player.hintController.isInteracting = true;
+            repairAudioSource = AudioManager.instance.Play2dLoop(repairClip, "Master", 0.7f, 0.95f, 1.05f);
         }
     }
 
@@ -88,6 +92,9 @@ public class Cannon : BaseWeapon
         player.SetCanMove(true);
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
+        
+        AudioManager.instance.StopLoopSound(repairAudioSource);
+        repairAudioSource = null;
     }
     public override void Activate(PlayerController player)
     {
@@ -108,6 +115,7 @@ public class Cannon : BaseWeapon
             Instantiate(shootParticles, GetBulletSpawner().position, Quaternion.identity);
 
             player.animator.SetTrigger("Shoot");
+            AudioManager.instance.Play2dOneShotSound(cannonShootClip, "Master", 0.6f);
         }
     }
     public override void ShowNeededInputHint(PlayerController _player, PlayerHintController _hintController)

@@ -78,6 +78,7 @@ MonoBehaviour:
   repairDuration: 2
   currentRepairTime: 0
   repairParticles: {fileID: 5605107106068971060}
+  repairClip: {fileID: 8300000, guid: 1e4e3078b3cd9f042ac17029ed429788, type: 3}
   interactableObjectSO: {fileID: 11400000, guid: fc9088e29363c204a9fd9fb814a2b668,
     type: 2}
 --- !u!114 &3984568471543423313
