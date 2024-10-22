@@ -16,7 +16,8 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     private Canvas canvas; 
     private RawImage image;
     private ModuleDropArea currentModule;
-    
+
+    private bool canDropItem = true;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -41,12 +42,18 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         
         originalPosition = rectTransform.position;
         transform.SetParent(canvas.transform);
+        canDropItem = true;
 
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.position = Input.mousePosition;
+
+        if (moneyManager != null && moneyManager.GetCurrentMoney() < cost)
+        {
+            canDropItem = false;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -54,15 +61,16 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
 
+
         bool isOnModule = false;
         foreach (RaycastResult result in raycastResults)
         {
-            if (result.gameObject.CompareTag("Module"))
+            if (result.gameObject.CompareTag("Module") && canDropItem)
             {
                 ModuleDropArea newModule = result.gameObject.GetComponent<ModuleDropArea>();
-                if (newModule.GetAvaliableModule() && moneyManager.GetCurrentMoney() >= cost)
+                if (newModule.GetAvaliableModule() )
                 {
-                    if (currentModule != null)
+                    if (currentModule != null )
                     {
                         ModulesConfiguration config = currentModule.GetConfig();
                         
@@ -104,5 +112,11 @@ public class StoreItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             image.raycastTarget = true;
         }
+
+    }
+
+    public bool GetCanDropItem()
+    {
+        return canDropItem;
     }
 }

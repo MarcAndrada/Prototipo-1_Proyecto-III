@@ -17,12 +17,11 @@ public class ModuleDropArea : MonoBehaviour, IDropHandler
     {
         GameObject droppedItem = eventData.pointerDrag;
 
-        if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null && avaliableModule)
+        if (droppedItem != null && droppedItem.GetComponent<StoreItem>() != null && avaliableModule && droppedItem.GetComponent<StoreItem>().GetCanDropItem())
         {
             Vector2Int position = GetModulePosition();
             config.ModulesPositions[position] = modulesGridUI.objectsPrefabs[droppedItem];
             
-            Debug.Log(config.ModulesPositions[position]);
         }
     }
 
