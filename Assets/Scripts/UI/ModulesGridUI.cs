@@ -12,7 +12,7 @@ public class ModulesGridUI : MonoBehaviour
 
     [Header("Money")]
     [SerializeField] private MoneyManager moneyManager;
-    [SerializeField] private int expansionCost = 400;
+    [SerializeField] private int expansionCost = 500;
     
     [Header("Buttons")]
     [SerializeField] private Button expandRightButton;
@@ -32,8 +32,9 @@ public class ModulesGridUI : MonoBehaviour
     }
     private void ExpandWidth()
     {
-        if (moneyManager.SpendMoney(expansionCost))
+        if (moneyManager.GetCurrentMoney() >= expansionCost && config.Width < 6)
         {
+            moneyManager.SpendMoney(expansionCost);
             config.ExpandWidth();
             DrawGrid();
         }
@@ -41,8 +42,9 @@ public class ModulesGridUI : MonoBehaviour
 
     private void ExpandHeight()
     {
-        if (moneyManager.SpendMoney(expansionCost) && config.Height < 5)
+        if (moneyManager.GetCurrentMoney() >= expansionCost && config.Height < 8)
         {
+            moneyManager.SpendMoney(expansionCost);
             config.ExpandHeight();
             DrawGrid();
         }

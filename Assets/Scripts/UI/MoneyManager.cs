@@ -34,7 +34,6 @@ public class MoneyManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough money!");
             return false;
         }
     }

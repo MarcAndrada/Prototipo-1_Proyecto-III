@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2530a6d510991c64e95af95b4fef3edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 10
+  startingMoney: 3000
   moneyText: {fileID: 1319849228}
 --- !u!114 &262746630
 MonoBehaviour:
@@ -1900,7 +1900,7 @@ MonoBehaviour:
     type: 3}
   gridParent: {fileID: 1074516689}
   moneyManager: {fileID: 262746629}
-  expansionCost: 400
+  expansionCost: 500
   expandRightButton: {fileID: 1752609082}
   expandLeftButton: {fileID: 987655822}
   objectsPrefabs:
