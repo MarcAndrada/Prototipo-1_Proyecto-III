@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22e0dfbc90352a43b29c6b46d20ef12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 4.5
   acceleration: 50
   rotateSpeed: 20
-  cannonMovementSpeed: 2
-  cannonRotationSpeed: 25
+  decelerationSpeed: 20
+  cannonMovementSpeed: 3
+  cannonRotationSpeed: 30
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
