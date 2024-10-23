@@ -82,6 +82,7 @@ public class FireCannon : BaseWeapon
         {
             ProgressBarManager.instance.RemoveFurniture(this);
             isReloading = false;
+            player.animator.SetBool("Interacting", false);
         }
 
         ProgressBarManager.instance.RemovePlayer(player, this);

@@ -85,6 +85,7 @@ public class Cannon : BaseWeapon
         {
             ProgressBarManager.instance.RemoveFurniture(this);
             isReloading = false;
+            player.animator.SetBool("Interacting", false);
         }
 
         ProgressBarManager.instance.RemovePlayer(player, this);
@@ -164,4 +165,5 @@ public class Cannon : BaseWeapon
             }
         }
     }
+
 }
