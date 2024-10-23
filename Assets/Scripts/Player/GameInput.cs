@@ -17,8 +17,7 @@ public class GameInput : MonoBehaviour
         {
             OnInteractAction?.Invoke(this, EventArgs.Empty);
         }
-
-        if (context.canceled)
+        else if (context.canceled)
         {
             OnInteractReleaseAction?.Invoke(this, EventArgs.Empty);
         }

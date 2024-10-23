@@ -25,7 +25,9 @@ public class Bell : BaseFurniture
             player.SetCanMove(false);
             ProgressBarManager.instance.AddPlayer(player, this);
             player.hintController.isInteracting = true;
-            repairAudioSource = AudioManager.instance.Play2dLoop(repairClip, "Master");
+            
+            if (!repairAudioSource)
+                repairAudioSource = AudioManager.instance.Play2dLoop(repairClip, "Master");
         }
         
         ShowNeededInputHint(player, player.GetPlayerHintController());
@@ -36,8 +38,10 @@ public class Bell : BaseFurniture
         ProgressBarManager.instance.RemovePlayer(player, this);
         player.hintController.isInteracting = false;
         player.SetCanMove(true);
+        
         AudioManager.instance.StopLoopSound(repairAudioSource);
         repairAudioSource = null;
+        
         ShowNeededInputHint(player, player.GetPlayerHintController());
     }
 

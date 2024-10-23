@@ -68,7 +68,7 @@ public abstract class BaseFurniture : MonoBehaviour, IInteractableObjectParent
         player.ClearInteractableObject();
         
         Release(player);
-
+        
         //player.hintController.UpdateActionType(PlayerHintController.ActionType.NONE);
     }
     public Transform GetInteractableObjectFollowTransform()
