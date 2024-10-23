@@ -47,6 +47,20 @@ public class ModulesManager : MonoBehaviour
         LoadColumnsWaterParticles();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            foreach (List<Module> secondaryModuleList in modules)
+            {
+                foreach (Module module in secondaryModuleList)
+                {
+                    module.brokenModule.RepairForniture();
+                }
+            }
+        }
+    }
+
     #region Load Functions
     private void CalculateHealth()
     {
@@ -253,6 +267,12 @@ public class ModulesManager : MonoBehaviour
 
     }
 
+    public void BulletDestroyedOnAir(Vector2Int _modulePos)
+    {
+        modules[_modulePos.y][_modulePos.x].RemoveMainDamageZone();
+        attackList.Remove(_modulePos);
+
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

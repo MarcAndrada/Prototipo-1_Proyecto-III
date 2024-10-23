@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -13,17 +14,19 @@ public class EnemyManager : MonoBehaviour
         public int height;
         public int width;
         public int totalCanons;
-        public int health;
         public float shootCd;
         public float movementSpeed;
         public float movementOffset;
     }
+
+    [Serializable]
     struct Enemy
     {
         public List<List<EnemyModule>> ship;
         public GameObject shipParent;
         public Animator shipAnimator;
         public int totalModulesBroken;
+        public int maxHealth; 
         public bool enemyAlive;
     }
 
@@ -49,6 +52,7 @@ public class EnemyManager : MonoBehaviour
 
     [Space, Header("Enemies Preloads"), SerializeField]
     private List<EnemyPreload> preloadsList;
+    [SerializeField]
     private List<Enemy> enemies;
 
     [Space, Header("Particles"), SerializeField]
@@ -97,6 +101,7 @@ public class EnemyManager : MonoBehaviour
 
             enemy.enemyAlive = true;
             enemy.totalModulesBroken = 0;
+            enemy.maxHealth = Mathf.CeilToInt(preloadsList[i].height * preloadsList[i].width / 2);
 
             enemy.shipParent = new GameObject("EnemyShip" + i);
             enemy.shipParent.transform.position = new Vector3(
@@ -245,6 +250,18 @@ public class EnemyManager : MonoBehaviour
     {
         if (!characterSelectCanvas.activeInHierarchy)
             CannonsBehaviours();
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            foreach (EnemyCanon item in cannonList)
+            {
+                if (item.currentState == EnemyCanon.CannonState.SHOOTING)
+                    modulesManager.BulletDestroyedOnAir(item.shipTargetPosId);
+
+                ShootCannons(item);
+            }
+        }
     }
 
     private void CannonsBehaviours()
@@ -271,15 +288,21 @@ public class EnemyManager : MonoBehaviour
 
         if (_cannon.shootProcess >= _cannon.shootCd)
         {
-            (Vector3, Vector2Int) modulesPos = modulesManager.GetRandomFixedModulePosition(0);
-            Vector3 cannonHitPos = modulesPos.Item1;
-            _cannon.ShootBullet(cannonHitPos);
-            _cannon.shootProcess = 0;
-            modulesManager.ModuleAttacked(modulesPos.Item2);
-            AudioManager.instance.Play2dOneShotSound(bulletShootClip, "Master", 0.2f);
+            ShootCannons(_cannon);
         }
     }
+    private void ShootCannons(EnemyCanon _cannon)
+    {
+        
+        (Vector3, Vector2Int) modulesPos = modulesManager.GetRandomFixedModulePosition(0);
+        _cannon.ShootBullet(modulesPos.Item1, modulesPos.Item2);
+        _cannon.shootProcess = 0;
+        modulesManager.ModuleAttacked(modulesPos.Item2);
+        AudioManager.instance.Play2dOneShotSound(bulletShootClip, "Master", 0.2f);
 
+        
+
+    }
     private void ShootCannonProcess(EnemyCanon _cannon)
     {
         _cannon.shootProcess += cannonHitSpeed * Time.deltaTime;
@@ -372,7 +395,7 @@ public class EnemyManager : MonoBehaviour
     }
     private void CheckIfShipBroken(int _shipId)
     {
-        if (enemies[_shipId].totalModulesBroken < preloadsList[_shipId].health)
+        if (enemies[_shipId].totalModulesBroken <= enemies[_shipId].maxHealth)
         {
             AudioManager.instance.Play2dOneShotSound(hittedClip, "Master", 0.5f, 1, 1);
             return;
@@ -395,9 +418,15 @@ public class EnemyManager : MonoBehaviour
         {
             if (cannonList[i].shipId == _shipId)
             {
-                cannonList.RemoveAt(i);
-                i--;
+                if (cannonList[i].currentState == EnemyCanon.CannonState.SHOOTING)
+                {
+                    modulesManager.BulletDestroyedOnAir(cannonList[i].shipTargetPosId);
+                }
+
+                cannonList[i].BreakCannon();
+
             }
+
         }
 
         if (CheckIfWin())
