@@ -8,7 +8,7 @@ public class BackgroundMusic : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
     [SerializeField] private AudioClip cine;
-
+    
     
     private void Awake()
     {
@@ -29,10 +29,18 @@ public class BackgroundMusic : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (SceneManager.GetActiveScene().name == "EndGameScene" && audioSource.clip != cine)
         {
             audioSource.clip = cine;
             audioSource.Play();
         }
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        AudioSource[] exceptions = new AudioSource[1];
+        exceptions[0] = audioSource;
+        AudioManager.instance.StopAllAudio(exceptions);
     }
 }

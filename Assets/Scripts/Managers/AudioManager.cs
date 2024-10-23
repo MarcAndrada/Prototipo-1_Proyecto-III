@@ -51,6 +51,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopAllAudio(AudioSource[] exeptions)
+    {
+
+        foreach (AudioSource item in actions2dAS)
+        {
+            bool used = false;
+
+            foreach (AudioSource exeption in exeptions)
+            {
+                if (item == exeption)
+                {
+                    used = true;
+                }
+            }
+
+            if (!used)
+            {
+                item.Stop();
+            }
+        }
+    }
     public AudioSource GetUnused2dAS() 
     {
         foreach (AudioSource item in actions2dAS)
