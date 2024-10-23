@@ -7,8 +7,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float rotateSpeed = 15f;
-    [SerializeField]
-    private float decelerationSpeed;
+
     [Space, Header("Cannon Movement")]
     [SerializeField] private float cannonMovementSpeed = 2f;
     [SerializeField] private float cannonRotationSpeed = 25f;
@@ -254,7 +253,7 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
         else
         {
             // Desacelerar el jugador
-            DeceleratePlayer();
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
             animator.SetBool("Moving", false);
         }
 
@@ -277,20 +276,6 @@ public class PlayerController : MonoBehaviour, IInteractableObjectParent
     {
         Vector3 forwardDir = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
         transform.forward = forwardDir;
-    }
-    private void DeceleratePlayer()
-    {
-        Vector3 decelerationForce = new Vector3(
-            rb.velocity.normalized.x * -decelerationSpeed,
-            rb.velocity.y,
-            rb.velocity.normalized.z * -decelerationSpeed
-            ); 
-        rb.AddForce(decelerationForce, ForceMode.Acceleration);
-
-        if (rb.velocity.magnitude < 0.1f)
-        {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
     }
     private void HandleCannonMovement()
     {

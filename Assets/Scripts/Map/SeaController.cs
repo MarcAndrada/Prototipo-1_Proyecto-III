@@ -15,7 +15,7 @@ public class SeaController : MonoBehaviour
 
     private void OnEnable()
     {
-        seaLoopSource = AudioManager.instance.Play2dLoop(seaLoopClip, "Master", 0.5f, 1, 1);
+        seaLoopSource = AudioManager.instance.Play2dLoop(seaLoopClip, "Master", 1.2f, 1, 1);
     }
 
     private void OnDisable()

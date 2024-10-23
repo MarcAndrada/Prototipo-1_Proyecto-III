@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4793520174551023068
 MeshFilter:
@@ -165,18 +165,18 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0.15124694, g: 0.47207642, b: 0.5943396, a: 1}
-  deepColor: {r: 0.20097658, g: 0.5803921, b: 0.7254902, a: 1}
+  shallowColor: {r: 0.15116784, g: 0.47207642, b: 0.5943396, a: 1}
+  deepColor: {r: 0.20089749, g: 0.5803921, b: 0.7254902, a: 1}
   colorDepth: 0
-  horizonColor: {r: 0.20097664, g: 0.5803921, b: 0.7254902, a: 1}
+  horizonColor: {r: 0.20089754, g: 0.5803921, b: 0.7254902, a: 1}
   horizonDistance: 0
   shoreFade: 1
   shoreColor: {r: 0.48627454, g: 0.7843138, b: 0.86666673, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 3
-  waveColor: {r: 0.12913054, g: 0.12913054, b: 0.12913054, a: 1}
-  underwaterColor: {r: 0.2394616, g: 0.4091278, b: 0.745283, a: 0}
+  waveColor: {r: 0.12905145, g: 0.12905145, b: 0.12905145, a: 1}
+  underwaterColor: {r: 0.23937815, g: 0.40904436, b: 0.745283, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: -0.14
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -271,7 +271,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 9.999999, y: 2.220446e-16, z: 10}
-  m_Center: {x: 0, y: -3, z: 0}
+  m_Center: {x: 0, y: -2, z: 0}
 --- !u!114 &8308002464607137427
 MonoBehaviour:
   m_ObjectHideFlags: 0

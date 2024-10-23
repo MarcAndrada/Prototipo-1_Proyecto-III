@@ -105,7 +105,6 @@ MonoBehaviour:
   moveSpeed: 4.5
   acceleration: 50
   rotateSpeed: 20
-  decelerationSpeed: 20
   cannonMovementSpeed: 3
   cannonRotationSpeed: 30
   interactableLayer:
