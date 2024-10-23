@@ -56,12 +56,12 @@ public class ModulesManager : MonoBehaviour
                 foreach (Module module in secondaryModuleList)
                 {
                     module.brokenModule.RepairForniture();
-                    
                 }
             }
+            health = configuration.Height * configuration.Width;
+
         }
 
-        health = configuration.Height * configuration.Width;
     }
 
     #region Load Functions
@@ -247,8 +247,7 @@ public class ModulesManager : MonoBehaviour
     {
         int i = Random.Range(0, configuration.Height);
         int j = Random.Range(0, configuration.Width);
-
-
+        
         if(_loops >= 100)
         {
             return (modules[i][j].transform.position, new Vector2Int(j, i));
