@@ -181,13 +181,13 @@ MonoBehaviour:
   - {fileID: 2021074174, guid: cca32c8c7d4610b48af749c08c4bd909, type: 3}
   - {fileID: -2067801412, guid: cca32c8c7d4610b48af749c08c4bd909, type: 3}
   - {fileID: -1534301400, guid: cca32c8c7d4610b48af749c08c4bd909, type: 3}
-  totalAnimationTime: 0.5
-  animationStartDelay: 1.2
+  totalAnimationTime: 0.3
+  animationStartDelay: 1.1
   uiElements:
   - {fileID: 341404045}
   - {fileID: 1081736766}
-  contentAppearanceDelay: 1.2
-  fadeInDuration: 0.5
+  contentAppearanceDelay: 1.1
+  fadeInDuration: 0.3
 --- !u!114 &43002717
 MonoBehaviour:
   m_ObjectHideFlags: 0

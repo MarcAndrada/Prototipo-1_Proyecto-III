@@ -10,6 +10,7 @@ public abstract class BaseWeapon : BaseFurniture
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private InteractableObjectScriptable acceptedObject;
     [SerializeField] private float shootForce = 20f;
+    [SerializeField] protected ParticleSystem projectileParticles;
     
     [Header("Reload Bullet"), Space]
     protected bool isReloading = false;
@@ -29,6 +30,7 @@ public abstract class BaseWeapon : BaseFurniture
     private void Awake()
     {
         hasBullet = false;
+        projectileParticles.Stop(true);
     }
 
     public abstract void Activate(PlayerController player);

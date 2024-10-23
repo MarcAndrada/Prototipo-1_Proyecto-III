@@ -374,6 +374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
+      propertyPath: cost
+      value: 750
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
+        type: 3}
       propertyPath: moneyManager
       value: 
       objectReference: {fileID: 262746629}
@@ -386,7 +391,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 517e609591166214eb197d96611e6e36, type: 3}
+      objectReference: {fileID: 2800000, guid: f34f15be29644cc48a9ccebbec43f36d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -727,8 +732,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2530a6d510991c64e95af95b4fef3edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMoney: 3000
+  startingMoney: 2500
   moneyText: {fileID: 1319849228}
+  moneySound: {fileID: 8300000, guid: 750562f4d0bf83c4595425cca59c0953, type: 3}
 --- !u!114 &262746630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,7 +889,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 750
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -1033,7 +1039,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 1000
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -1183,7 +1189,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 500
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -1333,7 +1339,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 750
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -1483,7 +1489,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 250
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -1900,7 +1906,7 @@ MonoBehaviour:
     type: 3}
   gridParent: {fileID: 1074516689}
   moneyManager: {fileID: 262746629}
-  expansionCost: 500
+  expansionCost: 250
   expandRightButton: {fileID: 1752609082}
   expandLeftButton: {fileID: 987655822}
   objectsPrefabs:
@@ -1930,7 +1936,7 @@ MonoBehaviour:
       Value: {fileID: 4347801468084496283, guid: fdeec5a5aaf685a4db45630a267171ed,
         type: 3}
     - Key: {fileID: 96360489}
-      Value: {fileID: 2611627890296759262, guid: d4eb00a3a9ef32b499f6048d3f50ba20,
+      Value: {fileID: 4347801468084496283, guid: f1cff55774740f54e927a2cfaef7e346,
         type: 3}
   objectSprites:
     _serializedList:
@@ -2126,7 +2132,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 750
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -2412,7 +2418,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 500
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
@@ -2821,7 +2827,7 @@ PrefabInstance:
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}
       propertyPath: cost
-      value: 250
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1689447374809799133, guid: f72ca8498356f2349afb4a319100b379,
         type: 3}

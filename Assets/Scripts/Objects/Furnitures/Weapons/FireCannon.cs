@@ -25,6 +25,7 @@ public class FireCannon : BaseWeapon
         }
         else
         {
+            
             if (!player.GetIsPilot() && !GetHasPilot()) //Comprobamos si el player se puede montar en el cañon
             {
                 EnterPilot(player.transform);
@@ -50,6 +51,7 @@ public class FireCannon : BaseWeapon
         if (isReloading)
         {
             SetHasBullet(true);
+            projectileParticles.Play(true);
             isReloading = false;
             
             if (player.GetInteractableObject() != null)
@@ -104,7 +106,8 @@ public class FireCannon : BaseWeapon
             {
                 bulletScript.SetDirection(GetBulletSpawner().forward.normalized);
             }
-
+            
+            projectileParticles.Stop(true);
             SetHasBullet(false);
             SetInteractableObject(null);
             ShowNeededInputHint(player, player.hintController);

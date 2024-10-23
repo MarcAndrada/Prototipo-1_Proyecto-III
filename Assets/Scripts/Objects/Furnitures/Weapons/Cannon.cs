@@ -22,8 +22,6 @@ public class Cannon : BaseWeapon
 
             ShowNeededInputHint(player, player.GetPlayerHintController());
             AudioManager.instance.Play2dOneShotSound(reloadCannonClip, "Master", 0.4f, 0.8f, 1.2f);
-
-
         }
         else 
         {
@@ -54,6 +52,7 @@ public class Cannon : BaseWeapon
         if (isReloading)
         {
             SetHasBullet(true);
+            projectileParticles.Play(true);
             isReloading = false;
             
             if (player.GetInteractableObject() != null)
@@ -108,7 +107,8 @@ public class Cannon : BaseWeapon
             {
                 bulletScript.SetDirection(GetBulletSpawner().forward.normalized);
             }
-
+            
+            projectileParticles.Stop(true);
             SetHasBullet(false);
             SetInteractableObject(null);
             ShowNeededInputHint(player, player.hintController);

@@ -56,9 +56,12 @@ public class ModulesManager : MonoBehaviour
                 foreach (Module module in secondaryModuleList)
                 {
                     module.brokenModule.RepairForniture();
+                    
                 }
             }
         }
+
+        health = configuration.Height * configuration.Width;
     }
 
     #region Load Functions
@@ -171,7 +174,7 @@ public class ModulesManager : MonoBehaviour
     }
     public void DamageModule()
     {
-        //Recibir el daño maximo en la casilla golpeada
+        //Recibir el daï¿½o maximo en la casilla golpeada
         modules[attackList[0].y][attackList[0].x].brokenModule.BreakForniture();
         modules[attackList[0].y][attackList[0].x].RemoveMainDamageZone();
 
@@ -181,7 +184,7 @@ public class ModulesManager : MonoBehaviour
 
 
         attackList.RemoveAt(0);
-        //Dañar el barco
+        //Daï¿½ar el barco
         health--;
         //Comprobar si el barco esta roto
         if(health <= minHealth)
